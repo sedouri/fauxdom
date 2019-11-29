@@ -1,0 +1,1358 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Parser Attributes Duplicate 1`] = `
+"#document-fragment
+ └─╴<DIV id=\\"1\\">
+"
+`;
+
+exports[`Parser Attributes Duplicate, mixed case 1`] = `
+"#document-fragment
+ └─╴<DIV id=\\"1\\" ID=\\"2\\" Id>
+"
+`;
+
+exports[`Parser Attributes Multiple, no value 1`] = `
+"#document-fragment
+ └─╴<DIV id name>
+"
+`;
+
+exports[`Parser Attributes Multiple, normal 1`] = `
+"#document-fragment
+ └─╴<DIV id=\\"1\\" name=\\"2\\">
+"
+`;
+
+exports[`Parser Attributes Multiple, unquoted 1`] = `
+"#document-fragment
+ └─╴<DIV id=\\"1\\" name=\\"2\\">
+"
+`;
+
+exports[`Parser Attributes Single, no value 1`] = `
+"#document-fragment
+ └─╴<DIV id>
+"
+`;
+
+exports[`Parser Attributes Single, normal 1`] = `
+"#document-fragment
+ └─╴<DIV id=\\"1\\">
+"
+`;
+
+exports[`Parser Attributes Single, unquoted 1`] = `
+"#document-fragment
+ └─╴<DIV id=\\"1\\">
+"
+`;
+
+exports[`Parser DOCTYPE parsing After comment 1`] = `
+"#document-fragment
+ ├─╴#comment :: \\" comment \\"
+ └─╴<!DOCTYPE html>
+"
+`;
+
+exports[`Parser DOCTYPE parsing After element 1`] = `
+"#document-fragment
+ └─╴<DIV>
+"
+`;
+
+exports[`Parser DOCTYPE parsing Double DOCTYPE 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     └─╴<BODY>
+"
+`;
+
+exports[`Parser DOCTYPE parsing Double DOCTYPE 2`] = `
+"#document
+ ├─╴<!DOCTYPE html PUBLIC \\"name\\">
+ └─╴<HTML>
+     ├─╴<HEAD>
+     └─╴<BODY>
+"
+`;
+
+exports[`Parser DOCTYPE parsing Full DOCTYPE 1`] = `
+"#document
+ ├─╴<!DOCTYPE html PUBLIC \\"-//W3C//DTD HTML 4.01 Transitional//EN\\" \\"http://www.w3.org/TR/html4/loose.dtd\\">
+ └─╴<HTML>
+     ├─╴<HEAD>
+     └─╴<BODY>
+"
+`;
+
+exports[`Parser DOCTYPE parsing Mixed case 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     └─╴<BODY>
+"
+`;
+
+exports[`Parser DOCTYPE parsing Public DOCTYPE 1`] = `
+"#document
+ ├─╴<!DOCTYPE html PUBLIC \\"-//W3C//DTD HTML 4.01 Transitional//EN\\">
+ └─╴<HTML>
+     ├─╴<HEAD>
+     └─╴<BODY>
+"
+`;
+
+exports[`Parser DOCTYPE parsing System DOCTYPE 1`] = `
+"#document
+ ├─╴<!DOCTYPE html SYSTEM \\"http://www.w3.org/TR/html4/loose.dtd\\">
+ └─╴<HTML>
+     ├─╴<HEAD>
+     └─╴<BODY>
+"
+`;
+
+exports[`Parser Element adoption BODY elements after HTML tag without a BODY 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     └─╴<HEAD>
+         └─╴<DIV>
+"
+`;
+
+exports[`Parser Element adoption Elements after HTML tag 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     └─╴<BODY>
+         └─╴<DIV>
+"
+`;
+
+exports[`Parser Element adoption Elements before & after HTML tag 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<META>
+     └─╴<BODY>
+         └─╴<DIV>
+"
+`;
+
+exports[`Parser Element adoption Elements before & after HTML tag without a HEAD or BODY 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<META>
+     └─╴<DIV>
+"
+`;
+
+exports[`Parser Element adoption Elements before HTML tag 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<META>
+     └─╴<BODY>
+"
+`;
+
+exports[`Parser Element adoption HEAD elements before HTML tag without a HEAD 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     └─╴<BODY>
+         └─╴<META>
+"
+`;
+
+exports[`Parser Element nesting UL inside UL 1`] = `
+"#document-fragment
+ └─╴<UL>
+     └─╴<LI>
+         └─╴<UL>
+             └─╴<LI>
+"
+`;
+
+exports[`Parser Tag boundaries ADDRESS closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<ADDRESS>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries ARTICLE closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<ARTICLE>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries ASIDE closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<ASIDE>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries BLOCKQUOTE closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<BLOCKQUOTE>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries BODY closes HEAD 1`] = `
+"#document-fragment
+ ├─╴<HEAD>
+ │   └─╴#text :: \\"1\\"
+ └─╴<BODY>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries BUTTON closes BUTTON 1`] = `
+"#document-fragment
+ ├─╴<BUTTON>
+ │   └─╴#text :: \\"1\\"
+ └─╴<BUTTON>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries BUTTON closes DATALIST 1`] = `
+"#document-fragment
+ ├─╴<DATALIST>
+ │   └─╴#text :: \\"1\\"
+ └─╴<BUTTON>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries BUTTON closes OPTGROUP 1`] = `
+"#document-fragment
+ ├─╴<OPTGROUP>
+ │   └─╴#text :: \\"1\\"
+ └─╴<BUTTON>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries BUTTON closes OPTION 1`] = `
+"#document-fragment
+ ├─╴<OPTION>
+ │   └─╴#text :: \\"1\\"
+ └─╴<BUTTON>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries BUTTON closes PROGRESS 1`] = `
+"#document-fragment
+ ├─╴<PROGRESS>
+ │   └─╴#text :: \\"1\\"
+ └─╴<BUTTON>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries BUTTON closes SELECT 1`] = `
+"#document-fragment
+ ├─╴<SELECT>
+ │   └─╴#text :: \\"1\\"
+ └─╴<BUTTON>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries BUTTON closes TEXTAREA 1`] = `
+"#document-fragment
+ ├─╴<TEXTAREA>
+ │   └─╴#text :: \\"1\\"
+ └─╴<BUTTON>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries DATALIST closes BUTTON 1`] = `
+"#document-fragment
+ ├─╴<BUTTON>
+ │   └─╴#text :: \\"1\\"
+ └─╴<DATALIST>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries DD closes DD 1`] = `
+"#document-fragment
+ ├─╴<DD>
+ │   └─╴#text :: \\"1\\"
+ └─╴<DD>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries DD closes DT 1`] = `
+"#document-fragment
+ ├─╴<DT>
+ │   └─╴#text :: \\"1\\"
+ └─╴<DD>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries DIV closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<DIV>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries DL closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<DL>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries DT closes DD 1`] = `
+"#document-fragment
+ ├─╴<DD>
+ │   └─╴#text :: \\"1\\"
+ └─╴<DT>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries DT closes DT 1`] = `
+"#document-fragment
+ ├─╴<DT>
+ │   └─╴#text :: \\"1\\"
+ └─╴<DT>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries FIELDSET closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<FIELDSET>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries FOOTER closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<FOOTER>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries FORM closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<FORM>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries H1 closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<H1>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries H2 closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<H2>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries H3 closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<H3>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries H4 closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<H4>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries H5 closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<H5>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries H6 closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<H6>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries HEADER closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<HEADER>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries HGROUP closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<HGROUP>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries HR closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ ├─╴<HR>
+ └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries INPUT closes BUTTON 1`] = `
+"#document-fragment
+ ├─╴<BUTTON>
+ │   └─╴#text :: \\"1\\"
+ ├─╴<INPUT>
+ └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries LI closes LI 1`] = `
+"#document-fragment
+ ├─╴<LI>
+ │   └─╴#text :: \\"1\\"
+ └─╴<LI>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries LI doesn't close OL 1`] = `
+"#document-fragment
+ └─╴<OL>
+     ├─╴#text :: \\"1\\"
+     └─╴<LI>
+         └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries LI doesn't close UL 1`] = `
+"#document-fragment
+ └─╴<UL>
+     ├─╴#text :: \\"1\\"
+     └─╴<LI>
+         └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries MAIN closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<MAIN>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries NAV closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<NAV>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries OL closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<OL>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries OPTGROUP closes OPTGROUP 1`] = `
+"#document-fragment
+ ├─╴<OPTGROUP>
+ │   └─╴#text :: \\"1\\"
+ └─╴<OPTGROUP>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries OPTGROUP closes OPTION 1`] = `
+"#document-fragment
+ ├─╴<OPTION>
+ │   └─╴#text :: \\"1\\"
+ └─╴<OPTGROUP>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries OPTION closes OPTION 1`] = `
+"#document-fragment
+ ├─╴<OPTION>
+ │   └─╴#text :: \\"1\\"
+ └─╴<OPTION>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries OPTION doesn't close OPTGROUP 1`] = `
+"#document-fragment
+ └─╴<OPTGROUP>
+     ├─╴#text :: \\"1\\"
+     └─╴<OPTION>
+         └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries OUTPUT closes BUTTON 1`] = `
+"#document-fragment
+ ├─╴<BUTTON>
+ │   └─╴#text :: \\"1\\"
+ └─╴<OUTPUT>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries P closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<P>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries PRE closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<PRE>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries PROGRESS closes BUTTON 1`] = `
+"#document-fragment
+ ├─╴<BUTTON>
+ │   └─╴#text :: \\"1\\"
+ └─╴<PROGRESS>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries SECTION closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<SECTION>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries SELECT closes BUTTON 1`] = `
+"#document-fragment
+ ├─╴<BUTTON>
+ │   └─╴#text :: \\"1\\"
+ └─╴<SELECT>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TABLE closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<TABLE>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TBODY closes TBODY 1`] = `
+"#document-fragment
+ ├─╴<TBODY>
+ │   └─╴#text :: \\"1\\"
+ └─╴<TBODY>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TBODY closes TFOOT 1`] = `
+"#document-fragment
+ ├─╴<TFOOT>
+ │   └─╴#text :: \\"1\\"
+ └─╴<TBODY>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TBODY closes THEAD 1`] = `
+"#document-fragment
+ ├─╴<THEAD>
+ │   └─╴#text :: \\"1\\"
+ └─╴<TBODY>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TD closes TD 1`] = `
+"#document-fragment
+ ├─╴<TD>
+ │   └─╴#text :: \\"1\\"
+ └─╴<TD>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TD closes TH 1`] = `
+"#document-fragment
+ ├─╴<TH>
+ │   └─╴#text :: \\"1\\"
+ └─╴<TD>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TD doesn't close TR 1`] = `
+"#document-fragment
+ └─╴<TR>
+     ├─╴#text :: \\"1\\"
+     └─╴<TD>
+         └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TEXTAREA closes BUTTON 1`] = `
+"#document-fragment
+ ├─╴<BUTTON>
+ │   └─╴#text :: \\"1\\"
+ └─╴<TEXTAREA>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TFOOT closes TBODY 1`] = `
+"#document-fragment
+ ├─╴<TBODY>
+ │   └─╴#text :: \\"1\\"
+ └─╴<TFOOT>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TFOOT closes TFOOT 1`] = `
+"#document-fragment
+ ├─╴<TFOOT>
+ │   └─╴#text :: \\"1\\"
+ └─╴<TFOOT>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TFOOT closes THEAD 1`] = `
+"#document-fragment
+ ├─╴<THEAD>
+ │   └─╴#text :: \\"1\\"
+ └─╴<TFOOT>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TH closes TD 1`] = `
+"#document-fragment
+ ├─╴<TD>
+ │   └─╴#text :: \\"1\\"
+ └─╴<TH>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TH closes TH 1`] = `
+"#document-fragment
+ ├─╴<TH>
+ │   └─╴#text :: \\"1\\"
+ └─╴<TH>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries THEAD closes TBODY 1`] = `
+"#document-fragment
+ ├─╴<TBODY>
+ │   └─╴#text :: \\"1\\"
+ └─╴<THEAD>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries THEAD closes TFOOT 1`] = `
+"#document-fragment
+ ├─╴<TFOOT>
+ │   └─╴#text :: \\"1\\"
+ └─╴<THEAD>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries THEAD closes THEAD 1`] = `
+"#document-fragment
+ ├─╴<THEAD>
+ │   └─╴#text :: \\"1\\"
+ └─╴<THEAD>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TR closes TR 1`] = `
+"#document-fragment
+ ├─╴<TR>
+ │   └─╴#text :: \\"1\\"
+ └─╴<TR>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries TR doesn't close TBODY 1`] = `
+"#document-fragment
+ └─╴<TBODY>
+     ├─╴#text :: \\"1\\"
+     └─╴<TR>
+         └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tag boundaries UL closes P 1`] = `
+"#document-fragment
+ ├─╴<P>
+ │   └─╴#text :: \\"1\\"
+ └─╴<UL>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tags Auto-close multiple inner tags 1`] = `
+"#document-fragment
+ ├─╴<DIV>
+ │   └─╴<SPAN>
+ │       ├─╴#text :: \\"1\\"
+ │       └─╴<SPAN>
+ │           ├─╴#text :: \\"2\\"
+ │           └─╴<SPAN>
+ │               └─╴#text :: \\"3\\"
+ └─╴#text :: \\"4\\"
+"
+`;
+
+exports[`Parser Tags Auto-close multiple inner tags, without an open tag 1`] = `
+"#document-fragment
+ └─╴<SPAN>
+     ├─╴#text :: \\"1\\"
+     └─╴<SPAN>
+         ├─╴#text :: \\"2\\"
+         └─╴<SPAN>
+             ├─╴#text :: \\"3\\"
+             └─╴#text :: \\"4\\"
+"
+`;
+
+exports[`Parser Tags Close without open 1`] = `
+"#document-fragment
+ └─╴<SPAN>
+"
+`;
+
+exports[`Parser Tags Invalid tag name 1`] = `
+"#document-fragment
+ ├─╴#text :: \\"<42>\\"
+ └─╴#comment :: \\"42\\"
+"
+`;
+
+exports[`Parser Tags Lower case 1`] = `
+"#document-fragment
+ └─╴<DIV>
+"
+`;
+
+exports[`Parser Tags Mixed case 1`] = `
+"#document-fragment
+ └─╴<DIV>
+"
+`;
+
+exports[`Parser Tags Multiple SCRIPT tags 1`] = `
+"#document-fragment
+ ├─╴<SCRIPT>
+ │   └─╴#text :: \\"1\\"
+ └─╴<SCRIPT>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tags Multiple SCRIPT tags, with missing end tag 1`] = `
+"#document-fragment
+ └─╴<SCRIPT>
+     └─╴#text :: \\"1<script>2\\"
+"
+`;
+
+exports[`Parser Tags Multiple SCRIPT tags, with missing end tag 2`] = `
+"#document-fragment
+ ├─╴<SCRIPT>
+ │   └─╴#text :: \\"1\\"
+ └─╴<SCRIPT>
+     └─╴#text :: \\"2\\"
+"
+`;
+
+exports[`Parser Tags SCRIPT tag contents 1`] = `
+"#document-fragment
+ └─╴<SCRIPT>
+     └─╴#text :: \\"if ( 1 < 2 && 2 > 1 )\\\\n\\\\tj( '&amp;' );\\"
+"
+`;
+
+exports[`Parser Tags STYLE tag contents 1`] = `
+"#document-fragment
+ └─╴<STYLE>
+     └─╴#text :: \\" p > l {} \\"
+"
+`;
+
+exports[`Parser Tags Self closing 1`] = `
+"#document-fragment
+ ├─╴<INPUT>
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`Parser Tags Self closing DIV inside not self closing DIV 1`] = `
+"#document-fragment
+ └─╴<DIV>
+     ├─╴<DIV>
+     │   └─╴#text :: \\"inner\\"
+     └─╴#text :: \\"outer\\"
+"
+`;
+
+exports[`Parser Tags Self closing, with enclosed unnecessary end tag 1`] = `
+"#document-fragment
+ ├─╴<INPUT>
+ ├─╴#text :: \\"text\\"
+ └─╴<SPAN>
+     ├─╴#text :: \\"2\\"
+     └─╴#text :: \\"3\\"
+"
+`;
+
+exports[`Parser Tags Self closing, with unnecessary end tag 1`] = `
+"#document-fragment
+ ├─╴<INPUT>
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`Parser Tags Upper case 1`] = `
+"#document-fragment
+ └─╴<DIV>
+"
+`;
+
+exports[`Parser allowCDATA: true Incorrect end 1`] = `
+"#document-fragment
+ └─╴#cdata-section :: \\" data ] ]>text\\"
+"
+`;
+
+exports[`Parser allowCDATA: true Incorrect end 2`] = `
+"#document-fragment
+ └─╴#cdata-section :: \\" data ]] >text\\"
+"
+`;
+
+exports[`Parser allowCDATA: true Incorrect end 3`] = `
+"#document-fragment
+ └─╴#cdata-section :: \\" data ]>text\\"
+"
+`;
+
+exports[`Parser allowCDATA: true Incorrect end 4`] = `
+"#document-fragment
+ └─╴#cdata-section :: \\" data >text\\"
+"
+`;
+
+exports[`Parser allowCDATA: true Incorrect end 5`] = `
+"#document-fragment
+ └─╴#cdata-section :: \\" data ]text\\"
+"
+`;
+
+exports[`Parser allowCDATA: true Incorrect end 6`] = `
+"#document-fragment
+ └─╴#cdata-section :: \\" data ]]text\\"
+"
+`;
+
+exports[`Parser allowCDATA: true Well formed 1`] = `
+"#document-fragment
+ ├─╴#cdata-section :: \\" data \\"
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`Parser allowCDATA: true Well formed, with double end 1`] = `
+"#document-fragment
+ ├─╴#cdata-section :: \\" data \\"
+ └─╴#text :: \\"]]>text\\"
+"
+`;
+
+exports[`Parser allowProcessingInstructions: true Incorrect end 1`] = `
+"#document-fragment
+ └─╴<?target data? >text?>
+"
+`;
+
+exports[`Parser allowProcessingInstructions: true Incorrect end 2`] = `
+"#document-fragment
+ └─╴<?target data>text?>
+"
+`;
+
+exports[`Parser allowProcessingInstructions: true Incorrect target 1`] = `
+"#document-fragment
+ ├─╴#comment :: \\"?.target data?\\"
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`Parser allowProcessingInstructions: true Incorrect target 2`] = `
+"#document-fragment
+ ├─╴#comment :: \\"?target(0) data?\\"
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`Parser allowProcessingInstructions: true Well formed 1`] = `
+"#document-fragment
+ ├─╴<?target data?>
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`Parser allowProcessingInstructions: true Well formed, with double end 1`] = `
+"#document-fragment
+ ├─╴<?target data?>
+ └─╴#text :: \\"?>text\\"
+"
+`;
+
+exports[`Parser allowProcessingInstructions: true Well formed, with no data 1`] = `
+"#document-fragment
+ ├─╴<?target?>
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`Parser allowSelfClosingSyntax: true Self closing DIV inside not self closing DIV 1`] = `
+"#document-fragment
+ ├─╴<DIV>
+ │   ├─╴<DIV>
+ │   └─╴#text :: \\"inner\\"
+ └─╴#text :: \\"outer\\"
+"
+`;
+
+exports[`Parser allowSelfClosingSyntax: true Well formed 1`] = `
+"#document-fragment
+ ├─╴<DIV>
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`Parser allowSelfClosingSyntax: true Well formed, with attribute 1`] = `
+"#document-fragment
+ ├─╴<DIV id=\\"1\\">
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`Parser allowSelfClosingSyntax: true Well formed, with unquoted attribute 1`] = `
+"#document-fragment
+ ├─╴<DIV id=\\"1\\">
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`Parser allowSelfClosingSyntax: true Well formed, with value-less attribute 1`] = `
+"#document-fragment
+ ├─╴<DIV id>
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`Parser collapseWhitespace: true Whitespace removal 1`] = `
+"#document-fragment
+ ├─╴#text :: \\" \\"
+ ├─╴<DIV>
+ │   ├─╴#text :: \\" \\"
+ │   ├─╴<SPAN>
+ │   │   ├─╴#text :: \\"This \\"
+ │   │   ├─╴<B>
+ │   │   │   └─╴#text :: \\"will\\"
+ │   │   ├─╴<SPAN>
+ │   │   │   └─╴#text :: \\" \\"
+ │   │   └─╴#text :: \\"be fine\\"
+ │   └─╴#text :: \\" \\"
+ └─╴#text :: \\" \\"
+"
+`;
+
+exports[`Parser lowerAttributeCase: true Duplicate, mixed case 1`] = `
+"#document-fragment
+ └─╴<DIV id=\\"1\\">
+"
+`;
+
+exports[`Parser trimWhitespace: true Whitespace removal 1`] = `
+"#document-fragment
+ └─╴<DIV>
+     └─╴<SPAN>
+         ├─╴#text :: \\"This\\"
+         ├─╴<B>
+         │   └─╴#text :: \\"will\\"
+         └─╴#text :: \\"be odd\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors abrupt-closing-of-empty-comment 1`] = `
+"#document-fragment
+ ├─╴#comment :: \\"\\"
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors abrupt-closing-of-empty-comment 2`] = `
+"#document-fragment
+ ├─╴#comment :: \\"\\"
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors abrupt-doctype-public-identifier 1`] = `
+"#document-fragment
+ └─╴<!DOCTYPE html PUBLIC \\"foo\\">
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors abrupt-doctype-system-identifier 1`] = `
+"#document-fragment
+ └─╴<!DOCTYPE html PUBLIC \\"-//W3C//DTD HTML 4.01//EN\\" \\"foo\\">
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors absence-of-digits-in-numeric-character-reference 1`] = `
+"#document-fragment
+ └─╴#text :: \\"&#qux; &\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors cdata-in-html-content 1`] = `
+"#document-fragment
+ ├─╴#comment :: \\"[CDATA[ data ]]\\"
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors control-character-in-input-stream 1`] = `
+"#document-fragment
+ └─╴#text :: \\"\\\\0\\\\2\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors duplicate-attribute 1`] = `
+"#document-fragment
+ └─╴<DIV style=\\"1\\">
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors end-tag-with-attributes 1`] = `
+"#document-fragment
+ └─╴<DIV>
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors end-tag-with-trailing-solidus 1`] = `
+"#document-fragment
+ ├─╴<DIV>
+ │   └─╴#text :: \\"inner\\"
+ └─╴#text :: \\"outer\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors eof-before-tag-name 1`] = `
+"#document-fragment
+ └─╴#text :: \\"<\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors eof-before-tag-name 2`] = `
+"#document-fragment
+ └─╴#text :: \\"</\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors eof-in-cdata 1`] = `
+"#document-fragment
+ └─╴#comment :: \\"[CDATA[ \\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors eof-in-comment 1`] = `
+"#document-fragment
+ └─╴#comment :: \\" comment \\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors eof-in-doctype 1`] = `
+"#document-fragment
+ └─╴<!DOCTYPE htm>
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors eof-in-script-html-comment-like-text 1`] = `
+"#document-fragment
+ └─╴<SCRIPT>
+     └─╴#comment :: \\" foo\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors eof-in-tag 1`] = `
+"#document-fragment
+ └─╴<DIV id>
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors incorrectly-opened-comment 1`] = `
+"#document-fragment
+ ├─╴#comment :: \\"ELEMENT br EMPTY\\"
+ └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors invalid-first-character-of-tag-name 1`] = `
+"#document-fragment
+ ├─╴#text :: \\"<42>\\"
+ └─╴#comment :: \\"42\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors missing-attribute-value 1`] = `
+"#document-fragment
+ └─╴<DIV id>
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors missing-doctype-name 1`] = `
+"#document-fragment
+ └─╴<!DOCTYPE>
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors missing-doctype-public-identifier 1`] = `
+"#document-fragment
+ └─╴<!DOCTYPE html>
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors missing-doctype-system-identifier 1`] = `
+"#document-fragment
+ └─╴<!DOCTYPE html>
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors missing-end-tag-name 1`] = `
+"#document-fragment
+ └─╴<DIV>
+     └─╴#text :: \\"text\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors missing-quote-before-doctype-public-identifier 1`] = `
+"#document-fragment
+ └─╴<!DOCTYPE html>
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors missing-quote-before-doctype-system-identifier 1`] = `
+"#document-fragment
+ └─╴<!DOCTYPE html>
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors missing-semicolon-after-character-reference 1`] = `
+"#document-fragment
+ └─╴#text :: \\"text ¬in.\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors missing-semicolon-after-character-reference 2`] = `
+"#document-fragment
+ └─╴#text :: \\"text ∉.\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors missing-whitespace-before-doctype-name 1`] = `
+"#document-fragment
+ └─╴<!DOCTYPE html>
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors missing-whitespace-between-attributes 1`] = `
+"#document-fragment
+ └─╴<DIV id=\\"foo\\" class=\\"bar\\">
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors missing-whitespace-between-doctype-public-and-system-identifiers 1`] = `
+"#document-fragment
+ └─╴<!DOCTYPE html PUBLIC \\"foo\\" \\"BAR\\">
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors nested-comment 1`] = `
+"#document-fragment
+ ├─╴#comment :: \\" <!-- nested \\"
+ └─╴#text :: \\" -->\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors non-void-html-element-start-tag-with-trailing-solidus 1`] = `
+"#document-fragment
+ └─╴<DIV>
+     ├─╴<SPAN>
+     └─╴<SPAN>
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors noncharacter-character-reference 1`] = `
+"#document-fragment
+ └─╴#text :: \\"﷐\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors noncharacter-in-input-stream 1`] = `
+"#document-fragment
+ └─╴#text :: \\"﷐\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors unexpected-character-after-doctype-system-identifier 1`] = `
+"#document-fragment
+ └─╴<!DOCTYPE html PUBLIC \\"foo\\" \\"BAR\\">
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors unexpected-character-in-attribute-name 1`] = `
+"#document-fragment
+ └─╴<DIV foo<div>
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors unexpected-character-in-attribute-name 2`] = `
+"#document-fragment
+ └─╴<DIV id'bar'>
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors unexpected-character-in-unquoted-attribute-value 1`] = `
+"#document-fragment
+ └─╴<DIV foo=\\"b'ar'\\">
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors unexpected-equals-sign-before-attribute-name 1`] = `
+"#document-fragment
+ └─╴<DIV foo=\\"bar\\" =\\"baz\\">
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors unexpected-question-mark-instead-of-tag-name 1`] = `
+"#document-fragment
+ └─╴#comment :: \\"?xml-stylesheet type=\\\\\\"text/css\\\\\\" href=\\\\\\"style.css\\\\\\"?\\"
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors unexpected-solidus-in-tag 1`] = `
+"#document-fragment
+ └─╴<DIV id=\\"foo\\">
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors unexpected-solidus-in-tag 2`] = `
+"#document-fragment
+ └─╴<DIV attr id=\\"foo\\">
+"
+`;
+
+exports[`WHATWG HTML5 Spec 12.2.2 Parse errors unknown-named-character-reference 1`] = `
+"#document-fragment
+ └─╴#text :: \\"&foobar;\\"
+"
+`;

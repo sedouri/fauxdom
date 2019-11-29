@@ -1,0 +1,487 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DOM API, Document 1.0.0 Get non-existent HEAD 1`] = `null`;
+
+exports[`DOM API, Document 1.0.1 Cycle title without HEAD 1`] = `
+"#document
+ └─╴<HTML>
+"
+`;
+
+exports[`DOM API, Document 1.0.2 Create HEAD 1`] = `
+"#document
+ └─╴<HTML>
+     └─╴<HEAD>
+"
+`;
+
+exports[`DOM API, Document 1.0.3 Cycle title with HEAD 1`] = `
+"#document
+ └─╴<HTML>
+     └─╴<HEAD>
+         └─╴<TITLE>
+             └─╴#text :: \\"\\"
+"
+`;
+
+exports[`DOM API, Document 1.0.4 Set title 1`] = `
+"#document
+ └─╴<HTML>
+     └─╴<HEAD>
+         └─╴<TITLE>
+             └─╴#text :: \\"Title\\"
+"
+`;
+
+exports[`DOM API, Document 1.0.5 Try to add a second/raplacement HEAD 1`] = `
+"#document
+ └─╴<HTML>
+     └─╴<HEAD>
+         └─╴<TITLE>
+             └─╴#text :: \\"Title\\"
+"
+`;
+
+exports[`DOM API, Document 1.0.6 Verify title 1`] = `"Title"`;
+
+exports[`DOM API, Document 1.1.0 Get non-existent BODY 1`] = `null`;
+
+exports[`DOM API, Document 1.1.1 Create BODY 1`] = `
+"#document
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     └─╴<BODY>
+"
+`;
+
+exports[`DOM API, Document 1.1.2 Create invalid element (empty string) 1`] = `null`;
+
+exports[`DOM API, Document 1.1.3 Create invalid element (boolean true) 1`] = `null`;
+
+exports[`DOM API, Document 1.1.4 Create comment 1`] = `"<!--<!-- comment -->-->"`;
+
+exports[`DOM API, Document 1.1.4 Create comment 2`] = `
+"#comment :: \\"<!-- comment -->\\"
+"
+`;
+
+exports[`DOM API, Document 1.2.0 Add a DIV 1`] = `
+"#document
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     └─╴<BODY>
+         └─╴<DIV>
+"
+`;
+
+exports[`DOM API, Document 1.3.0 Replace BODY with FRAMESET 1`] = `
+"#document
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     └─╴<FRAMESET>
+"
+`;
+
+exports[`DOM API, Document 1.3.1 Replace FRAMESET with BODY 1`] = `
+"#document
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     └─╴<BODY>
+"
+`;
+
+exports[`DOM API, Document 1.4.0 Create a couple elements 1`] = `
+"#document
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     └─╴<BODY>
+         └─╴<DIV>
+             ├─╴#text :: \\"text\\"
+             └─╴#text :: \\"\\"
+"
+`;
+
+exports[`DOM API, Document 1.4.1 Add a document fragment 1`] = `
+"#document
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     └─╴<BODY>
+         ├─╴<DIV>
+         │   ├─╴#text :: \\"text\\"
+         │   └─╴#text :: \\"\\"
+         └─╴<SPAN name=\\"name\\">
+             └─╴#text :: \\"content\\"
+"
+`;
+
+exports[`DOM API, Document 1.4.2 Add a document fragment with a BODY, keeping only an H1 1`] = `
+"#document
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 1.5.0 Add a DOCTYPE using an object 1`] = `
+"#document
+ ├─╴<!DOCTYPE html PUBLIC \\"pub\\" \\"sys\\">
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 1.5.1 Modify a DOCTYPE using an object 1`] = `
+"#document
+ ├─╴<!DOCTYPE other>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 1.5.2 Modify a DOCTYPE directly 1`] = `
+"#document
+ ├─╴<!DOCTYPE name PUBLIC \\"public\\" \\"system\\">
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 1.5.3 Clear the DOCTYPE using an object 1`] = `
+"#document
+ ├─╴<!DOCTYPE>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 1.5.4 Add a DOCTYPE from another document 1`] = `
+"#document
+ ├─╴<!DOCTYPE public>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 1.5.5 Check for DOCTYPE 1`] = `
+"<!DOCTYPE public>
+"
+`;
+
+exports[`DOM API, Document 1.5.6 Remove the DOCTYPE by setting it to null 1`] = `
+"#document
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 1.5.7 Check for DOCTYPE 1`] = `null`;
+
+exports[`DOM API, Document 1.5.8 Add a DOCTYPE to a document fragment 1`] = `
+"#document-fragment
+ ├─╴<!DOCTYPE html>
+ └─╴<DIV>
+"
+`;
+
+exports[`DOM API, Document 1.6.0 Custom document element name 1`] = `
+"#document
+ ├─╴<!DOCTYPE svg>
+ └─╴<SVG>
+"
+`;
+
+exports[`DOM API, Document 1.6.1 Custom document element name, with elements outside document element 1`] = `
+"#document
+ ├─╴<!DOCTYPE svg>
+ └─╴<SVG>
+     ├─╴<PATH>
+     └─╴<RECTANGLE>
+"
+`;
+
+exports[`DOM API, Document 1.7.0 getElementsByName( 'name' ) 1`] = `
+"#array[2]
+ ├─╴<SPAN name=\\"name\\">
+ │   └─╴#text :: \\"content\\"
+ └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 1.7.1 getElementsByName( 42 ) 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Document 1.7.2 getElementsByName() 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Document 1.8.0 Set outerHTML 1`] = `
+"#document
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 1.8.1 Get outerHTML 1`] = `null`;
+
+exports[`DOM API, Document 1.9.0 Verify 'ownerDocument', swap element between documents 1`] = `
+"<BODY>
+ ├─╴<DIV>
+ │   ├─╴#text :: \\"text\\"
+ │   └─╴#text :: \\"\\"
+ ├─╴<SPAN name=\\"name\\">
+ │   └─╴#text :: \\"content\\"
+ └─╴<DIV>
+     └─╴#text :: \\"hi\\"
+"
+`;
+
+exports[`DOM API, Document 1.9.0 Verify 'ownerDocument', swap element between documents 2`] = `
+"#document
+ └─╴<HTML>
+     └─╴<BODY>
+         └─╴<DIV>
+             └─╴#text :: \\"hi\\"
+"
+`;
+
+exports[`DOM API, Document 1.9.1 Verify 'ownerDocument', replace all elements in document 1`] = `
+"#document-fragment
+ └─╴<SPAN>
+     └─╴#text :: \\"alternate\\"
+"
+`;
+
+exports[`DOM API, Document 2.0.0 Add a whole document 1`] = `
+"#document
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 2.0.1 Add document to itself 1`] = `
+"#document
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 2.0.2 Add document to its own body 1`] = `
+"#document
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 2.1.0 Add a document fragment to itself 1`] = `
+"#document-fragment
+ └─╴<DIV>
+"
+`;
+
+exports[`DOM API, Document 2.1.1 Add a document fragment to a child of its own 1`] = `
+"#document-fragment
+ └─╴<DIV>
+"
+`;
+
+exports[`DOM API, Document 2.2.0 Add a malformed DOCTYPE using an object with no 'name' 1`] = `
+"#document
+ ├─╴<!DOCTYPE>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 2.2.1 Set the DOCTYPE to true 1`] = `
+"#document
+ ├─╴<!DOCTYPE>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 2.2.2 Set the DOCTYPE to false 1`] = `
+"#document
+ ├─╴<!DOCTYPE>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 2.2.3 Set the DOCTYPE to DIV node 1`] = `
+"#document
+ ├─╴<!DOCTYPE>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 2.3.0 Replace BODY with non-node (null) 1`] = `
+"#document
+ ├─╴<!DOCTYPE>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Title\\"
+     ├─╴<BODY>
+     │   ├─╴<DIV>
+     │   │   ├─╴#text :: \\"text\\"
+     │   │   └─╴#text :: \\"\\"
+     │   └─╴<SPAN name=\\"name\\">
+     │       └─╴#text :: \\"content\\"
+     └─╴<H1 name=\\"name\\">
+"
+`;
+
+exports[`DOM API, Document 2.4.0 Make addChildNode() treat DIV elements like HEAD and BODY 1`] = `null`;
+
+exports[`DOM API, Document 2.4.1 Make addChildNode() treat DIV elements like HEAD and BODY 1`] = `null`;

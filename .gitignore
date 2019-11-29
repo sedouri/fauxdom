@@ -1,0 +1,17 @@
+.svn
+.travis.yml
+.github/
+lib/
+debug/
+coverage/
+reference/
+node_modules/
+package-lock.json
+*.sublime-*
+*.sh
+*.cmd
+*.command
+*.gz
+*.tgz
+*.zip
+TODO

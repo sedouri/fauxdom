@@ -1,0 +1,58 @@
+{
+	"name": "fauxdom",
+	"description": "A fast and lightweight HTML5 parser and DOM for Node.js and browsers.",
+	"version": "1.0.0",
+	"author": "Joe Stenger <sedouri@gmail.com>",
+	"license": "MIT",
+	"keywords": [
+		"dom",
+		"html",
+		"parser",
+		"selector",
+		"serializer",
+		"html5"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sedouri/fauxdom.git"
+	},
+	"bugs": {
+		"url": "https://github.com/sedouri/fauxdom/issues"
+	},
+	"homepage": "https://github.com/sedouri/fauxdom",
+	"files": [
+		"lib/fauxdom.cjs",
+		"lib/entities.json"
+	],
+	"directories": {
+		"lib": "lib/"
+	},
+	"engines": {
+		"node": ">=6"
+	},
+	"main": "index.js",
+	"scripts": {
+		"test": "npm run build:debug && jest",
+		"build:debug": "rollup -c --configDebug --silent",
+		"prepare": "rollup -c --silent"
+	},
+	"devDependencies": {
+		"jest": "^24.9.0",
+		"rollup": "^1.20.2",
+		"rollup-plugin-buble": "^0.19.8",
+		"rollup-plugin-strip-code": "^0.2.7",
+		"rollup-plugin-terser": "^5.1.1",
+		"yazl": "^2.5.1"
+	},
+	"jest": {
+		"collectCoverage": true,
+		"collectCoverageFrom": [
+			"lib/fauxdom.cjs"
+		],
+		"verbose": false,
+		"watchPathIgnorePatterns": [
+			"<rootDir>/debug",
+			"<rootDir>/src"
+		]
+	}
+}

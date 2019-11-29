@@ -1,0 +1,1034 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DOM API, Nodes 0.0 Baseline 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             └─╴<SPAN id=\\"s\\">
+                 ├─╴#text :: \\"2\\"
+                 └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 0.1 Baseline BAD 1`] = `
+"<BAD>
+"
+`;
+
+exports[`DOM API, Nodes 1.0.0 Get BR.innerHTML 1`] = `""`;
+
+exports[`DOM API, Nodes 1.0.1 Set BR.innerHTML 1`] = `""`;
+
+exports[`DOM API, Nodes 1.0.2 Get BR.outerHTML 1`] = `"<br>"`;
+
+exports[`DOM API, Nodes 1.0.3 Set BR.outerHTML 1`] = `"<br>"`;
+
+exports[`DOM API, Nodes 1.1.0 Get SPAN.innerHTML 1`] = `"2<!--3-->"`;
+
+exports[`DOM API, Nodes 1.1.1 Set SPAN.innerHTML 1`] = `
+"<SPAN id=\\"s\\">
+ └─╴<B>
+"
+`;
+
+exports[`DOM API, Nodes 1.1.2 Set SPAN.innerHTML to null 1`] = `
+"<SPAN id=\\"s\\">
+"
+`;
+
+exports[`DOM API, Nodes 1.1.3 Repair SPAN 1`] = `
+"<SPAN id=\\"s\\">
+ ├─╴#text :: \\"2\\"
+ └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 1.2.0 Get SPAN.outerHTML 1`] = `"<span id=\\"s\\">2<!--3--></span>"`;
+
+exports[`DOM API, Nodes 1.2.1 Set SPAN.outerHTML 1`] = `
+"<DIV class=\\"d\\" TeSt>
+ ├─╴#text :: \\"1\\"
+ └─╴<B>
+"
+`;
+
+exports[`DOM API, Nodes 1.2.2 Repair SPAN.outerHTML 1`] = `
+"<DIV class=\\"d\\" TeSt>
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 1.2.3 Set SPAN.outerHTML to null 1`] = `
+"<DIV class=\\"d\\" TeSt>
+ └─╴#text :: \\"1\\"
+"
+`;
+
+exports[`DOM API, Nodes 1.2.4 Repair SPAN.outerHTML 1`] = `
+"<DIV class=\\"d\\" TeSt>
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 1.3.0 innerHTML of parent-less DIV element 1`] = `"<p>text</p>"`;
+
+exports[`DOM API, Nodes 1.3.1 innerHTML of #text node 1`] = `null`;
+
+exports[`DOM API, Nodes 1.3.2 Set outerHTML of P in parent-less DIV 1`] = `
+"<DIV>
+ └─╴<HR>
+"
+`;
+
+exports[`DOM API, Nodes 1.4.0 Get DIV.textContent 1`] = `"12"`;
+
+exports[`DOM API, Nodes 1.4.1 Get #comment.textContent 1`] = `"3"`;
+
+exports[`DOM API, Nodes 1.4.2 Set SPAN.textContent to null 1`] = `
+"<SPAN id=\\"s\\">
+ └─╴#text :: \\"\\"
+"
+`;
+
+exports[`DOM API, Nodes 1.4.3 Set SPAN.textContent to true 1`] = `
+"<SPAN id=\\"s\\">
+ └─╴#text :: \\"true\\"
+"
+`;
+
+exports[`DOM API, Nodes 1.4.4 Set #comment.textContent 1`] = `
+"#comment :: \\"comment\\"
+"
+`;
+
+exports[`DOM API, Nodes 1.4.5 Set DOCTYPE.textContent 1`] = `
+"<!DOCTYPE html>
+"
+`;
+
+exports[`DOM API, Nodes 1.4.REPAIR 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             └─╴<SPAN id=\\"s\\">
+                 ├─╴#text :: \\"2\\"
+                 └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.0.0 hasAttributes, document 1`] = `false`;
+
+exports[`DOM API, Nodes 2.0.1 hasAttributes, BODY 1`] = `false`;
+
+exports[`DOM API, Nodes 2.0.2 hasAttributes, DIV 1`] = `true`;
+
+exports[`DOM API, Nodes 2.0.3 hasAttributes, #text node 1`] = `false`;
+
+exports[`DOM API, Nodes 2.0.4 hasAttributes, BAD 1`] = `false`;
+
+exports[`DOM API, Nodes 2.1.0 getAttributeNames, document 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Nodes 2.1.1 getAttributeNames, BODY 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Nodes 2.1.2 getAttributeNames, DIV 1`] = `
+"#array[2]
+ ├─╴\\"class\\"
+ └─╴\\"TeSt\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.1.3 getAttributeNames, #text node 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Nodes 2.1.4 getAttributeNames, BAD 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Nodes 2.2.0 getAttribute, DIV['class'] 1`] = `"d"`;
+
+exports[`DOM API, Nodes 2.2.1 getAttribute, DIV['id'] 1`] = `null`;
+
+exports[`DOM API, Nodes 2.2.2 getAttribute, DIV[42] 1`] = `null`;
+
+exports[`DOM API, Nodes 2.2.3 getAttribute, DIV[] 1`] = `null`;
+
+exports[`DOM API, Nodes 2.2.4 getAttribute, #text node['id'] 1`] = `null`;
+
+exports[`DOM API, Nodes 2.3.0 setAttribute, DIV['attr'=false] 1`] = `
+"<DIV class=\\"d\\" TeSt attr=\\"false\\">
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.3.1 setAttribute, DIV['attr'=42] 1`] = `
+"<DIV class=\\"d\\" TeSt attr=\\"42\\">
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.3.2 setAttribute, DIV[42='attr'] 1`] = `
+"<DIV class=\\"d\\" TeSt attr=\\"42\\">
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.3.3 setAttribute, DIV['class'=null] 1`] = `
+"<DIV class=\\"null\\" TeSt attr=\\"42\\">
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.3.4 setAttribute, DIV['class'=false] 1`] = `
+"<DIV class=\\"false\\" TeSt attr=\\"42\\">
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.3.5 setAttribute, DIV['class'=true] 1`] = `
+"<DIV class TeSt attr=\\"42\\">
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.3.6 setAttribute, DIV['class'='d'] 1`] = `
+"<DIV class=\\"d\\" TeSt attr=\\"42\\">
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.4.0 toggleAttribute, DIV['id'] on 1`] = `
+"<DIV class=\\"d\\" TeSt attr=\\"42\\" id>
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.4.1 toggleAttribute, DIV['id'] forced on 1`] = `
+"<DIV class=\\"d\\" TeSt attr=\\"42\\" id>
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.4.2 toggleAttribute, DIV['attr'] off 1`] = `
+"<DIV class=\\"d\\" TeSt id>
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.4.3 toggleAttribute, DIV['id'] forced off 1`] = `
+"<DIV class=\\"d\\" TeSt>
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.4.4 toggleAttribute, DIV['id'] forced off, again 1`] = `
+"<DIV class=\\"d\\" TeSt>
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.4.5 toggleAttribute, DIV[42] forced on 1`] = `
+"<DIV class=\\"d\\" TeSt>
+ ├─╴#text :: \\"1\\"
+ └─╴<SPAN id=\\"s\\">
+     ├─╴#text :: \\"2\\"
+     └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.5.0 removeAttribute, SPAN['attr'] 1`] = `
+"<SPAN id=\\"s\\">
+ ├─╴#text :: \\"2\\"
+ └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.5.1 removeAttribute, SPAN['id'] 1`] = `
+"<SPAN>
+ ├─╴#text :: \\"2\\"
+ └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.5.2 removeAttribute, SPAN['foo'] 1`] = `
+"<SPAN>
+ ├─╴#text :: \\"2\\"
+ └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.5.3 removeAttribute, SPAN[42] 1`] = `
+"<SPAN>
+ ├─╴#text :: \\"2\\"
+ └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.5.REPAIR 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             └─╴<SPAN id=\\"s\\">
+                 ├─╴#text :: \\"2\\"
+                 └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 2.6.0 hasAttribute, DIV['class'] 1`] = `true`;
+
+exports[`DOM API, Nodes 2.6.1 hasAttribute, SPAN['id'] 1`] = `true`;
+
+exports[`DOM API, Nodes 2.6.2 hasAttribute, DIV['id'] 1`] = `false`;
+
+exports[`DOM API, Nodes 2.6.3 hasAttribute, DIV['test'] 1`] = `false`;
+
+exports[`DOM API, Nodes 2.6.4 hasAttribute, DIV[42] 1`] = `false`;
+
+exports[`DOM API, Nodes 2.6.5 hasAttribute, #text node['id'] 1`] = `false`;
+
+exports[`DOM API, Nodes 3.0.0 hasChildNodes, BODY 1`] = `true`;
+
+exports[`DOM API, Nodes 3.0.1 hasChildNodes, DIV 1`] = `true`;
+
+exports[`DOM API, Nodes 3.0.2 hasChildNodes, #text node 1`] = `false`;
+
+exports[`DOM API, Nodes 3.1.0 appendChild, move element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   └─╴#text :: \\"1\\"
+         └─╴<SPAN id=\\"s\\">
+             ├─╴#text :: \\"2\\"
+             └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 3.1.1 appendChild, new element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   └─╴<BR>
+         └─╴<SPAN id=\\"s\\">
+             ├─╴#text :: \\"2\\"
+             └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 3.1.2 appendChild, to self closing element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   └─╴<BR>
+         └─╴<SPAN id=\\"s\\">
+             ├─╴#text :: \\"2\\"
+             └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 3.2.0 insertBefore, move element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<SPAN id=\\"s\\">
+         │   ├─╴#text :: \\"2\\"
+         │   └─╴#comment :: \\"3\\"
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             └─╴<BR>
+"
+`;
+
+exports[`DOM API, Nodes 3.2.1 insertBefore, before non-element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<SPAN id=\\"s\\">
+         │   ├─╴#text :: \\"2\\"
+         │   └─╴#comment :: \\"3\\"
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             └─╴<BR>
+"
+`;
+
+exports[`DOM API, Nodes 3.2.2 insertBefore, non-element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<SPAN id=\\"s\\">
+         │   ├─╴#text :: \\"2\\"
+         │   └─╴#comment :: \\"3\\"
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             └─╴<BR>
+"
+`;
+
+exports[`DOM API, Nodes 3.2.3 insertBefore, from incorrect parent 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             ├─╴<BR>
+             └─╴<SPAN id=\\"s\\">
+                 ├─╴#text :: \\"2\\"
+                 └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 3.3.0 replaceChild, new element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         └─╴<B>
+"
+`;
+
+exports[`DOM API, Nodes 3.3.1 replaceChild, old element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             ├─╴<BR>
+             └─╴<SPAN id=\\"s\\">
+                 ├─╴#text :: \\"2\\"
+                 └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 3.3.2 replaceChild, non-element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             ├─╴<BR>
+             └─╴<SPAN id=\\"s\\">
+                 ├─╴#text :: \\"2\\"
+                 └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 3.3.3 replaceChild, replace element with itself 1`] = `null`;
+
+exports[`DOM API, Nodes 3.3.4 replaceChild, replace with non-element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             ├─╴<BR>
+             └─╴<SPAN id=\\"s\\">
+                 ├─╴#text :: \\"2\\"
+                 └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 3.3.5 replaceChild, replace BODY with fragment 1`] = `
+"<BODY>
+ └─╴<N>
+"
+`;
+
+exports[`DOM API, Nodes 3.3.REPAIR 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             ├─╴<BR>
+             └─╴<SPAN id=\\"s\\">
+                 ├─╴#text :: \\"2\\"
+                 └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 3.4.0 removeChild, HEAD 1`] = `null`;
+
+exports[`DOM API, Nodes 3.4.1 removeChild, parent-less element 1`] = `null`;
+
+exports[`DOM API, Nodes 3.4.2 removeChild, non-child 1`] = `null`;
+
+exports[`DOM API, Nodes 3.4.3 removeChild, non-element 1`] = `null`;
+
+exports[`DOM API, Nodes 4.0.0 Set document.className 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     └─╴<BODY>
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             ├─╴<BR>
+             └─╴<SPAN id=\\"s\\">
+                 ├─╴#text :: \\"2\\"
+                 └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 4.0.1 Set BR.className 1`] = `
+"<BR class=\\"a b cde\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.1.0 Set BR['class'] 1`] = `"c d e"`;
+
+exports[`DOM API, Nodes 4.1.1 Remove BR['class'] 1`] = `""`;
+
+exports[`DOM API, Nodes 4.2.0 classList of #text node 1`] = `null`;
+
+exports[`DOM API, Nodes 4.2.1 DIV.classList 1`] = `
+"#array[1]
+ └─╴\\"d\\"
+"
+`;
+
+exports[`DOM API, Nodes 4.2.2 Set DIV.classList.length 1`] = `
+"#array[1]
+ └─╴\\"d\\"
+"
+`;
+
+exports[`DOM API, Nodes 4.2.3 BR.classList with enumerable, inherited property 1`] = `
+"<BR>
+"
+`;
+
+exports[`DOM API, Nodes 4.3.0 new DOMTokenList 1`] = `"Cannot directly instantiate DOMTokenList."`;
+
+exports[`DOM API, Nodes 4.3.0 new DOMTokenList 2`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     └─╴<BODY>
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             ├─╴<BR>
+             └─╴<SPAN id=\\"s\\">
+                 ├─╴#text :: \\"2\\"
+                 └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 4.4.0 DOMTokenList.add( 'class' ) 1`] = `
+"<BR class=\\"class\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.4.1 DOMTokenList.add( 'a b' ) 1`] = `
+"<BR class=\\"class\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.4.2 DOMTokenList.add( 'a', 'b' ) 1`] = `
+"<BR class=\\"class a b\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.4.3 DOMTokenList.add( 42 ) 1`] = `
+"<BR class=\\"class a b\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.5.0 DOMTokenList.remove( 'class' ) 1`] = `
+"<BR class=\\"a b\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.5.1 DOMTokenList.remove( 'a b' ) 1`] = `
+"<BR class=\\"a b\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.5.2 DOMTokenList.remove( 'a', 'b' ) 1`] = `
+"<BR class=\\"\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.5.3 DOMTokenList.remove( 42 ) 1`] = `
+"<BR class=\\"\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.6.0 DOMTokenList.item( 0 ) 1`] = `null`;
+
+exports[`DOM API, Nodes 4.6.1 DOMTokenList.item( 0 ) 1`] = `null`;
+
+exports[`DOM API, Nodes 4.6.2 DOMTokenList.item( 0 ) 1`] = `"b"`;
+
+exports[`DOM API, Nodes 4.6.3 DOMTokenList.item( 1 ) 1`] = `null`;
+
+exports[`DOM API, Nodes 4.7.0 DOMTokenList.toggle( 'a' ) 1`] = `
+"<BR class=\\"b a\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.7.1 DOMTokenList.toggle( 'a' ) 1`] = `
+"<BR class=\\"b\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.7.2 DOMTokenList.toggle( 'b', true ) 1`] = `
+"<BR class=\\"b\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.7.3 DOMTokenList.toggle( 'a', false ) 1`] = `
+"<BR class=\\"b\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.7.4 DOMTokenList.toggle( 'b', false ) 1`] = `
+"<BR class=\\"\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.7.5 DOMTokenList.toggle( 42 ) 1`] = `
+"<BR class=\\"\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.8.0 DOMTokenList.replace( 'a', 'b' ) 1`] = `
+"<BR class=\\"\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.8.1 DOMTokenList.replace( 'a', 'b' ) 1`] = `
+"<BR class=\\"b\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.8.2 DOMTokenList.replace( 'a', 'b' ) 1`] = `
+"<BR class=\\"b\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.8.3 DOMTokenList.replace( '', 'a' ) 1`] = `
+"<BR class=\\"b\\">
+"
+`;
+
+exports[`DOM API, Nodes 4.8.4 DOMTokenList.replace( null, 'a' ) 1`] = `
+"<BR class=\\"b\\">
+"
+`;
+
+exports[`DOM API, Nodes 5.0.0 getElementById( 's' ) 1`] = `
+"<SPAN id=\\"s\\">
+ ├─╴#text :: \\"2\\"
+ └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 5.0.1 getElementById( 42 ) 1`] = `null`;
+
+exports[`DOM API, Nodes 5.0.2 getElementById() 1`] = `null`;
+
+exports[`DOM API, Nodes 5.0.3 #text.getElementById( 's' ) 1`] = `null`;
+
+exports[`DOM API, Nodes 5.1.0 getElementsByClassName( 'b' ) 1`] = `
+"#array[4]
+ ├─╴<SPAN 1 class=\\"b\\">
+ ├─╴<SPAN 2 class=\\"b\\">
+ ├─╴<SPAN 3 class=\\"a b\\">
+ └─╴<SPAN 4 class=\\"b\\">
+     └─╴<SPAN 5 Class=\\"b\\" a=\\"b\\" A=\\"C\\">
+"
+`;
+
+exports[`DOM API, Nodes 5.1.1 getElementsByClassName( 42 ) 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Nodes 5.1.2 getElementsByClassName() 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Nodes 5.1.3 #text.getElementsByClassName( 'b' ) 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Nodes 5.1.4 getElementsByClassName( 'a b' ) 1`] = `
+"#array[1]
+ └─╴<SPAN 3 class=\\"a b\\">
+"
+`;
+
+exports[`DOM API, Nodes 5.1.5 getElementsByClassName( 'a B' ) 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Nodes 5.1.6 getElementsByClassName( 'a b c' ) 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Nodes 5.1.7 getElementsByClassName( 'b a' ) 1`] = `
+"#array[1]
+ └─╴<SPAN 3 class=\\"a b\\">
+"
+`;
+
+exports[`DOM API, Nodes 5.1.8 getElementsByClassName( ' ' ) 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Nodes 5.2.0 getElementsByTagName( 'span' ) 1`] = `
+"#array[5]
+ ├─╴<SPAN 1 class=\\"b\\">
+ ├─╴<SPAN 2 class=\\"b\\">
+ ├─╴<SPAN 3 class=\\"a b\\">
+ ├─╴<SPAN 4 class=\\"b\\">
+ │   └─╴<SPAN 5 Class=\\"b\\" a=\\"b\\" A=\\"C\\">
+ └─╴<SPAN 5 Class=\\"b\\" a=\\"b\\" A=\\"C\\">
+"
+`;
+
+exports[`DOM API, Nodes 5.2.1 getElementsByTagName( 42 ) 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Nodes 5.2.2 getElementsByTagName() 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Nodes 5.2.3 #text.getElementsByTagName( 'span' ) 1`] = `
+"#array[0]
+"
+`;
+
+exports[`DOM API, Nodes 6.0.0 createCDATASection() 1`] = `
+"#cdata-section :: \\"\\"
+"
+`;
+
+exports[`DOM API, Nodes 6.1.0 createCDATASection( 'data' ) 1`] = `
+"#cdata-section :: \\"data\\"
+"
+`;
+
+exports[`DOM API, Nodes 6.2.0 createCDATASection( 'data]]>' ) 1`] = `[Error: The data provided ('data]]>') contains ']]>'.]`;
+
+exports[`DOM API, Nodes 7.0.0 createProcessingInstruction( 'target' ) 1`] = `
+"<?target?>
+"
+`;
+
+exports[`DOM API, Nodes 7.0.1 createProcessingInstruction( 'T-5\\u2040:\\u0342\\u203F' ) 1`] = `
+"<?T-5⁀:͂‿?>
+"
+`;
+
+exports[`DOM API, Nodes 7.0.2 createProcessingInstruction( '\\xC9' ) 1`] = `
+"<?É?>
+"
+`;
+
+exports[`DOM API, Nodes 7.0.3 createProcessingInstruction( '\\xE0' ) 1`] = `
+"<?à?>
+"
+`;
+
+exports[`DOM API, Nodes 7.0.4 createProcessingInstruction( '\\u0100' ) 1`] = `
+"<?Ā?>
+"
+`;
+
+exports[`DOM API, Nodes 7.0.5 createProcessingInstruction( '\\u0379' ) 1`] = `
+"<?͹?>
+"
+`;
+
+exports[`DOM API, Nodes 7.0.6 createProcessingInstruction( '\\u1000' ) 1`] = `
+"<?က?>
+"
+`;
+
+exports[`DOM API, Nodes 7.0.7 createProcessingInstruction( '\\u200C' ) 1`] = `
+"<?‌?>
+"
+`;
+
+exports[`DOM API, Nodes 7.0.8 createProcessingInstruction( '\\u200D' ) 1`] = `
+"<?‍?>
+"
+`;
+
+exports[`DOM API, Nodes 7.0.9 createProcessingInstruction( '\\u2100' ) 1`] = `
+"<?℀?>
+"
+`;
+
+exports[`DOM API, Nodes 7.0.10 createProcessingInstruction( '\\u2B2B' ) 1`] = `
+"<?⬫?>
+"
+`;
+
+exports[`DOM API, Nodes 7.0.11 createProcessingInstruction( '\\uBABA' ) 1`] = `
+"<?몺?>
+"
+`;
+
+exports[`DOM API, Nodes 7.0.12 createProcessingInstruction( '\\uFAFA' ) 1`] = `
+"<?﫺?>
+"
+`;
+
+exports[`DOM API, Nodes 7.0.13 createProcessingInstruction( '\\uFEFE' ) 1`] = `
+"<?﻾?>
+"
+`;
+
+exports[`DOM API, Nodes 7.1.0 createProcessingInstruction( 'target', 'data' ) 1`] = `
+"<?target data?>
+"
+`;
+
+exports[`DOM API, Nodes 7.2.0 createProcessingInstruction() 1`] = `[Error: Invalid target name undefined.]`;
+
+exports[`DOM API, Nodes 7.2.1 createProcessingInstruction( 'target', 'data?>' ) 1`] = `[Error: The data provided ('data?>') contains '?>'.]`;
+
+exports[`DOM API, Nodes 7.2.2 createProcessingInstruction( '9target', 'data' ) 1`] = `[Error: Invalid target name "9target".]`;
+
+exports[`DOM API, Nodes 7.2.3 createProcessingInstruction( 'target(0)', 'data' ) 1`] = `[Error: Invalid target name "target(0)".]`;
+
+exports[`DOM API, Nodes 7.2.4 createProcessingInstruction( '', 'data' ) 1`] = `[Error: Invalid target name "".]`;
+
+exports[`DOM API, Nodes 8.0.0 document.forEach( ... ) 1`] = `
+"<HTML>
+<BODY>
+<DIV class=\\"d\\" TeSt>
+<BR class=\\"b\\">
+<SPAN id=\\"s\\">"
+`;
+
+exports[`DOM API, Nodes 8.1.0 document.forEach( ..., null ) 1`] = `
+"<!DOCTYPE html>
+<HTML>
+<BODY>
+<DIV class=\\"d\\" TeSt>
+#text :: \\"1\\"
+<BR class=\\"b\\">
+<SPAN id=\\"s\\">
+#text :: \\"2\\"
+#comment :: \\"3\\""
+`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.0.0 getAttributeNames, DIV 1`] = `
+"#array[2]
+ ├─╴\\"class\\"
+ └─╴\\"test\\"
+"
+`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.0.1 getAttributeNames, SPAN 1`] = `
+"#array[4]
+ ├─╴\\"class\\"
+ ├─╴\\"attr\\"
+ ├─╴\\"id\\"
+ └─╴\\"a\\"
+"
+`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.1.0 getAttribute, DIV['class'] 1`] = `"d"`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.1.1 getAttribute, DIV['id'] 1`] = `null`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.2.0 setAttribute, DIV['Attr'=42] 1`] = `
+"<DIV class=\\"d\\" test attr=\\"42\\">
+"
+`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.3.0 toggleAttribute, DIV['ID'] on 1`] = `
+"<DIV class=\\"d\\" test attr=\\"42\\" id>
+"
+`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.3.1 toggleAttribute, DIV['ID'] forced on 1`] = `
+"<DIV class=\\"d\\" test attr=\\"42\\" id>
+"
+`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.3.2 toggleAttribute, DIV['attR'] off 1`] = `
+"<DIV class=\\"d\\" test id>
+"
+`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.3.3 toggleAttribute, DIV['id'] forced off 1`] = `
+"<DIV class=\\"d\\" test>
+"
+`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.3.4 toggleAttribute, DIV['ID'] forced off, again 1`] = `
+"<DIV class=\\"d\\" test>
+"
+`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.3.5 toggleAttribute, DIV[42] forced on 1`] = `
+"<DIV class=\\"d\\" test>
+"
+`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.4.0 removeAttribute, SPAN['attr'] 1`] = `
+"<SPAN class=\\"b\\" id=\\"s\\" a=\\"b\\">
+"
+`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.4.1 removeAttribute, SPAN['ID'] 1`] = `
+"<SPAN class=\\"b\\" a=\\"b\\">
+"
+`;
+
+exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 2.0.0 getElementsByClassName( 'b' ) 1`] = `
+"#array[1]
+ └─╴<SPAN class=\\"b\\" a=\\"b\\">
+"
+`;
+
+exports[`Replacing node during forEach() 1`] = `
+"#document
+ └─╴<HTML>
+     └─╴<BODY>
+         ├─╴<DIV>
+         │   └─╴#text :: \\"42\\"
+         └─╴<DIV>
+             ├─╴<SPAN>
+             │   ├─╴<B>
+             │   │   └─╴#text :: \\"hello\\"
+             │   ├─╴<I>
+             │   └─╴#text :: \\",\\"
+             ├─╴#text :: \\"world\\"
+             ├─╴<?js \\"this won't be evaluated\\"?>
+             ├─╴<DIV>
+             └─╴<?js \\"this won't be evaluated either\\"?>
+"
+`;

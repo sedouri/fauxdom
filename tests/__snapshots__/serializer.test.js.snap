@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CDATA Simple 1`] = `
+"html:
+<![CDATA[ data ]]>
+
+hierarchy:
+#document-fragment
+ └─╴#cdata-section :: \\" data \\"
+"
+`;
+
+exports[`CDATA With an entity and possibly troublesome characters 1`] = `
+"html:
+<![CDATA[ &amp;te<s>t ]]>
+
+hierarchy:
+#document-fragment
+ └─╴#cdata-section :: \\" &amp;te<s>t \\"
+"
+`;
+
+exports[`Comments Simple 1`] = `"<!-- comment -->"`;
+
+exports[`Elements Basic document 1`] = `"<!DOCTYPE html><html><head></head><body></body></html>"`;
+
+exports[`Elements Basic element attributes 1`] = `"<div id=\\"id\\" hidden></div>"`;
+
+exports[`Elements Entities in element attributes 1`] = `
+"html:
+<input id=\\"&amp;\\">
+
+hierarchy:
+#document-fragment
+ └─╴<INPUT id=\\"&\\">
+"
+`;
+
+exports[`Elements Overridden element attributes object 1`] = `"<div bar></div>"`;
+
+exports[`Elements Unowned element 1`] = `"<div id=\\"1\\"></div>"`;
+
+exports[`Elements Unowned text node 1`] = `"text"`;
+
+exports[`Processing Instructions No data 1`] = `
+"html:
+<?target?>
+
+hierarchy:
+#document-fragment
+ └─╴<?target?>
+"
+`;
+
+exports[`Processing Instructions Simple 1`] = `
+"html:
+<?target data?>
+
+hierarchy:
+#document-fragment
+ └─╴<?target data?>
+"
+`;

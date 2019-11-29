@@ -1,0 +1,230 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Entities Encode all entities Acute A 1`] = `
+"html:
+&Aacute;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"Á\\"
+"
+`;
+
+exports[`Entities Encode all entities Acute A entity 1`] = `
+"html:
+&Aacute;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"Á\\"
+"
+`;
+
+exports[`Entities Encode all entities Acute a 1`] = `
+"html:
+&aacute;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"á\\"
+"
+`;
+
+exports[`Entities Encode all entities Acute a entity 1`] = `
+"html:
+&aacute;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"á\\"
+"
+`;
+
+exports[`Entities Encode all entities Custom default entities 1`] = `
+"html:
+&customAmp; &customAmp;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"& &\\"
+"
+`;
+
+exports[`Entities Encode all entities Custom entities 1`] = `"&test;"`;
+
+exports[`Entities Encode all entities Empty EntityEncoder from different document 1`] = `"{\\"encodingRE\\":{},\\"encodingReplacements\\":null,\\"decodingReplacements\\":null}"`;
+
+exports[`Entities Encode all entities Invalid custom default entities 1`] = `
+"html:
+&amp; &amp;customAmp;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"& &customAmp;\\"
+"
+`;
+
+exports[`Entities Encode all entities Invalid entities 1`] = `"f&baz;"`;
+
+exports[`Entities Encode all entities Mathematical fraktur A entity 1`] = `
+"html:
+&Afr;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"𝔄\\"
+"
+`;
+
+exports[`Entities Encode all entities Mathematical fraktur a entity 1`] = `
+"html:
+&afr;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"𝔞\\"
+"
+`;
+
+exports[`Entities Encode all entities No set entities 1`] = `"&"`;
+
+exports[`Entities Encode all entities Non-enumerable entities 1`] = `"f"`;
+
+exports[`Entities Encode all entities RegExp 'what' value in encode() 1`] = `"hi&jay;k"`;
+
+exports[`Entities Encode all entities RegExp 'what' value in encode() 2`] = `"hi&jay;k"`;
+
+exports[`Entities Encode all entities RegExp syntax in entity value 1`] = `
+"html:
+&RegExp; &RegExp; &Partial; &Partial;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"[a-z] [a-z] a-z a-z\\"
+"
+`;
+
+exports[`Entities No processing Ampersand 1`] = `
+"html:
+&amp;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"&amp;\\"
+"
+`;
+
+exports[`Entities No processing Ampersand 2`] = `
+"html:
+&
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"&\\"
+"
+`;
+
+exports[`Entities No processing Greater-than 1`] = `
+"html:
+&gt;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"&gt;\\"
+"
+`;
+
+exports[`Entities No processing Greater-than 2`] = `
+"html:
+>
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\">\\"
+"
+`;
+
+exports[`Entities No processing Less-than 1`] = `
+"html:
+&lt;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"&lt;\\"
+"
+`;
+
+exports[`Entities No processing Less-than 2`] = `
+"html:
+<
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"<\\"
+"
+`;
+
+exports[`Entities Only basic entities All basics 1`] = `
+"html:
+&amp;&apos;&copy;&gt;&lt;&nbsp;&quot;&amp;afr;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"&'©>< \\\\\\"&afr;\\"
+"
+`;
+
+exports[`Entities Only basic entities Inside SCRIPT 1`] = `
+"html:
+<script>&amp; <></script>&amp;
+
+hierarchy:
+#document-fragment
+ ├─╴<SCRIPT>
+ │   └─╴#text :: \\"&amp; <>\\"
+ └─╴#text :: \\"&\\"
+"
+`;
+
+exports[`Entities Only basic entities Inside STYLE 1`] = `
+"html:
+<style>&amp; <></style>&amp;
+
+hierarchy:
+#document-fragment
+ ├─╴<STYLE>
+ │   └─╴#text :: \\"&amp; <>\\"
+ └─╴#text :: \\"&\\"
+"
+`;
+
+exports[`Entities Only encode specific entities Acute a 1`] = `
+"html:
+Á&aacute;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"Áá\\"
+"
+`;
+
+exports[`Entities Only encode specific entities Line breaks 1`] = `
+"html:
+
+&NewLine;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"\\\\r\\\\n\\"
+"
+`;
+
+exports[`Entities Only encode specific entities Non-global RegExp 1`] = `
+"html:
+&NewLine;&aacute;&NewLine;
+
+hierarchy:
+#document-fragment
+ └─╴#text :: \\"\\\\ná\\\\n\\"
+"
+`;

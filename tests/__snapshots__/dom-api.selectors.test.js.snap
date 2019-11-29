@@ -1,0 +1,1737 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [ foo = bar ] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "=",
+        "ignoreCase": false,
+        "name": "foo",
+        "type": "attr",
+        "value": "bar",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [CaSe] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "=",
+        "ignoreCase": false,
+        "name": "CaSe",
+        "type": "attr",
+        "value": true,
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [case] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "=",
+        "ignoreCase": false,
+        "name": "case",
+        "type": "attr",
+        "value": true,
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo$=bar] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "$=",
+        "ignoreCase": false,
+        "name": "foo",
+        "type": "attr",
+        "value": "bar",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo*=bar] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "*=",
+        "ignoreCase": false,
+        "name": "foo",
+        "type": "attr",
+        "value": "bar",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo="bar baz"] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "=",
+        "ignoreCase": false,
+        "name": "foo",
+        "type": "attr",
+        "value": "bar baz",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo='\\baba\\0\\dada\\ffffff'] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "=",
+        "ignoreCase": false,
+        "name": "foo",
+        "type": "attr",
+        "value": "몺���",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo='bar baz'] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "=",
+        "ignoreCase": false,
+        "name": "foo",
+        "type": "attr",
+        "value": "bar baz",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo=bar I ] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "=",
+        "ignoreCase": true,
+        "name": "foo",
+        "type": "attr",
+        "value": "bar",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo=bar S] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "=",
+        "ignoreCase": false,
+        "name": "foo",
+        "type": "attr",
+        "value": "bar",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo=bar i] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "=",
+        "ignoreCase": true,
+        "name": "foo",
+        "type": "attr",
+        "value": "bar",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo=bar s] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "=",
+        "ignoreCase": false,
+        "name": "foo",
+        "type": "attr",
+        "value": "bar",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo=bar] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "=",
+        "ignoreCase": false,
+        "name": "foo",
+        "type": "attr",
+        "value": "bar",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "=",
+        "ignoreCase": false,
+        "name": "foo",
+        "type": "attr",
+        "value": true,
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo^=bar] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "^=",
+        "ignoreCase": false,
+        "name": "foo",
+        "type": "attr",
+        "value": "bar",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo|=bar] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "|=",
+        "ignoreCase": false,
+        "name": "foo",
+        "type": "attr",
+        "value": "bar",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Attribute selector, [foo~=bar] 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "comparison": "~=",
+        "ignoreCase": false,
+        "name": "foo",
+        "type": "attr",
+        "value": "bar",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Class selector, .\\baba r 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "몺r",
+        "type": "class",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Class selector, .foo\\\\bar 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "foo\\\\bar",
+        "type": "class",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Class selector, .foo-bar 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "foo-bar",
+        "type": "class",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Functional pseudo-class selector, :dir(ltr) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "dir",
+        "params": Array [
+          "ltr",
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Functional pseudo-class selector, :lang(en-CA) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "lang",
+        "params": Array [
+          "en-CA",
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Functional pseudo-class selector, :not(a) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "not",
+        "params": Array [
+          Array [
+            Array [
+              Object {
+                "name": "A",
+                "type": "type",
+              },
+            ],
+          ],
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors ID selector, #\\baba 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "몺",
+        "type": "id",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors ID selector, #\\baba r 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "몺r",
+        "type": "id",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors ID selector, #\\babar 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "몺r",
+        "type": "id",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors ID selector, #foo\\ 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "foo�",
+        "type": "id",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors ID selector, #foo\\:bar 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "foo:bar",
+        "type": "id",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors ID selector, #foo\\\\bar 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "foo\\\\bar",
+        "type": "id",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors ID selector, #foo\\ba r 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "fooºr",
+        "type": "id",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors ID selector, #foo\\bar 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "fooºr",
+        "type": "id",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid ID selector, #-bar 1`] = `"Expected an identifier."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid ID selector, #400-bar 1`] = `"Expected an identifier."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid attribute selector, [=bar] 1`] = `"Expected an identifier."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid attribute selector, [1foo=bar] 1`] = `"Expected an identifier."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid attribute selector, [foo 1`] = `"Unexpected character 'END_OF_INPUT'."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid attribute selector, [foo&] 1`] = `"Unexpected character '&'."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid attribute selector, [foo=] 1`] = `"Expected an identifier."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid attribute selector, [foo=bar 1`] = `"Expected ']'."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid attribute selector, [foo=bar baz] 1`] = `"Unexpected identifier 'baz'."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid attribute selector, [foo~bar] 1`] = `"Expected '='."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid class selector, .400-bar 1`] = `"Expected an identifier."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid functional pseudo-class selector, :is 1`] = `"Expected '('."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid functional pseudo-class selector, :is() 1`] = `"Expected at least one selector."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid functional pseudo-class selector, :is* 1`] = `"Expected '('."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid functional pseudo-class selector, :lang() 1`] = `"Expected an identifier."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid functional pseudo-class selector, :lang(en 1`] = `"Expected ')'."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid functional pseudo-class selector, :lang(en:foo 1`] = `"Expected ')'."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid pseudo-class selector, :#foo 1`] = `"Expected a pseudo-class name."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid pseudo-class selector, :5bar 1`] = `"Expected a pseudo-class name."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid pseudo-element selector, :: 1`] = `"Expected a pseudo-element name."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid pseudo-element selector, ::#foo 1`] = `"Expected a pseudo-element name."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid pseudo-element selector, :::before 1`] = `"Expected a pseudo-element name."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid pseudo-element selector, ::5bar 1`] = `"Expected a pseudo-element name."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid type selector, [f]a 1`] = `"Type (tag name) selectors must come before all other simple selectors."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid type selector, 5 1`] = `"Unexpected character '5'."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Invalid universal selector, a* 1`] = `"Universal selectors must come before all other simple selectors."`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Pseudo-class selector, :before 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "before",
+        "type": "pseudo-element",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Pseudo-class selector, :hidden 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "hidden",
+        "type": "pseudo-class",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Pseudo-element selector, ::be\\ fore 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "be fore",
+        "type": "pseudo-element",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Pseudo-element selector, ::before 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "before",
+        "type": "pseudo-element",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Type selector, a 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "A",
+        "type": "type",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Type selector, body 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "BODY",
+        "type": "type",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Universal selector, * 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "type": "universal",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 1. Simple selectors Universal selector, *#foo 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "type": "universal",
+      },
+      Object {
+        "name": "foo",
+        "type": "id",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Basic, :nth-child(2n+0) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          2,
+          0,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Basic, :nth-child(3n-6) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          3,
+          -6,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Basic, :nth-child(even) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          2,
+          0,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Basic, :nth-col(0n+5) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-col",
+        "params": Array [
+          0,
+          5,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Basic, :nth-last-child(odd) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-last-child",
+        "params": Array [
+          2,
+          1,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Basic, :nth-last-col(1n+0) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-last-col",
+        "params": Array [
+          1,
+          0,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Basic, :nth-last-of-type(-4n+10) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-last-of-type",
+        "params": Array [
+          -4,
+          10,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Basic, :nth-of-type(-1n+6) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-of-type",
+        "params": Array [
+          -1,
+          6,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Invalid parts, :nth-child(3n + -6) 1`] = `"Expected ')'."`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Invalid white space, :nth-child(+ 2) 1`] = `"Invalid parameter."`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Invalid white space, :nth-child(+ 2n) 1`] = `"Invalid parameter."`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Invalid white space, :nth-child(- 2n - 6) 1`] = `"Invalid parameter."`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Invalid white space, :nth-child(3 n) 1`] = `"Expected ')'."`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Missing parts, :nth-child(+6) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          0,
+          6,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Missing parts, :nth-child(+n - 1) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          1,
+          -1,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Missing parts, :nth-child(+n+1) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          1,
+          1,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Missing parts, :nth-child(-n-1) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          -1,
+          -1,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Missing parts, :nth-child(2n) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          2,
+          0,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Missing parts, :nth-child(10) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          0,
+          10,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Missing parts, :nth-child(n) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          1,
+          0,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Missing parts, :nth-child(n+0) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          1,
+          0,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Valid white space, :nth-child(+3n - 2) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          3,
+          -2,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Valid white space, :nth-child(-n+ 6) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          -1,
+          6,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Valid white space, :nth-child(3n + 1) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          3,
+          1,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 3. Combinators Child, a>b 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "A",
+        "type": "type",
+      },
+    ],
+    ">",
+    Array [
+      Object {
+        "name": "B",
+        "type": "type",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 3. Combinators Descendant, a b 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "A",
+        "type": "type",
+      },
+    ],
+    Array [
+      Object {
+        "name": "B",
+        "type": "type",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 3. Combinators Invalid, + a 1`] = `"Absolute selectors cannot start with a combinator."`;
+
+exports[`DOM API, Selector parsing 3. Combinators Invalid, a + ~ b 1`] = `"Cannot have multiple combinators in a row."`;
+
+exports[`DOM API, Selector parsing 3. Combinators Invalid, a + 1`] = `"Complex selectors are not allowed to end with a combinator."`;
+
+exports[`DOM API, Selector parsing 3. Combinators Invalid, a +~ b 1`] = `"Cannot have multiple combinators in a row."`;
+
+exports[`DOM API, Selector parsing 3. Combinators Next-sibling, a+b 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "A",
+        "type": "type",
+      },
+    ],
+    "+",
+    Array [
+      Object {
+        "name": "B",
+        "type": "type",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 3. Combinators Start of a relative selector, a:has(~b) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "A",
+        "type": "type",
+      },
+      Object {
+        "name": "has",
+        "params": Array [
+          Array [
+            Array [
+              Object {
+                "name": "scope",
+                "type": "pseudo-class",
+              },
+            ],
+            "~",
+            Array [
+              Object {
+                "name": "B",
+                "type": "type",
+              },
+            ],
+          ],
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 3. Combinators Subsequent-sibling, a~b 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "A",
+        "type": "type",
+      },
+    ],
+    "~",
+    Array [
+      Object {
+        "name": "B",
+        "type": "type",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 4. Selector list (multiple compound selectors) Basic, , b 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "B",
+        "type": "type",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 4. Selector list (multiple compound selectors) Basic, a , b 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "A",
+        "type": "type",
+      },
+    ],
+  ],
+  Array [
+    Array [
+      Object {
+        "name": "B",
+        "type": "type",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 4. Selector list (multiple compound selectors) Basic, a, b 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "A",
+        "type": "type",
+      },
+    ],
+  ],
+  Array [
+    Array [
+      Object {
+        "name": "B",
+        "type": "type",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 4. Selector list (multiple compound selectors) Basic, a,b 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "A",
+        "type": "type",
+      },
+    ],
+  ],
+  Array [
+    Array [
+      Object {
+        "name": "B",
+        "type": "type",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 4. Selector list (multiple compound selectors) Invalid, a+, b 1`] = `"Complex selectors are not allowed to end with a combinator."`;
+
+exports[`DOM API, Selector running Scoping With :scope 1`] = `""`;
+
+exports[`DOM API, Selector running Scoping Without :scope 1`] = `"<DIV class=\\"inner\\">"`;
+
+exports[`DOM API, Selector running closest Basic, .select 1`] = `"<DIV class=\\"select\\">"`;
+
+exports[`DOM API, Selector running closest Basic, :not( div ) 1`] = `"<SECTION>"`;
+
+exports[`DOM API, Selector running closest Basic, :scope 1`] = `"<DIV class=\\"inner\\">"`;
+
+exports[`DOM API, Selector running closest Basic, div div 1`] = `"<DIV class=\\"inner\\">"`;
+
+exports[`DOM API, Selector running closest Basic, p 1`] = `null`;
+
+exports[`DOM API, Selector running closest Basic, section > div 1`] = `"<DIV class=\\"outer\\">"`;
+
+exports[`DOM API, Selector running querySelector Attribute selectors with lower case attribute names, [CaSe] 1`] = `"<LINK case>"`;
+
+exports[`DOM API, Selector running querySelector Attribute selectors with lower case attribute names, [case] 1`] = `"<LINK case>"`;
+
+exports[`DOM API, Selector running querySelector Attribute selectors, [CaSe] 1`] = `"<LINK CaSe>"`;
+
+exports[`DOM API, Selector running querySelector Attribute selectors, [case] 1`] = `null`;
+
+exports[`DOM API, Selector running querySelector Basic, #nothing 1`] = `null`;
+
+exports[`DOM API, Selector running querySelector Basic, div * 1`] = `"<P class=\\"i\\">"`;
+
+exports[`DOM API, Selector running querySelector Basic, form option:last-of-type 1`] = `"<OPTION disabled>"`;
+
+exports[`DOM API, Selector running querySelector Basic, p 1`] = `"<P class=\\"h\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 1. Elemental selectors 1.0 Type (tag name) selector, div 1`] = `
+"<DIV>
+<DIV>
+<DIV id=\\"foo\\\\\\\\bar\\">
+<DIV id=\\"foo:bar\\">
+<DIV id=\\"몺r\\">
+<DIV foo=\\"J\\">
+<DIV foo=\\"j i\\" name>
+<DIV class=\\"outer\\">
+<DIV class=\\"select\\">
+<DIV class=\\"inner\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 1. Elemental selectors 1.0 Type (tag name) selector, html 1`] = `"<HTML>"`;
+
+exports[`DOM API, Selector running querySelectorAll 1. Elemental selectors 1.0 Type (tag name) selector, p 1`] = `
+"<P class=\\"h\\">
+<P class=\\"i\\">
+<P name=\\"\\\\\\"éé&èè\\\\\\"\\">
+<P>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 1. Elemental selectors 2.0 Universal selector, * 1`] = `
+"<HTML>
+<HEAD>
+<TITLE>
+<META charset=\\"utf-8\\">
+<META charset=\\"utf-16\\">
+<SCRIPT>
+<LINK CaSe>
+<BODY>
+<UL>
+<LI class=\\"i\\">
+<BR 1>
+<B class=\\"i\\">
+<P class=\\"h\\">
+<DIV>
+<P class=\\"i\\">
+<SPAN name=\\"name\\">
+<BR 2>
+<P name=\\"\\\\\\"éé&èè\\\\\\"\\">
+<P>
+<DIV>
+<SPAN>
+<B>
+<SPAN>
+<A href=\\"https://www.example.com\\" class=\\"a\\">
+<A href=\\"https://www.example.com\\" class=\\"a b\\" hreflang=\\"en\\">
+<A href=\\"https://www.example.ca\\" class=\\"b\\" hreflang=\\"en-CA\\">
+<BR name=\\"name\\">
+<DIV id=\\"foo\\\\\\\\bar\\">
+<DIV id=\\"foo:bar\\">
+<DIV id=\\"몺r\\">
+<DIV foo=\\"J\\">
+<DIV foo=\\"j i\\" name>
+<FORM class=\\"select\\">
+<INPUT type=\\"checkbox\\" checked>
+<INPUT type=\\"radio\\" disabled>
+<SELECT>
+<OPTION>
+<OPTION selected>
+<OPTION disabled>
+<SELECT required>
+<OPTION>
+<INPUT required>
+<TEXTAREA>
+<BUTTON>
+<SECTION>
+<DIV class=\\"outer\\">
+<DIV class=\\"select\\">
+<DIV class=\\"inner\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 1. Elemental selectors 2.0 Universal selector, * div 1`] = `
+"<DIV>
+<DIV>
+<DIV id=\\"foo\\\\\\\\bar\\">
+<DIV id=\\"foo:bar\\">
+<DIV id=\\"몺r\\">
+<DIV foo=\\"J\\">
+<DIV foo=\\"j i\\" name>
+<DIV class=\\"outer\\">
+<DIV class=\\"select\\">
+<DIV class=\\"inner\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 1. Elemental selectors 2.0 Universal selector, * html 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 1. Elemental selectors 2.0 Universal selector, p * 1`] = `
+"<SPAN name=\\"name\\">
+<BR 2>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 1.0 Attribute presence and value selectors, [foo~=i] 1`] = `"<DIV foo=\\"j i\\" name>"`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 1.0 Attribute presence and value selectors, [name=name] 1`] = `
+"<SPAN name=\\"name\\">
+<BR name=\\"name\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 1.0 Attribute presence and value selectors, [name] 1`] = `
+"<SPAN name=\\"name\\">
+<P name=\\"\\\\\\"éé&èè\\\\\\"\\">
+<BR name=\\"name\\">
+<DIV foo=\\"j i\\" name>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 1.0 Attribute presence and value selectors, a[hreflang|=en] 1`] = `
+"<A href=\\"https://www.example.com\\" class=\\"a b\\" hreflang=\\"en\\">
+<A href=\\"https://www.example.ca\\" class=\\"b\\" hreflang=\\"en-CA\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 1.1 Attribute presence and value selectors, [foo~=''] 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 1.1 Attribute presence and value selectors, [name=''] 1`] = `
+"<SPAN name=\\"name\\">
+<P name=\\"\\\\\\"éé&èè\\\\\\"\\">
+<BR name=\\"name\\">
+<DIV foo=\\"j i\\" name>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 1.1 Attribute presence and value selectors, a[hreflang|=''] 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 2.0 Substring matching attribute selectors, [id$=bar] 1`] = `
+"<DIV id=\\"foo\\\\\\\\bar\\">
+<DIV id=\\"foo:bar\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 2.0 Substring matching attribute selectors, [name*=am] 1`] = `
+"<SPAN name=\\"name\\">
+<BR name=\\"name\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 2.0 Substring matching attribute selectors, [name^=\\"] 1`] = `"<P name=\\"\\\\\\"éé&èè\\\\\\"\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 2.1 Substring matching attribute selectors, [id$=''] 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 2.1 Substring matching attribute selectors, [name*=''] 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 2.1 Substring matching attribute selectors, [name^=''] 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 3.0 Case-sensitivity, [foo=j i] 1`] = `"<DIV foo=\\"J\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 3.0 Case-sensitivity, [foo=j\\ i] 1`] = `"<DIV foo=\\"j i\\" name>"`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 3.0 Case-sensitivity, [foo^=j i] 1`] = `
+"<DIV foo=\\"J\\">
+<DIV foo=\\"j i\\" name>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 3.0 Case-sensitivity, [foo~=j i] 1`] = `
+"<DIV foo=\\"J\\">
+<DIV foo=\\"j i\\" name>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 4.0 Class selectors, .a.b 1`] = `"<A href=\\"https://www.example.com\\" class=\\"a b\\" hreflang=\\"en\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 4.0 Class selectors, .h 1`] = `"<P class=\\"h\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 4.0 Class selectors, .i .i 1`] = `"<P class=\\"i\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 4.0 Class selectors, .i 1`] = `
+"<LI class=\\"i\\">
+<B class=\\"i\\">
+<P class=\\"i\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 5.0 ID selectors, #foo\\:bar 1`] = `"<DIV id=\\"foo:bar\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 2. Attribute selectors 5.0 ID selectors, #foo\\:bar#foo\\:bar 1`] = `"<DIV id=\\"foo:bar\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 3. Logical combinations 1.0 Selector lists, :disabled, .i, p, [foo] 1`] = `
+"<LI class=\\"i\\">
+<B class=\\"i\\">
+<P class=\\"h\\">
+<P class=\\"i\\">
+<P name=\\"\\\\\\"éé&èè\\\\\\"\\">
+<P>
+<DIV foo=\\"J\\">
+<DIV foo=\\"j i\\" name>
+<INPUT type=\\"radio\\" disabled>
+<OPTION disabled>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 3. Logical combinations 1.0 Selector lists, div, span, br 1`] = `
+"<BR 1>
+<DIV>
+<SPAN name=\\"name\\">
+<BR 2>
+<DIV>
+<SPAN>
+<SPAN>
+<BR name=\\"name\\">
+<DIV id=\\"foo\\\\\\\\bar\\">
+<DIV id=\\"foo:bar\\">
+<DIV id=\\"몺r\\">
+<DIV foo=\\"J\\">
+<DIV foo=\\"j i\\" name>
+<DIV class=\\"outer\\">
+<DIV class=\\"select\\">
+<DIV class=\\"inner\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 3. Logical combinations 2.0 Matches-any pseudo-class ':is()', .i:is( p, b ) 1`] = `
+"<B class=\\"i\\">
+<P class=\\"i\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 3. Logical combinations 2.0 Matches-any pseudo-class ':is()', .i:where( p, b ) 1`] = `
+"<B class=\\"i\\">
+<P class=\\"i\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 3. Logical combinations 3.0 Negation (matches-none) pseudo-class ':not()', .i:not( p, b ) 1`] = `"<LI class=\\"i\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 3. Logical combinations 4.0 Relational pseudo-class ':has()', div:has( + [foo] ) 1`] = `
+"<DIV id=\\"몺r\\">
+<DIV foo=\\"J\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 3. Logical combinations 4.0 Relational pseudo-class ':has()', div:has( [foo] ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 3. Logical combinations 4.0 Relational pseudo-class ':has()', div:has( ~ [foo] ) 1`] = `
+"<DIV>
+<DIV id=\\"foo\\\\\\\\bar\\">
+<DIV id=\\"foo:bar\\">
+<DIV id=\\"몺r\\">
+<DIV foo=\\"J\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 3. Logical combinations 4.0 Relational pseudo-class ':has()', div:has( ~ [foo], p ) 1`] = `
+"<DIV>
+<DIV>
+<DIV id=\\"foo\\\\\\\\bar\\">
+<DIV id=\\"foo:bar\\">
+<DIV id=\\"몺r\\">
+<DIV foo=\\"J\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 3. Logical combinations 5.0 Unimplemented functional pseudo-class, :dir( ltr ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 4. Input pseudo-classes 1.0 Input control states, :disabled 1`] = `
+"<INPUT type=\\"radio\\" disabled>
+<OPTION disabled>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 4. Input pseudo-classes 1.0 Input control states, :enabled 1`] = `
+"<INPUT type=\\"checkbox\\" checked>
+<SELECT>
+<OPTION>
+<OPTION selected>
+<SELECT required>
+<OPTION>
+<INPUT required>
+<TEXTAREA>
+<BUTTON>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 4. Input pseudo-classes 2.0 Input value states, :checked 1`] = `
+"<INPUT type=\\"checkbox\\" checked>
+<OPTION selected>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 4. Input pseudo-classes 3.0 Input value-checking, :optional 1`] = `
+"<INPUT type=\\"checkbox\\" checked>
+<INPUT type=\\"radio\\" disabled>
+<SELECT>
+<TEXTAREA>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 4. Input pseudo-classes 3.0 Input value-checking, :required 1`] = `
+"<SELECT required>
+<INPUT required>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 1.0 Basic, :empty 1`] = `
+"<META charset=\\"utf-8\\">
+<META charset=\\"utf-16\\">
+<LINK CaSe>
+<LI class=\\"i\\">
+<BR 1>
+<BR 2>
+<P>
+<SPAN>
+<A href=\\"https://www.example.com\\" class=\\"a\\">
+<A href=\\"https://www.example.com\\" class=\\"a b\\" hreflang=\\"en\\">
+<A href=\\"https://www.example.ca\\" class=\\"b\\" hreflang=\\"en-CA\\">
+<BR name=\\"name\\">
+<DIV id=\\"foo\\\\\\\\bar\\">
+<DIV id=\\"foo:bar\\">
+<DIV id=\\"몺r\\">
+<DIV foo=\\"J\\">
+<DIV foo=\\"j i\\" name>
+<INPUT type=\\"checkbox\\" checked>
+<INPUT type=\\"radio\\" disabled>
+<INPUT required>
+<TEXTAREA>
+<DIV class=\\"inner\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 1.0 Basic, :root 1`] = `"<HTML>"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 1.0 Basic, div:empty 1`] = `
+"<DIV id=\\"foo\\\\\\\\bar\\">
+<DIV id=\\"foo:bar\\">
+<DIV id=\\"몺r\\">
+<DIV foo=\\"J\\">
+<DIV foo=\\"j i\\" name>
+<DIV class=\\"inner\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 1.0 Basic, head:root 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 1.0 Basic, html:root 1`] = `"<HTML>"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 1.0 Basic, p:empty 1`] = `"<P>"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 1.1 Unknown, :pseudo 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 1.1 Unknown, div:pseudo 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 1.1 Unknown, html:pseudo 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, :first-child 1`] = `
+"<HTML>
+<HEAD>
+<TITLE>
+<UL>
+<LI class=\\"i\\">
+<P class=\\"h\\">
+<P class=\\"i\\">
+<SPAN name=\\"name\\">
+<BR 2>
+<SPAN>
+<B>
+<INPUT type=\\"checkbox\\" checked>
+<OPTION>
+<OPTION>
+<DIV class=\\"outer\\">
+<DIV class=\\"select\\">
+<DIV class=\\"inner\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, :last-child 1`] = `
+"<HTML>
+<LINK CaSe>
+<BODY>
+<LI class=\\"i\\">
+<DIV>
+<P class=\\"i\\">
+<SPAN name=\\"name\\">
+<BR 2>
+<SPAN>
+<SPAN>
+<OPTION disabled>
+<OPTION>
+<BUTTON>
+<SECTION>
+<DIV class=\\"outer\\">
+<DIV class=\\"select\\">
+<DIV class=\\"inner\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, :only-child 1`] = `
+"<HTML>
+<LI class=\\"i\\">
+<P class=\\"i\\">
+<SPAN name=\\"name\\">
+<BR 2>
+<SPAN>
+<OPTION>
+<DIV class=\\"outer\\">
+<DIV class=\\"select\\">
+<DIV class=\\"inner\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, br:only-child 1`] = `"<BR 2>"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, meta:first-child 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, meta:last-child 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, meta:only-child 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, p:first-child 1`] = `
+"<P class=\\"h\\">
+<P class=\\"i\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, p:last-child 1`] = `"<P class=\\"i\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, p:only-child 1`] = `"<P class=\\"i\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, :first-of-type 1`] = `
+"<HTML>
+<HEAD>
+<TITLE>
+<META charset=\\"utf-8\\">
+<SCRIPT>
+<LINK CaSe>
+<BODY>
+<UL>
+<LI class=\\"i\\">
+<BR 1>
+<B class=\\"i\\">
+<P class=\\"h\\">
+<DIV>
+<P class=\\"i\\">
+<SPAN name=\\"name\\">
+<BR 2>
+<P name=\\"\\\\\\"éé&èè\\\\\\"\\">
+<DIV>
+<SPAN>
+<B>
+<SPAN>
+<A href=\\"https://www.example.com\\" class=\\"a\\">
+<FORM class=\\"select\\">
+<INPUT type=\\"checkbox\\" checked>
+<SELECT>
+<OPTION>
+<OPTION>
+<TEXTAREA>
+<BUTTON>
+<SECTION>
+<DIV class=\\"outer\\">
+<DIV class=\\"select\\">
+<DIV class=\\"inner\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, :last-of-type 1`] = `
+"<HTML>
+<HEAD>
+<TITLE>
+<META charset=\\"utf-16\\">
+<SCRIPT>
+<LINK CaSe>
+<BODY>
+<UL>
+<LI class=\\"i\\">
+<B class=\\"i\\">
+<P class=\\"h\\">
+<DIV>
+<P class=\\"i\\">
+<SPAN name=\\"name\\">
+<BR 2>
+<P>
+<SPAN>
+<B>
+<SPAN>
+<A href=\\"https://www.example.ca\\" class=\\"b\\" hreflang=\\"en-CA\\">
+<BR name=\\"name\\">
+<DIV foo=\\"j i\\" name>
+<FORM class=\\"select\\">
+<OPTION disabled>
+<SELECT required>
+<OPTION>
+<INPUT required>
+<TEXTAREA>
+<BUTTON>
+<SECTION>
+<DIV class=\\"outer\\">
+<DIV class=\\"select\\">
+<DIV class=\\"inner\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, :only-of-type 1`] = `
+"<HTML>
+<HEAD>
+<TITLE>
+<SCRIPT>
+<LINK CaSe>
+<BODY>
+<UL>
+<LI class=\\"i\\">
+<B class=\\"i\\">
+<P class=\\"h\\">
+<DIV>
+<P class=\\"i\\">
+<SPAN name=\\"name\\">
+<BR 2>
+<SPAN>
+<B>
+<SPAN>
+<FORM class=\\"select\\">
+<OPTION>
+<TEXTAREA>
+<BUTTON>
+<SECTION>
+<DIV class=\\"outer\\">
+<DIV class=\\"select\\">
+<DIV class=\\"inner\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, br:only-of-type 1`] = `"<BR 2>"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, meta:first-of-type 1`] = `"<META charset=\\"utf-8\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, meta:last-of-type 1`] = `"<META charset=\\"utf-16\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, meta:only-of-type 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, p:first-of-type 1`] = `
+"<P class=\\"h\\">
+<P class=\\"i\\">
+<P name=\\"\\\\\\"éé&èè\\\\\\"\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, p:last-of-type 1`] = `
+"<P class=\\"h\\">
+<P class=\\"i\\">
+<P>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, p:only-of-type 1`] = `
+"<P class=\\"h\\">
+<P class=\\"i\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 6. Pseudo-elements 1.0 Basic, ::after 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 6. Pseudo-elements 1.0 Basic, ::before 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 6. Pseudo-elements 1.0 Basic, ::custom 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 6. Pseudo-elements 1.0 Basic, ::first-letter 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 6. Pseudo-elements 1.0 Basic, ::first-line 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 7. Combinators 1.0 Descendant, form :disabled 1`] = `
+"<INPUT type=\\"radio\\" disabled>
+<OPTION disabled>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 7. Combinators 2.0 Child, form > :disabled 1`] = `"<INPUT type=\\"radio\\" disabled>"`;
+
+exports[`DOM API, Selector running querySelectorAll 7. Combinators 2.0 Child, form > option 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 7. Combinators 3.0 Next-sibling, input + input 1`] = `"<INPUT type=\\"radio\\" disabled>"`;
+
+exports[`DOM API, Selector running querySelectorAll 7. Combinators 4.0 Subsequent-sibling, input ~ input 1`] = `
+"<INPUT type=\\"radio\\" disabled>
+<INPUT required>"
+`;
