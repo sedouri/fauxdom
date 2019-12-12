@@ -2,7 +2,7 @@ import {terser} from "rollup-plugin-terser";
 import buble from "rollup-plugin-buble";
 import stripCode from "rollup-plugin-strip-code";
 import {spawn} from "child_process";
-import {ZipFile} from "yazl";
+import {zip} from "compressing";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -50,8 +50,8 @@ export default args =>
 	
 	if ( !DEBUG )
 	{
-		modulePlugins.push( unitTestStripper, terser( {module: true} ), zip() );
-		iifePlugins.push( terser( {safari10: true} ), zip() );
+		modulePlugins.push( unitTestStripper, terser( {module: true} ), zipFile() );
+		iifePlugins.push( terser( {safari10: true} ), zipFile() );
 	}
 	else
 	{
@@ -98,7 +98,7 @@ function module( format, ext = "" )
 	return output
 }
 
-function zip()
+function zipFile()
 {
 	return {
 		name: "Zip",
@@ -110,13 +110,11 @@ function zip()
 				dirName = path.dirname( options.file );
 			
 			if ( ext === ".js" || ext === ".mjs" )
-			{
-				const zipFile = new ZipFile(),
-					stream = fs.createWriteStream( path.join( dirName, fileName + (ext === ".mjs" ? ".module" : "") +".zip" ), {encoding: "binary"} );
-				zipFile.outputStream.pipe( stream );
-				zipFile.addBuffer( Buffer.from( src ), fileName +".js" );
-				zipFile.end();
-			}
+				zip.compressFile(
+					Buffer.from( src ),
+					path.join( dirName, fileName + (ext === ".mjs" ? ".module" : "") +".zip" ),
+					{relativePath: fileName +".js"}
+				);
 			
 			return null;
 		}

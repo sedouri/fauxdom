@@ -8,7 +8,7 @@ A fast and lightweight JavaScript library for parsing, modifying, and outputting
 
 FauxDOM is meant to parse HTML the same way browsers do, while also being as fast as possible. Some compromises were made for performance reasons that make FauxDOM treat some less-than-valid HTML different from a standards-compliant browser. With this in mind, any major structural differences between what FauxDOM produces and what a browser produces *should* be safe to view as a problem with the HTML document itself. However, if you come across a scenario where you believe FauxDOM is incorrect, and this same issue hasn't been reported yet, feel free to [open a new issue](../../issues/new).
 
-Having a *mostly* standards-compliant DOM API means that some parts of FauxDOM's implementation of the standards fully work, while others either don't or are different in some way. The [documentation](docs/DOM.md) will list properties and methods as either **standard**, **semi-standard** (when their behaviour is different from the standard), or **non-standard** to give you a more clear idea of how FauxDOM differs from the standard DOM API.
+Having a *mostly* standards-compliant DOM API means that some parts of FauxDOM's implementation of the standards fully work, while others either don't or are different in some regard. The [documentation](docs/DOM.md) will list properties and methods as either **standard**, **semi-standard** (when their behaviour is different from the standard), or **non-standard** to give you a more clear idea of how FauxDOM differs from the standard DOM API.
 
 ### What Works
 
@@ -148,15 +148,15 @@ Even though the above code isn't anywhere near production quality, with absolute
 
 FauxDOM requires at least Node.js 6 (or compatible) on the server side, and Chrome 5, Firefox 4, Internet Explorer 9, Opera 11.6, or Safari 5 (or compatible) on the client side. These browser requirements are driven by the need for [`Object.defineProperties`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties), for which no valid polyfill exists (getters and setters are needed, but not supported in versions of IE less than 9).
 
-FauxDOM also requires, and includes, basic polyfills for the following JavaScript APIs. The first version of each browser that supports each API is also included.
+FauxDOM also requires, and includes, basic polyfills for the following JavaScript APIs. The first version of each browser that supports each API is also listed.
 
-|                                                              | Chrome | Edge | Firefox |     IE     | Opera | Safari | Node.js |
-| :----------------------------------------------------------- | :----: | :--: | :-----: | :--------: | :---: | :----: | :-----: |
-| [`Symbol`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Browser_compatibility) |   38   |  12  |   36    | ***none*** |  25   |   9    |  *all*  |
-| [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Browser_compatibility) |   45   |  12  |   34    | ***none*** |  32   |   9    |    4    |
-| [`Object.freeze`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze#Browser_compatibility) |   6    |  12  |    4    |     9      |  12   |  5.1   |  *all*  |
-| [`String.fromCodePoint`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint#Browser_compatibility) |   41   |  12  |   29    | ***none*** |  28   |   10   |    4    |
-| [`Function.prototype.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind#Browser_compatibility) |   7    |  12  |    4    |     9      | 11.6  |  5.1   |  *all*  |
+|                                                              | Chrome | Edge | Firefox |     IE     | Opera | Safari |
+| :----------------------------------------------------------- | :----: | :--: | :-----: | :--------: | :---: | :----: |
+| [`Symbol`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Browser_compatibility) |   38   |  12  |   36    | ***none*** |  25   |   9    |
+| [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Browser_compatibility) |   45   |  12  |   34    | ***none*** |  32   |   9    |
+| [`Object.freeze`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze#Browser_compatibility) |   6    |  12  |    4    |     9      |  12   |  5.1   |
+| [`String.fromCodePoint`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint#Browser_compatibility) |   41   |  12  |   29    | ***none*** |  28   |   10   |
+| [`Function.prototype.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind#Browser_compatibility) |   7    |  12  |    4    |     9      | 11.6  |  5.1   |
 
 If your project already includes a polyfill for any of the above, include your polyfill before FauxDOM to keep FauxDOM's simplistic polyfills from being used.
 

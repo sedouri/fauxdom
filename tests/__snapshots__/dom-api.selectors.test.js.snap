@@ -764,6 +764,18 @@ Array [
 ]
 `;
 
+exports[`DOM API, Selector parsing 2. An+B syntax Invalid of selector, :nth-child(n of ) 1`] = `"Expected at least one selector."`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Invalid of selector, :nth-child(n of ~ p) 1`] = `"Absolute selectors cannot start with a combinator."`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Invalid of selector, :nth-child(n of b, ~ p) 1`] = `"Absolute selectors cannot start with a combinator."`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Invalid of selector, :nth-child(n of p 1`] = `"Expected ')'."`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Invalid of selector, :nth-child(n of) 1`] = `"Expected at least one selector."`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Invalid of selector, :nth-child(n of.class) 1`] = `"Expected whitespace."`;
+
 exports[`DOM API, Selector parsing 2. An+B syntax Invalid parts, :nth-child(3n + -6) 1`] = `"Expected ')'."`;
 
 exports[`DOM API, Selector parsing 2. An+B syntax Invalid white space, :nth-child(+ 2) 1`] = `"Invalid parameter."`;
@@ -902,6 +914,231 @@ Array [
         "params": Array [
           1,
           0,
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Of selector, :nth-child(2n+1 of p:not(.b)) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          2,
+          1,
+          Array [
+            Array [
+              Array [
+                Object {
+                  "name": "P",
+                  "type": "type",
+                },
+                Object {
+                  "name": "not",
+                  "params": Array [
+                    Array [
+                      Array [
+                        Object {
+                          "name": "b",
+                          "type": "class",
+                        },
+                      ],
+                    ],
+                  ],
+                  "type": "pseudo-fn",
+                },
+              ],
+            ],
+          ],
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Of selector, :nth-child(even \\6f f .foo) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          2,
+          0,
+          Array [
+            Array [
+              Array [
+                Object {
+                  "name": "foo",
+                  "type": "class",
+                },
+              ],
+            ],
+          ],
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Of selector, :nth-child(n \\00006ff .foo) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          1,
+          0,
+          Array [
+            Array [
+              Array [
+                Object {
+                  "name": "foo",
+                  "type": "class",
+                },
+              ],
+            ],
+          ],
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Of selector, :nth-child(n \\4f \\46  .foo) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          1,
+          0,
+          Array [
+            Array [
+              Array [
+                Object {
+                  "name": "foo",
+                  "type": "class",
+                },
+              ],
+            ],
+          ],
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Of selector, :nth-child(n of :nth-child(n of b)) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          1,
+          0,
+          Array [
+            Array [
+              Array [
+                Object {
+                  "name": "nth-child",
+                  "params": Array [
+                    1,
+                    0,
+                    Array [
+                      Array [
+                        Array [
+                          Object {
+                            "name": "B",
+                            "type": "type",
+                          },
+                        ],
+                      ],
+                    ],
+                  ],
+                  "type": "pseudo-fn",
+                },
+              ],
+            ],
+          ],
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Of selector, :nth-child(odd o\\66  .foo) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-child",
+        "params": Array [
+          2,
+          1,
+          Array [
+            Array [
+              Array [
+                Object {
+                  "name": "foo",
+                  "type": "class",
+                },
+              ],
+            ],
+          ],
+        ],
+        "type": "pseudo-fn",
+      },
+    ],
+  ],
+]
+`;
+
+exports[`DOM API, Selector parsing 2. An+B syntax Of selector, :nth-last-child(2n+1 of b, i) 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "name": "nth-last-child",
+        "params": Array [
+          2,
+          1,
+          Array [
+            Array [
+              Array [
+                Object {
+                  "name": "B",
+                  "type": "type",
+                },
+              ],
+            ],
+            Array [
+              Array [
+                Object {
+                  "name": "I",
+                  "type": "type",
+                },
+              ],
+            ],
+          ],
         ],
         "type": "pseudo-fn",
       },
@@ -1202,7 +1439,8 @@ exports[`DOM API, Selector running querySelectorAll 1. Elemental selectors 1.0 T
 <DIV foo=\\"j i\\" name>
 <DIV class=\\"outer\\">
 <DIV class=\\"select\\">
-<DIV class=\\"inner\\">"
+<DIV class=\\"inner\\">
+<DIV id=\\"spans\\">"
 `;
 
 exports[`DOM API, Selector running querySelectorAll 1. Elemental selectors 1.0 Type (tag name) selector, html 1`] = `"<HTML>"`;
@@ -1262,7 +1500,24 @@ exports[`DOM API, Selector running querySelectorAll 1. Elemental selectors 2.0 U
 <SECTION>
 <DIV class=\\"outer\\">
 <DIV class=\\"select\\">
-<DIV class=\\"inner\\">"
+<DIV class=\\"inner\\">
+<OL>
+<LI 1 class=\\"important\\">
+<LI 2>
+<LI 3>
+<LI 4 class=\\"important\\">
+<LI 5>
+<LI 6 class=\\"important\\">
+<LI 7 class=\\"important\\">
+<LI 8>
+<DIV id=\\"spans\\">
+<SPAN 1>
+<SPAN 2>
+<EM>
+<SPAN 3>
+<SPAN 4>
+<SPAN 5>
+<SPAN 6>"
 `;
 
 exports[`DOM API, Selector running querySelectorAll 1. Elemental selectors 2.0 Universal selector, * div 1`] = `
@@ -1275,7 +1530,8 @@ exports[`DOM API, Selector running querySelectorAll 1. Elemental selectors 2.0 U
 <DIV foo=\\"j i\\" name>
 <DIV class=\\"outer\\">
 <DIV class=\\"select\\">
-<DIV class=\\"inner\\">"
+<DIV class=\\"inner\\">
+<DIV id=\\"spans\\">"
 `;
 
 exports[`DOM API, Selector running querySelectorAll 1. Elemental selectors 2.0 Universal selector, * html 1`] = `""`;
@@ -1392,7 +1648,14 @@ exports[`DOM API, Selector running querySelectorAll 3. Logical combinations 1.0 
 <DIV foo=\\"j i\\" name>
 <DIV class=\\"outer\\">
 <DIV class=\\"select\\">
-<DIV class=\\"inner\\">"
+<DIV class=\\"inner\\">
+<DIV id=\\"spans\\">
+<SPAN 1>
+<SPAN 2>
+<SPAN 3>
+<SPAN 4>
+<SPAN 5>
+<SPAN 6>"
 `;
 
 exports[`DOM API, Selector running querySelectorAll 3. Logical combinations 2.0 Matches-any pseudo-class ':is()', .i:is( p, b ) 1`] = `
@@ -1489,7 +1752,22 @@ exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-cl
 <INPUT type=\\"radio\\" disabled>
 <INPUT required>
 <TEXTAREA>
-<DIV class=\\"inner\\">"
+<DIV class=\\"inner\\">
+<LI 1 class=\\"important\\">
+<LI 2>
+<LI 3>
+<LI 4 class=\\"important\\">
+<LI 5>
+<LI 6 class=\\"important\\">
+<LI 7 class=\\"important\\">
+<LI 8>
+<SPAN 1>
+<SPAN 2>
+<EM>
+<SPAN 3>
+<SPAN 4>
+<SPAN 5>
+<SPAN 6>"
 `;
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 1.0 Basic, :root 1`] = `"<HTML>"`;
@@ -1532,7 +1810,9 @@ exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-cl
 <OPTION>
 <DIV class=\\"outer\\">
 <DIV class=\\"select\\">
-<DIV class=\\"inner\\">"
+<DIV class=\\"inner\\">
+<LI 1 class=\\"important\\">
+<SPAN 1>"
 `;
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, :last-child 1`] = `
@@ -1549,10 +1829,12 @@ exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-cl
 <OPTION disabled>
 <OPTION>
 <BUTTON>
-<SECTION>
 <DIV class=\\"outer\\">
 <DIV class=\\"select\\">
-<DIV class=\\"inner\\">"
+<DIV class=\\"inner\\">
+<LI 8>
+<DIV id=\\"spans\\">
+<SPAN 6>"
 `;
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, :only-child 1`] = `
@@ -1570,11 +1852,30 @@ exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-cl
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, br:only-child 1`] = `"<BR 2>"`;
 
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, li :first-child 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, li :last-child 1`] = `""`;
+
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, meta:first-child 1`] = `""`;
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, meta:last-child 1`] = `""`;
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, meta:only-child 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, p :first-child 1`] = `
+"<SPAN name=\\"name\\">
+<BR 2>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, p :last-child 1`] = `
+"<SPAN name=\\"name\\">
+<BR 2>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, p :only-child 1`] = `
+"<SPAN name=\\"name\\">
+<BR 2>"
+`;
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, p:first-child 1`] = `
 "<P class=\\"h\\">
@@ -1584,6 +1885,143 @@ exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-cl
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, p:last-child 1`] = `"<P class=\\"i\\">"`;
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.0 Child-indexed pseudo-classes, p:only-child 1`] = `"<P class=\\"i\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), #spans :nth-child( 3 ) 1`] = `"<EM>"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), #spans span:nth-child( 2n ) 1`] = `
+"<SPAN 2>
+<SPAN 3>
+<SPAN 5>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), :nth-child( 3 ) 1`] = `
+"<META charset=\\"utf-16\\">
+<B class=\\"i\\">
+<SELECT>
+<OPTION disabled>
+<LI 3>
+<EM>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), ol :nth-child( -n+3 of li.important ) 1`] = `
+"<LI 1 class=\\"important\\">
+<LI 4 class=\\"important\\">
+<LI 6 class=\\"important\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), ol :nth-child( 0n ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), ol :nth-child( 0n+0 ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), ol :nth-child( 3n of :scope .important ) 1`] = `"<LI 6 class=\\"important\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), ol :nth-child( 3n of :scope.important ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), ol :nth-child( even ) 1`] = `
+"<LI 2>
+<LI 4 class=\\"important\\">
+<LI 6 class=\\"important\\">
+<LI 8>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), ol :nth-child( n ) 1`] = `
+"<LI 1 class=\\"important\\">
+<LI 2>
+<LI 3>
+<LI 4 class=\\"important\\">
+<LI 5>
+<LI 6 class=\\"important\\">
+<LI 7 class=\\"important\\">
+<LI 8>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), ol :nth-child( n+3 ):nth-child( -n+5 ) 1`] = `
+"<LI 3>
+<LI 4 class=\\"important\\">
+<LI 5>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), ol :nth-child( n+3 ):nth-child( odd ):nth-child( -n+7 ) 1`] = `
+"<LI 3>
+<LI 5>
+<LI 7 class=\\"important\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), ol :nth-child( odd ) 1`] = `
+"<LI 1 class=\\"important\\">
+<LI 3>
+<LI 5>
+<LI 7 class=\\"important\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.1 nth-child(), ol li.important:nth-child( -n+3 ) 1`] = `"<LI 1 class=\\"important\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.2 nth-last-child, #spans :nth-last-child( 3 ) 1`] = `"<SPAN 4>"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.2 nth-last-child, #spans span:nth-last-child( 2n ) 1`] = `
+"<SPAN 2>
+<SPAN 3>
+<SPAN 5>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.2 nth-last-child, :nth-last-child( 3 ) 1`] = `
+"<META charset=\\"utf-16\\">
+<OPTION>
+<INPUT required>
+<SECTION>
+<LI 6 class=\\"important\\">
+<SPAN 4>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.2 nth-last-child, ol :nth-last-child( -n+3 of li.important ) 1`] = `
+"<LI 4 class=\\"important\\">
+<LI 6 class=\\"important\\">
+<LI 7 class=\\"important\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.2 nth-last-child, ol :nth-last-child( 0n ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.2 nth-last-child, ol :nth-last-child( 0n+0 ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.2 nth-last-child, ol :nth-last-child( 3n of :scope .important ) 1`] = `"<LI 4 class=\\"important\\">"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.2 nth-last-child, ol :nth-last-child( 3n of :scope.important ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.2 nth-last-child, ol :nth-last-child( even ) 1`] = `
+"<LI 1 class=\\"important\\">
+<LI 3>
+<LI 5>
+<LI 7 class=\\"important\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.2 nth-last-child, ol :nth-last-child( n ) 1`] = `
+"<LI 1 class=\\"important\\">
+<LI 2>
+<LI 3>
+<LI 4 class=\\"important\\">
+<LI 5>
+<LI 6 class=\\"important\\">
+<LI 7 class=\\"important\\">
+<LI 8>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.2 nth-last-child, ol :nth-last-child( n+3 ):nth-last-child( -n+5 ) 1`] = `
+"<LI 4 class=\\"important\\">
+<LI 5>
+<LI 6 class=\\"important\\">"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.2 nth-last-child, ol :nth-last-child( odd ) 1`] = `
+"<LI 2>
+<LI 4 class=\\"important\\">
+<LI 6 class=\\"important\\">
+<LI 8>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 2.2 nth-last-child, ol li.important:nth-last-child( -n+3 ) 1`] = `
+"<LI 6 class=\\"important\\">
+<LI 7 class=\\"important\\">"
+`;
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, :first-of-type 1`] = `
 "<HTML>
@@ -1618,7 +2056,11 @@ exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-cl
 <SECTION>
 <DIV class=\\"outer\\">
 <DIV class=\\"select\\">
-<DIV class=\\"inner\\">"
+<DIV class=\\"inner\\">
+<OL>
+<LI 1 class=\\"important\\">
+<SPAN 1>
+<EM>"
 `;
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, :last-of-type 1`] = `
@@ -1643,7 +2085,6 @@ exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-cl
 <SPAN>
 <A href=\\"https://www.example.ca\\" class=\\"b\\" hreflang=\\"en-CA\\">
 <BR name=\\"name\\">
-<DIV foo=\\"j i\\" name>
 <FORM class=\\"select\\">
 <OPTION disabled>
 <SELECT required>
@@ -1654,7 +2095,12 @@ exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-cl
 <SECTION>
 <DIV class=\\"outer\\">
 <DIV class=\\"select\\">
-<DIV class=\\"inner\\">"
+<DIV class=\\"inner\\">
+<OL>
+<LI 8>
+<DIV id=\\"spans\\">
+<EM>
+<SPAN 6>"
 `;
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, :only-of-type 1`] = `
@@ -1682,7 +2128,9 @@ exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-cl
 <SECTION>
 <DIV class=\\"outer\\">
 <DIV class=\\"select\\">
-<DIV class=\\"inner\\">"
+<DIV class=\\"inner\\">
+<OL>
+<EM>"
 `;
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, br:only-of-type 1`] = `"<BR 2>"`;
@@ -1692,6 +2140,21 @@ exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-cl
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, meta:last-of-type 1`] = `"<META charset=\\"utf-16\\">"`;
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, meta:only-of-type 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, p :first-of-type 1`] = `
+"<SPAN name=\\"name\\">
+<BR 2>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, p :last-of-type 1`] = `
+"<SPAN name=\\"name\\">
+<BR 2>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, p :only-of-type 1`] = `
+"<SPAN name=\\"name\\">
+<BR 2>"
+`;
 
 exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.0 Typed child-indexed pseudo-classes, p:first-of-type 1`] = `
 "<P class=\\"h\\">
@@ -1709,6 +2172,42 @@ exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-cl
 "<P class=\\"h\\">
 <P class=\\"i\\">"
 `;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.1 nth-of-type, #spans div:nth-of-type( 1 ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.1 nth-of-type, #spans em:nth-of-type( 1 ) 1`] = `"<EM>"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.1 nth-of-type, #spans em:nth-of-type( 2 ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.1 nth-of-type, #spans em:nth-of-type( 10 ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.1 nth-of-type, #spans s:nth-of-type( 1 ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.1 nth-of-type, #spans span:nth-of-type( 2n ) 1`] = `
+"<SPAN 2>
+<SPAN 4>
+<SPAN 6>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.1 nth-of-type, #spans span:nth-of-type( 3 ) 1`] = `"<SPAN 3>"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.2 nth-last-of-type, #spans div:nth-last-of-type( 1 ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.2 nth-last-of-type, #spans em:nth-last-of-type( 1 ) 1`] = `"<EM>"`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.2 nth-last-of-type, #spans em:nth-last-of-type( 2 ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.2 nth-last-of-type, #spans em:nth-last-of-type( 10 ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.2 nth-last-of-type, #spans s:nth-last-of-type( 1 ) 1`] = `""`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.2 nth-last-of-type, #spans span:nth-last-of-type( 2n ) 1`] = `
+"<SPAN 1>
+<SPAN 3>
+<SPAN 5>"
+`;
+
+exports[`DOM API, Selector running querySelectorAll 5. Tree-structural pseudo-classes 3.2 nth-last-of-type, #spans span:nth-last-of-type( 3 ) 1`] = `"<SPAN 4>"`;
 
 exports[`DOM API, Selector running querySelectorAll 6. Pseudo-elements 1.0 Basic, ::after 1`] = `""`;
 

@@ -515,7 +515,7 @@ The `Node` that was first matched by the specified selector, or `null` if no nod
 
 **Exceptions**
 
-An `SyntaxError` is thrown if the specified selector is invalid. The message of the `SyntaxError` will have a more detailed description of what exactly the error is, and the `stack` property of the error object will have information about where in the selector the error was encountered.
+A `SyntaxError` is thrown if the specified selector is invalid. The message of the `SyntaxError` will have a more detailed description of what exactly the error is, and the `stack` property of the error object will have information about where in the selector the error was encountered.
 
 ----
 
@@ -607,7 +607,7 @@ A `Boolean` indicating whether this node would be selected by the specified sele
 
 **Exceptions**
 
-An `SyntaxError` is thrown if the specified selector is invalid. The message of the `SyntaxError` will have a more detailed description of what exactly the error is, and the `stack` property of the error object will have information about where in the selector the error was encountered.
+A `SyntaxError` is thrown if the specified selector is invalid. The message of the `SyntaxError` will have a more detailed description of what exactly the error is, and the `stack` property of the error object will have information about where in the selector the error was encountered.
 
 ----
 
@@ -633,7 +633,7 @@ The `Node` that was first matched by the specified selector, or `null` if no nod
 
 **Exceptions**
 
-An `SyntaxError` is thrown if the specified selector is invalid. The message of the `SyntaxError` will have a more detailed description of what exactly the error is, and the `stack` property of the error object will have information about where in the selector the error was encountered.
+A `SyntaxError` is thrown if the specified selector is invalid. The message of the `SyntaxError` will have a more detailed description of what exactly the error is, and the `stack` property of the error object will have information about where in the selector the error was encountered.
 
 ----
 
@@ -659,7 +659,7 @@ An `Array` containing all nodes that matched the specified selector. The `Array`
 
 **Exceptions**
 
-An `SyntaxError` is thrown if the specified selector is invalid. The message of the `SyntaxError` will have a more detailed description of what exactly the error is, and the `stack` property of the error object will have information about where in the selector the error was encountered.
+A `SyntaxError` is thrown if the specified selector is invalid. The message of the `SyntaxError` will have a more detailed description of what exactly the error is, and the `stack` property of the error object will have information about where in the selector the error was encountered.
 
 ----
 

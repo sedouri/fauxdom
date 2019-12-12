@@ -121,6 +121,23 @@ describe( "DOM API, Selector parsing", () =>
 			":nth-child(2n+0)",
 			":nth-child(3n-6)",
 		] );
+		testEachSelector( "Of selector", [
+			":nth-child(2n+1 of p:not(.b))",
+			":nth-last-child(2n+1 of b, i)",
+			":nth-child(n of :nth-child(n of b))",
+			":nth-child(even \\6f f .foo)",
+			":nth-child(odd o\\66  .foo)",
+			":nth-child(n \\4f \\46  .foo)",
+			":nth-child(n \\00006ff .foo)",
+		] );
+		testEachSelectorForFailue( "Invalid of selector", [
+			":nth-child(n of p",
+			":nth-child(n of)",
+			":nth-child(n of )",
+			":nth-child(n of ~ p)",
+			":nth-child(n of b, ~ p)",
+			":nth-child(n of.class)",
+		] );
 		testEachSelector( "Valid white space", [
 			":nth-child(3n + 1)",
 			":nth-child(+3n - 2)",
@@ -312,29 +329,93 @@ describe( "DOM API, Selector running", () =>
 				":first-child",
 				"meta:first-child",
 				"p:first-child",
+				"p :first-child",
+				"li :first-child",
 				
 				":last-child",
 				"meta:last-child",
 				"p:last-child",
+				"p :last-child",
+				"li :last-child",
 				
 				":only-child",
 				"meta:only-child",
 				"p:only-child",
 				"br:only-child",
+				"p :only-child",
+			] );
+			testEachWithQueryAll( document, "2.1 nth-child()", [
+				":nth-child( 3 )",
+				
+				"#spans :nth-child( 3 )",
+				"#spans span:nth-child( 2n )",
+				
+				"ol li.important:nth-child( -n+3 )",
+				"ol :nth-child( -n+3 of li.important )",
+				"ol :nth-child( 3n of :scope .important )",
+				"ol :nth-child( 3n of :scope.important )",
+				
+				"ol :nth-child( n+3 ):nth-child( -n+5 )",
+				"ol :nth-child( even )",
+				"ol :nth-child( odd )",
+				"ol :nth-child( n )",
+				"ol :nth-child( 0n )",
+				"ol :nth-child( 0n+0 )",
+				
+				"ol :nth-child( n+3 ):nth-child( odd ):nth-child( -n+7 )",
+			] );
+			testEachWithQueryAll( document, "2.2 nth-last-child", [
+				":nth-last-child( 3 )",
+				
+				"#spans :nth-last-child( 3 )",
+				"#spans span:nth-last-child( 2n )",
+				
+				"ol li.important:nth-last-child( -n+3 )",
+				"ol :nth-last-child( -n+3 of li.important )",
+				"ol :nth-last-child( 3n of :scope .important )",
+				"ol :nth-last-child( 3n of :scope.important )",
+				
+				"ol :nth-last-child( n+3 ):nth-last-child( -n+5 )",
+				"ol :nth-last-child( even )",
+				"ol :nth-last-child( odd )",
+				"ol :nth-last-child( n )",
+				"ol :nth-last-child( 0n )",
+				"ol :nth-last-child( 0n+0 )",
 			] );
 			testEachWithQueryAll( document, "3.0 Typed child-indexed pseudo-classes", [
 				":first-of-type",
 				"meta:first-of-type",
 				"p:first-of-type",
+				"p :first-of-type",
 				
 				":last-of-type",
 				"meta:last-of-type",
 				"p:last-of-type",
+				"p :last-of-type",
 				
 				":only-of-type",
 				"meta:only-of-type",
 				"p:only-of-type",
 				"br:only-of-type",
+				"p :only-of-type",
+			] );
+			testEachWithQueryAll( document, "3.1 nth-of-type", [
+				"#spans span:nth-of-type( 3 )",
+				"#spans span:nth-of-type( 2n )",
+				"#spans em:nth-of-type( 1 )",
+				"#spans em:nth-of-type( 2 )",
+				"#spans em:nth-of-type( 10 )",
+				"#spans div:nth-of-type( 1 )",
+				"#spans s:nth-of-type( 1 )",
+			] );
+			testEachWithQueryAll( document, "3.2 nth-last-of-type", [
+				"#spans span:nth-last-of-type( 3 )",
+				"#spans span:nth-last-of-type( 2n )",
+				"#spans em:nth-last-of-type( 1 )",
+				"#spans em:nth-last-of-type( 2 )",
+				"#spans em:nth-last-of-type( 10 )",
+				"#spans div:nth-last-of-type( 1 )",
+				"#spans s:nth-last-of-type( 1 )",
 			] );
 		} );
 		

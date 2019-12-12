@@ -1,7 +1,8 @@
 const https = require( "https" ),
 	fs = require( "fs" ),
 	path = require( "path" ),
-	{ZipFile} = require( "yazl" ),
+	{zip} = require( "compressing" ),
+	{stringEscape} = require( "./utils" );
 	
 	entityNameRE = /[&;]/g,
 	stringEscapeRE = /[\x00-\x1F\x22\x27\x5C\x7F-\uFFFF]/g;
@@ -30,13 +31,13 @@ function processEntities( str )
 					case 9: chars = "\\t"; break;
 					case 10: chars = "\\n"; break;
 					case 13: chars = "\\r"; break;
-					default: if ( cp > 0x20 ) chars = stringEscape( String.fromCodePoint( cp ), '"' );
+					default: if ( cp > 0x20 ) chars = stringEscape( String.fromCodePoint( cp ), '"', stringEscapeRE );
 				}
 				else if ( cp < 65535 )
 					chars = cp;
-				else chars = stringEscape( chars );
+				else chars = stringEscape( chars, null, stringEscapeRE );
 			}
-			else chars = stringEscape( chars );
+			else chars = stringEscape( chars, null, stringEscapeRE );
 			
 			if ( duplicates.has( nameLC ) )
 			{
@@ -70,7 +71,7 @@ function processEntities( str )
 		fs.mkdirSync( "./lib" );
 	
 	const filePath = path.resolve( "./lib/entities" ),
-		escapedEntitiesStr = "JSON.parse('"+ stringEscape( entitiesStr, "'" ) +"')";
+		escapedEntitiesStr = "JSON.parse('"+ stringEscape( entitiesStr, "'", stringEscapeRE ) +"')";
 	outputFile( filePath +".json", entitiesStr );
 	outputFile( filePath +".js", "if(window.DOM)DOM.EntityEncoder.defaultEntities="+ escapedEntitiesStr );
 	outputFile( filePath +".mjs", "export default "+ escapedEntitiesStr );
@@ -112,44 +113,9 @@ function outputFile( filePath, contents )
 	fs.writeFile( filePath, contents, err => {if ( err ) console.error( "Error writing "+ filePath +"\n"+ err )} );
 	
 	if ( ext === ".js" || ext === ".mjs" )
-	{
-		const zipFile = new ZipFile(),
-			stream = fs.createWriteStream( path.join( dirName, fileName + (ext === ".mjs" ? ".module" : "") +".zip" ), {encoding: "binary"} );
-		zipFile.outputStream.pipe( stream );
-		zipFile.addBuffer( Buffer.from( contents ), fileName +".js" );
-		zipFile.end();
-	}
-}
-
-function stringEscape( string, quoteChar )
-{
-	var quoteCode = 0;
-	
-	if ( typeof quoteChar === "string" && quoteChar.length > 0 )
-		quoteCode = quoteChar.charCodeAt( 0 );
-	
-	return string.replace( stringEscapeRE, function( chr )
-	{
-		var charCode = chr.charCodeAt( 0 );
-		if ( charCode < 0xFF )
-		{
-			switch ( charCode )
-			{
-				case 0: case 1: case 2: case 3:
-				case 4: case 5: case 6: case 7:
-					return "\\"+ charCode;
-				case 0x08: return "\\b";
-				case 0x09: return "\\t";
-				case 0x0A: return "\\n";
-				case 0x0B: return "\\v";
-				case 0x0C: return "\\f";
-				case 0x0D: return "\\r";
-				case 0x22: return charCode !== quoteCode ? '"' : '\\"';
-				case 0x27: return charCode !== quoteCode ? "'" : "\\'";
-				case 0x5C: return "\\\\";
-			}
-		}
-		const hexStr = charCode.toString( 16 );
-		return "\\u"+ "0000".slice( 0, 4 - hexStr.length ) + hexStr;
-	} );
+		zip.compressFile(
+			Buffer.from( contents ),
+			path.join( dirName, fileName + (ext === ".mjs" ? ".module" : "") +".zip" ),
+			{relativePath: fileName +".js"}
+		);
 }

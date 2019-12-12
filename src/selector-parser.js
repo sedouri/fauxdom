@@ -3,21 +3,29 @@ import {Lexer, EOF} from "./lexer.js";
 const newLinesRE = /\r\n|\r|\f/g,
 	anbSyntaxRE = /\(\s*(even|odd|(?:(?:([+-]?\d*)n)\s*(?:([+-])\s*(\d+))?|([+-]?\d+)))\s*/g;
 
+const ParamTypes = {
+	Selectors: 0,
+	Identifier: 1,
+	Iterator: 2,
+	IteratorOf: 3
+};
+
 const paramExpectations = {
-	"is": "selectors",
-	"not": "selectors",
-	"where": "selectors", // Alias of :is()
-	"has": "selectors",
+	"is": ParamTypes.Selectors,
+	"not": ParamTypes.Selectors,
+	"where": ParamTypes.Selectors, // Alias of :is()
+	"has": ParamTypes.Selectors,
 	
-	"lang": "identifier", // Not implementing
-	"dir": "identifier", // Not implementing
+	"lang": ParamTypes.Identifier, // Not implementing
+	"dir": ParamTypes.Identifier, // Not implementing
 	
-	"nth-child": "An+B", // nyi
-	"nth-last-child": "An+B", // nyi
-	"nth-of-type": "An+B", // nyi
-	"nth-last-of-type": "An+B", // nyi
-	"nth-col": "An+B", // Not implementing
-	"nth-last-col": "An+B", // Not implementing
+	"nth-child": ParamTypes.IteratorOf,
+	"nth-last-child": ParamTypes.IteratorOf,
+	
+	"nth-of-type": ParamTypes.Iterator,
+	"nth-last-of-type": ParamTypes.Iterator,
+	"nth-col": ParamTypes.Iterator, // Not implementing
+	"nth-last-col": ParamTypes.Iterator, // Not implementing
 };
 
 // https://drafts.csswg.org/selectors-4/
@@ -160,22 +168,42 @@ function parseSelectorList( lexer, terminator = EOF, relative = false )
 					selector.type = "pseudo-class";
 					selector.name = name;
 					
-					if ( paramExpectations[name] )
+					const paramType = paramExpectations[name];
+					if ( paramType != null )
 					{
 						selector.type = "pseudo-fn";
 						
 						if ( lexer.getNextChar() !== "(" )
 							throw syntaxError( "Expected '('.", lexer );
 						
-						switch ( paramExpectations[name] )
+						switch ( paramType )
 						{
-							case "An+B": // https://drafts.csswg.org/css-syntax-3/#anb-microsyntax
-								let A = 0, B = 0;
+							case ParamTypes.IteratorOf: // https://drafts.csswg.org/selectors-4/#nth-child-pseudo
+							case ParamTypes.Iterator: // https://drafts.csswg.org/css-syntax-3/#anb-microsyntax
+								let A = 0, B = 0, ofSelector;
 								
 								anbSyntaxRE.lastIndex = lexer.index;
 								const match = anbSyntaxRE.exec( lexer.str );
 								if ( !match ) throw syntaxError( "Invalid parameter.", lexer, 1 );
 								lexer.advance( match[0].length );
+								
+								if ( paramType === ParamTypes.IteratorOf )
+								{
+									lexer.skipWhiteSpace();
+									const savedIdx = lexer.index;
+									if ( parseIdentifier( lexer ).toLowerCase() === "of" )
+									{
+										const chr = lexer.getNextChar();
+										if ( chr !== ")" && !lexer.isWhiteSpace( chr ) )
+											throw syntaxError( "Expected whitespace.", lexer );
+										
+										ofSelector = parseSelectorList( lexer, ")" );
+										if ( !(ofSelector instanceof Array) || ofSelector.length === 0 )
+											throw syntaxError( "Expected at least one selector.", lexer );
+									}
+									else lexer.goToIndex( savedIdx );
+								}
+								
 								if ( lexer.skipWhiteSpace() !== ")" )
 									throw syntaxError( "Expected ')'.", lexer );
 								
@@ -197,16 +225,17 @@ function parseSelectorList( lexer, terminator = EOF, relative = false )
 								}
 								
 								selector.params = [A, B];
+								if ( ofSelector ) selector.params.push( ofSelector );
 								break;
 								
-							case "selectors":
+							case ParamTypes.Selectors:
 								lexer.getNextChar();
 								selector.params = parseSelectorList( lexer, ")", true );
 								if ( selector.params.length === 0 )
 									throw syntaxError( "Expected at least one selector.", lexer );
 								break;
 								
-							case "identifier":
+							case ParamTypes.Identifier:
 								if ( isIdentifierStart( lexer.getNextAfterWhiteSpace() ) )
 									selector.params = [parseIdentifier( lexer )];
 								else throw syntaxError( "Expected an identifier.", lexer );

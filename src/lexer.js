@@ -53,6 +53,11 @@ export class Lexer
 		}
 	}
 	
+	goToIndex( index )
+	{
+		this.scanChar = this.str[this.index = index];
+	}
+	
 	advance( amount )
 	{
 		this.index += amount;

@@ -1,6 +1,6 @@
 import {parseSelector} from "./selector-parser.js";
 import Node from "./node.js";
-import {spacesRE, getDocument} from "./utils.js";
+import {NODE_TYPE, PARENT_NODE, TAG_NAME, spacesRE, getDocument} from "./utils.js";
 
 const STATE_INITIAL = 0,
 	STATE_DESCENDANT_COMBINATOR = 1,
@@ -44,6 +44,80 @@ const STATE_INITIAL = 0,
 			} );
 			
 			return has;
+		},
+		
+		["nth-child"]( scope, node, args )
+		{
+			const parent = node[PARENT_NODE],
+				nodes = parent.childNodes,
+				iter = new ChildIterator( args[0], args[1] );
+			for ( let i = 0; i < nodes.length; i++ )
+				if ( nodes[i][NODE_TYPE] === Node.ELEMENT_NODE )
+				{
+					if ( !args[2] || matchesSelectorList( parent, nodes[i], args[2] ) )
+					{
+						const iterMatch = iter.next();
+						if ( nodes[i] === node )
+							return iterMatch;
+					}
+				}
+			return false;
+		},
+		["nth-last-child"]( scope, node, args )
+		{
+			const parent = node[PARENT_NODE],
+				nodes = parent.childNodes,
+				iter = new ChildIterator( args[0], args[1] );
+			for ( let i = nodes.length - 1; i >= 0; i-- )
+				if ( nodes[i][NODE_TYPE] === Node.ELEMENT_NODE )
+				{
+					if ( !args[2] || matchesSelectorList( parent, nodes[i], args[2] ) )
+					{
+						const iterMatch = iter.next();
+						if ( nodes[i] === node )
+							return iterMatch;
+					}
+				}
+			return false;
+		},
+		
+		["nth-of-type"]( scope, node, args )
+		{
+			const nodes = node[PARENT_NODE].childNodes,
+				iter = new ChildIterator( args[0], args[1] ),
+				tagName = node[TAG_NAME];
+			for ( let i = 0; i < nodes.length; i++ )
+				if ( nodes[i][TAG_NAME] === tagName )
+				{
+					const iterMatch = iter.next();
+					if ( nodes[i] === node )
+						return iterMatch;
+				}
+			
+			// For code here to be reachable, 'node' would have to not be inside
+			// its own parent, or the above test of 'nodes[i] === node' would
+			// have to be skippable. Since neither of these scenarios is
+			// possible (for now), an explicit 'return false' here never
+			// executes and isn't needed.
+		},
+		["nth-last-of-type"]( scope, node, args )
+		{
+			const nodes = node[PARENT_NODE].childNodes,
+				iter = new ChildIterator( args[0], args[1] ),
+				tagName = node[TAG_NAME];
+			for ( let i = nodes.length - 1; i >= 0; i-- )
+				if ( nodes[i][TAG_NAME] === tagName )
+				{
+					const iterMatch = iter.next();
+					if ( nodes[i] === node )
+						return iterMatch;
+				}
+			
+			// For code here to be reachable, 'node' would have to not be inside
+			// its own parent, or the above test of 'nodes[i] === node' would
+			// have to be skippable. Since neither of these scenarios is
+			// possible (for now), an explicit 'return false' here never
+			// executes and isn't needed.
 		}
 	},
 	pseudoClasses = {
@@ -54,7 +128,7 @@ const STATE_INITIAL = 0,
 		
 		enabled( scope, node )
 		{
-			switch ( node.tagName )
+			switch ( node[TAG_NAME] )
 			{
 				case "BUTTON":
 				case "INPUT":
@@ -69,7 +143,7 @@ const STATE_INITIAL = 0,
 		},
 		disabled( scope, node )
 		{
-			switch ( node.tagName )
+			switch ( node[TAG_NAME] )
 			{
 				case "BUTTON":
 				case "INPUT":
@@ -85,20 +159,20 @@ const STATE_INITIAL = 0,
 		
 		checked( scope, node )
 		{
-			if ( node.tagName === "INPUT" )
+			if ( node[TAG_NAME] === "INPUT" )
 			{
 				const type = node.getAttribute( "type" );
 				if ( type === "checkbox" || type === "radio" )
 					return node.hasAttribute( "checked" );
 			}
-			else if ( node.tagName === "OPTION" )
+			else if ( node[TAG_NAME] === "OPTION" )
 				return node.hasAttribute( "selected" );
 			return false;
 		},
 		
 		required( scope, node )
 		{
-			switch ( node.tagName )
+			switch ( node[TAG_NAME] )
 			{
 				case "INPUT":
 				case "SELECT":
@@ -109,7 +183,7 @@ const STATE_INITIAL = 0,
 		},
 		optional( scope, node )
 		{
-			switch ( node.tagName )
+			switch ( node[TAG_NAME] )
 			{
 				case "INPUT":
 				case "SELECT":
@@ -131,31 +205,37 @@ const STATE_INITIAL = 0,
 		
 		["first-child"]( scope, node )
 		{
-			const nodes = node.parentNode.childNodes;
-			let found;
-			for ( let i = 0; i < nodes.length && !found; i++ )
-				if ( nodes[i].nodeType === Node.ELEMENT_NODE )
-					found = nodes[i];
-			return (found === node);
+			const nodes = node[PARENT_NODE].childNodes;
+			for ( let i = 0; i < nodes.length; i++ )
+				if ( nodes[i][NODE_TYPE] === Node.ELEMENT_NODE )
+					return (nodes[i] === node);
+			
+			// For code here to be reachable, we would have to be looking at an
+			// ELEMENT_NODE node inside a parent that has no ELEMENT_NODE nodes.
+			// Therefore, an explicit 'return false' here never executes and
+			// isn't needed.
 		},
 		["last-child"]( scope, node )
 		{
-			const nodes = node.parentNode.childNodes;
-			let found;
-			for ( let i = nodes.length - 1; i >= 0 && !found; i-- )
-				if ( nodes[i].nodeType === Node.ELEMENT_NODE )
-					found = nodes[i];
-			return (found === node);
+			const nodes = node[PARENT_NODE].childNodes;
+			for ( let i = nodes.length - 1; i >= 0; i-- )
+				if ( nodes[i][NODE_TYPE] === Node.ELEMENT_NODE )
+					return (nodes[i] === node);
+			
+			// For code here to be reachable, we would have to be looking at an
+			// ELEMENT_NODE node inside a parent that has no ELEMENT_NODE nodes.
+			// Therefore, an explicit 'return false' here never executes and
+			// isn't needed.
 		},
 		["only-child"]( scope, node )
 		{
-			const nodes = node.parentNode.childNodes;
+			const nodes = node[PARENT_NODE].childNodes;
 			let first, last;
 			for ( let s = 0, e = nodes.length - 1; e >= 0 && !(first && last); s++, e-- )
 			{
-				if ( !first && nodes[s].nodeType === Node.ELEMENT_NODE )
+				if ( !first && nodes[s][NODE_TYPE] === Node.ELEMENT_NODE )
 					first = nodes[s];
-				if ( !last && nodes[e].nodeType === Node.ELEMENT_NODE )
+				if ( !last && nodes[e][NODE_TYPE] === Node.ELEMENT_NODE )
 					last = nodes[e];
 			}
 			return (first === last && first === node);
@@ -163,34 +243,40 @@ const STATE_INITIAL = 0,
 		
 		["first-of-type"]( scope, node )
 		{
-			const nodes = node.parentNode.childNodes,
-				tagName = node.tagName;
-			let found;
-			for ( let i = 0; i < nodes.length && !found; i++ )
-				if ( nodes[i].tagName === tagName )
-					found = nodes[i];
-			return (found === node);
+			const nodes = node[PARENT_NODE].childNodes,
+				tagName = node[TAG_NAME];
+			for ( let i = 0; i < nodes.length; i++ )
+				if ( nodes[i][TAG_NAME] === tagName )
+					return (nodes[i] === node);
+			
+			// For code here to be reachable, we would have to be looking at an
+			// ELEMENT_NODE node inside a parent that has no ELEMENT_NODE nodes.
+			// Therefore, an explicit 'return false' here never executes and
+			// isn't needed.
 		},
 		["last-of-type"]( scope, node )
 		{
-			const nodes = node.parentNode.childNodes,
-				tagName = node.tagName;
-			let found;
-			for ( let i = nodes.length - 1; i >= 0 && !found; i-- )
-				if ( nodes[i].tagName === tagName )
-					found = nodes[i];
-			return (found === node);
+			const nodes = node[PARENT_NODE].childNodes,
+				tagName = node[TAG_NAME];
+			for ( let i = nodes.length - 1; i >= 0; i-- )
+				if ( nodes[i][TAG_NAME] === tagName )
+					return (nodes[i] === node);
+			
+			// For code here to be reachable, we would have to be looking at an
+			// ELEMENT_NODE node inside a parent that has no ELEMENT_NODE nodes.
+			// Therefore, an explicit 'return false' here never executes and
+			// isn't needed.
 		},
 		["only-of-type"]( scope, node )
 		{
-			const nodes = node.parentNode.childNodes,
-				tagName = node.tagName;
+			const nodes = node[PARENT_NODE].childNodes,
+				tagName = node[TAG_NAME];
 			let first, last;
 			for ( let s = 0, e = nodes.length - 1; e >= 0 && !(first && last); s++, e-- )
 			{
-				if ( !first && nodes[s].tagName === tagName )
+				if ( !first && nodes[s][TAG_NAME] === tagName )
 					first = nodes[s];
-				if ( !last && nodes[e].tagName === tagName )
+				if ( !last && nodes[e][TAG_NAME] === tagName )
 					last = nodes[e];
 			}
 			return (first === last && first === node);
@@ -221,11 +307,11 @@ export function closest( scope, selector )
 	const selectors = parseSelector( selector );
 	let node = scope;
 	
-	while ( node != null && node.nodeType === Node.ELEMENT_NODE )
+	while ( node != null && node[NODE_TYPE] === Node.ELEMENT_NODE )
 	{
 		if ( matchesSelectorList( scope, node, selectors ) )
 			return node;
-		node = node.parentNode;
+		node = node[PARENT_NODE];
 	}
 	
 	return null;
@@ -267,20 +353,20 @@ List:
 					break;
 					
 				case STATE_DESCENDANT_COMBINATOR:
-					while ( currentNode = currentNode.parentNode )
+					while ( currentNode = currentNode[PARENT_NODE] )
 						if ( matchesCompoundSelector( scope, currentNode, complex[x] ) )
 							continue Complex;
 					continue List;
 					
 				case STATE_CHILD_COMBINATOR:
-					currentNode = currentNode.parentNode;
+					currentNode = currentNode[PARENT_NODE];
 					if ( !matchesCompoundSelector( scope, currentNode, complex[x] ) )
 						continue List;
 					break;
 					
 				case STATE_NEXT_SIBLING_COMBINATOR:
 				{
-					const nodes = currentNode.parentNode.childNodes;
+					const nodes = currentNode[PARENT_NODE].childNodes;
 					currentNode = nodes[nodes.indexOf( currentNode ) + (relative ? 1 : -1)];
 					if ( !matchesCompoundSelector( scope, currentNode, complex[x] ) )
 						continue List;
@@ -288,7 +374,7 @@ List:
 				}
 				case STATE_SUBSEQUENT_SIBLING_COMBINATOR:
 				{
-					const nodes = currentNode.parentNode.childNodes;
+					const nodes = currentNode[PARENT_NODE].childNodes;
 					for ( let k = nodes.indexOf( currentNode ) + (relative ? 1 : -1);
 							(relative ? k < nodes.length : k >= 0);
 							(relative ? k++ : k--) )
@@ -308,7 +394,7 @@ List:
 
 function matchesCompoundSelector( scope, node, compound )
 {
-	if ( !node || node.nodeType !== Node.ELEMENT_NODE )
+	if ( !node || node[NODE_TYPE] !== Node.ELEMENT_NODE )
 		return false;
 	for ( let i = 0; i < compound.length; i++ )
 	{
@@ -320,7 +406,7 @@ function matchesCompoundSelector( scope, node, compound )
 		{
 			case "universal": return true;
 			
-			case "type": matched = (node.tagName === simple.name); break;
+			case "type": matched = (node[TAG_NAME] === simple.name); break;
 			case "id": matched = (node.id === simple.name); break;
 			case "class": matched = node.classList.contains( simple.name ); break;
 			
@@ -368,4 +454,30 @@ function matchesCompoundSelector( scope, node, compound )
 function isRelativeSimpleSelector( simple )
 {
 	return (!!simple && simple.type === "pseudo-class" && simple.name === "scope");
+}
+
+class ChildIterator
+{
+	constructor( A, B )
+	{
+		this.A = parseInt( A, 10 ) | 0;
+		this.B = parseInt( B, 10 ) | 0;
+		this.current = 0;
+	}
+	
+	next()
+	{
+		if ( this.A === 0 && this.B === 0 )
+			return false;
+		
+		this.current += 1;
+		
+		let match = false;
+		if ( this.A === 0 )
+			match = (this.current === this.B);
+		else if ( (this.A < 0 && this.B >= this.current) || (this.A > 0 && this.current >= this.B) )
+			match = (((this.current + this.B) % this.A) === 0);
+		
+		return match;
+	}
 }
