@@ -402,7 +402,7 @@ export default class Node
 	getElementById( id )
 	{
 		var elem = null;
-		if ( this.childNodes )
+		if ( id && typeof id === "string" && this.childNodes )
 			this.forEach( node =>
 			{
 				if ( node.id === id )
@@ -448,22 +448,30 @@ export default class Node
 	
 	closest( selector )
 	{
-		return closest( this, selector );
+		if ( selector && typeof selector === "string" )
+			return closest( this, selector );
+		else return null;
 	}
 	
 	matches( selector )
 	{
-		return matches( this, selector );
+		if ( selector && typeof selector === "string" )
+			return matches( this, selector );
+		else return false;
 	}
 	
 	querySelector( selector )
 	{
-		return querySelector( this, selector, false );
+		if ( selector && typeof selector === "string" )
+			return querySelector( this, selector, false );
+		else return null;
 	}
 	
 	querySelectorAll( selector )
 	{
-		return querySelector( this, selector, true );
+		if ( selector && typeof selector === "string" )
+			return querySelector( this, selector, true );
+		else return [];
 	}
 	
 	// Non-standard

@@ -38,7 +38,7 @@ export default class DOMTokenList
 	set value( val )
 	{
 		if ( this[LENGTH] > 0 )
-			for ( var k in this ) if ( this.hasOwnProperty( k ) && isFinite( k ) )
+			for ( let k in this ) if ( this.hasOwnProperty( k ) && isFinite( k ) )
 				delete this[k];
 		this[LENGTH] = 0;
 		
@@ -49,7 +49,7 @@ export default class DOMTokenList
 	
 	add()
 	{
-		for ( var i = 0; i < arguments.length; i++ )
+		for ( let i = 0; i < arguments.length; i++ )
 			if ( indexOf.call( this, arguments[i] ) === -1 && this.supports( arguments[i] ) )
 				this[this[LENGTH]++] = arguments[i];
 		this[ELEMENT].attributes.class = this.value;
@@ -57,8 +57,7 @@ export default class DOMTokenList
 	
 	remove()
 	{
-		var idx;
-		for ( var i = 0; i < arguments.length; i++ )
+		for ( let i = 0, idx; i < arguments.length; i++ )
 		{
 			idx = indexOf.call( this, arguments[i] );
 			if ( idx !== -1 )
@@ -81,7 +80,7 @@ export default class DOMTokenList
 		var exists = false;
 		if ( this.supports( token ) )
 		{
-			var idx = indexOf.call( this, token );
+			let idx = indexOf.call( this, token );
 			if ( idx !== -1 && force !== true )
 			{
 				splice.call( this, idx, 1 );

@@ -11,10 +11,10 @@ export function serializeNode( elem )
 		case nodeTypes.ELEMENT_NODE:
 			tagName = tagName.toLowerCase();
 			html += "<"+ tagName;
-			for ( var k in elem.attributes )
+			for ( let k in elem.attributes )
 				if ( elem.attributes.hasOwnProperty( k ) )
 				{
-					var attr = elem.attributes[k];
+					let attr = elem.attributes[k];
 					if ( attr === true )
 						attr = "";
 					else if ( entities && owner[PARSER_OPTIONS] )
@@ -26,7 +26,7 @@ export function serializeNode( elem )
 				}
 			html += ">";
 			
-			for ( var i = 0; i < elem.childNodes.length; i++ )
+			for ( let i = 0; i < elem.childNodes.length; i++ )
 				html += serializeNode( elem.childNodes[i] );
 			
 			if ( selfClosingTags[elem.tagName] !== true )

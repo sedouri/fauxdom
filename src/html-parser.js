@@ -37,7 +37,7 @@ const toLowerCase = String.prototype.toLowerCase,
 	tableCellTagBoundary = {TD: true, TH: true},
 	formElementTagBoundary = {BUTTON: true, DATALIST: true, OPTGROUP: true, OPTION: true, PROGRESS: true, SELECT: true, TEXTAREA: true},
 	
-	// Largely base on '8.1.2.4 Optional tags' from the HTML5 spec.
+	// Largely based on '8.1.2.4 Optional tags' from the HTML5 spec.
 	// https://www.w3.org/TR/html50/syntax.html#syntax-tag-omission
 	tagBoundaries = {
 		ADDRESS: pTagBoundary,
@@ -227,7 +227,7 @@ export default class Parser
 						startIdx = this.lexer.index;
 						this.lexer.goToString( ">" );
 						
-						var rootNode = scopeChain[scopeChain.length - 1];
+						let rootNode = scopeChain[scopeChain.length - 1];
 						
 						if ( rootNode.doctype )
 							break;
@@ -236,13 +236,13 @@ export default class Parser
 								if ( rootNode.childNodes[i].nodeType < Node.TEXT_NODE || rootNode.childNodes[i].nodeType > Node.COMMENT_NODE )
 									break Main;
 						
-						var params = this.lexer.str.slice( startIdx, this.lexer.index ).split( spacesRE );
+						let params = this.lexer.str.slice( startIdx, this.lexer.index ).split( spacesRE );
 						node = createNode( Node.DOCUMENT_TYPE_NODE );
 						node.name = toLowerCase.call( params.shift() );
 						
 						if ( params.length > 1 )
 						{
-							var idType = toLowerCase.call( params.shift() );
+							let idType = toLowerCase.call( params.shift() );
 							params = params.join( " " ).split( '"' );
 							if ( params[0] === "" ) switch ( idType )
 							{
@@ -384,7 +384,7 @@ export default class Parser
 					break;
 					
 				case STATE_ATTRIBUTE:
-					var value = true;
+					let value = true;
 					
 					if ( this.options.lowerAttributeCase )
 						name = toLowerCase.call( name );
@@ -430,7 +430,7 @@ export default class Parser
 					break;
 					
 				case STATE_END_TAG:
-					for ( var i = 0; i < scopeChain.length; i++ )
+					for ( let i = 0; i < scopeChain.length; i++ )
 						if ( scopeChain[i][TAG_NAME] === name )
 						{
 							node = scopeChain[i];

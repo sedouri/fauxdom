@@ -1,5 +1,6 @@
 .svn
 .travis.yml
+.DS_Store
 .github/
 lib/
 debug/
@@ -15,4 +16,5 @@ package-lock.json
 *.gz
 *.tgz
 *.zip
+RELEASE
 TODO

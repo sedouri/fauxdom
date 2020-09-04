@@ -527,7 +527,7 @@ node.getElementById( id )
 
 [[standard](https://dom.spec.whatwg.org/#dom-nonelementparentnode-getelementbyid)] [[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)]
 
-Gets the first element (`Node` of type `ELEMENT_NODE`) which has an `id` attribute that matches the specified `id` parameter string.
+Gets the first `ELEMENT_NODE` type node which has an `id` attribute that matches the specified `id` parameter string.
 
 **Parameters**
 
@@ -549,7 +549,7 @@ node.getElementsByClassName( className )
 
 [[standard](https://dom.spec.whatwg.org/#dom-element-getelementsbyclassname)] [[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/getElementsByClassName)]
 
-Gets all elements (`Node` of type `ELEMENT_NODE`) which have a `class` attribute that contains the specified `className` parameter string.
+Gets all `ELEMENT_NODE` type nodes which have a `class` attribute that contains the specified `className` parameter string and are descendents of this node.
 
 **Parameters**
 
@@ -559,7 +559,7 @@ Gets all elements (`Node` of type `ELEMENT_NODE`) which have a `class` attribute
 
 **Return Value**
 
-An `Array` of all elements in the document whose `class` attribute contains the specified class name or names. The array can be empty if no elements matched.
+An `Array` of all elements (that are children of the element this method was called on) whose `class` attribute contains the specified class name or names. The array will be empty if no elements matched.
 
 ----
 
@@ -571,7 +571,7 @@ node.getElementsByTagName( tagName )
 
 [[standard](https://dom.spec.whatwg.org/#dom-element-getelementsbytagname)] [[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/getElementsByTagName)]
 
-Gets all elements (`Node` of type `ELEMENT_NODE`) which have a [`tagName`](#properties-tag-name) that matches the specified `tagName` parameter string.
+Gets all `ELEMENT_NODE` type nodes which have a [`tagName`](#properties-tag-name) that matches the specified `tagName` parameter string and are descendents of this node.
 
 **Parameters**
 
@@ -581,7 +581,7 @@ Gets all elements (`Node` of type `ELEMENT_NODE`) which have a [`tagName`](#prop
 
 **Return Value**
 
-An `Array` of all elements in the document whose `tagName` matches the specified one. The array can be empty if no elements matched.
+An `Array` of all elements (that are children of the element this method was called on) whose `tagName` matches the specified one. The array will be empty if no elements matched.
 
 ----
 
@@ -645,7 +645,7 @@ node.querySelectorAll( selector )
 
 [[standard](https://dom.spec.whatwg.org/#dom-parentnode-queryselectorall)] [[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll)]
 
-Returns an `Array` of `ELEMENT_NODE` type nodes that match the specified selector and are descendents of this node.
+Gets all `ELEMENT_NODE` type nodes that match the specified selector and are descendents of this node.
 
 **Parameters**
 
@@ -655,7 +655,7 @@ Returns an `Array` of `ELEMENT_NODE` type nodes that match the specified selecto
 
 **Return Value**
 
-An `Array` containing all nodes that matched the specified selector. The `Array` will be empty if no nodes matched.
+An `Array` of all elements that match the specified selector. The array will be empty if no elements matched.
 
 **Exceptions**
 
