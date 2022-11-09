@@ -1,5 +1,5 @@
 import {terser} from "rollup-plugin-terser";
-import buble from "rollup-plugin-buble";
+import buble from "@rollup/plugin-buble";
 import stripCode from "rollup-plugin-strip-code";
 import {spawn} from "child_process";
 import {zip} from "compressing";
