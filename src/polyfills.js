@@ -1,6 +1,6 @@
 /* @START_BROWSER_ONLY */
-const hasOwnProperty = Object.prototype.hasOwnProperty,
-	slice = Array.prototype.slice;
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+const slice = Array.prototype.slice;
 
 if ( !window.Symbol )
 	window.Symbol = function( name )
@@ -15,10 +15,10 @@ if ( !Object.assign )
 		target = Object( target );
 		for ( let i = 1; i < arguments.length; i++ )
 		{
-			var source = arguments[i];
+			const source = arguments[i];
 			if ( source && typeof source === "object" )
-				for ( let k in source ) if ( hasOwnProperty.call( source, k ) )
-					target[k] = source[k];
+				for ( const key in source ) if ( hasOwnProperty.call( source, key ) )
+					target[key] = source[key];
 		}
 		return target;
 	}
@@ -26,21 +26,29 @@ if ( !Object.assign )
 if ( !Object.freeze )
 	Object.freeze = function( obj )
 	{
-		for ( let k in obj )
+		for ( const key in obj )
 		{
-			const prop = Object.getOwnPropertyDescriptor( obj, k );
+			const prop = Object.getOwnPropertyDescriptor( obj, key );
 			if ( prop && "value" in prop )
 			{
 				prop.writable = prop.configurable = false;
-				Object.defineProperty( obj, k, prop );
+				Object.defineProperty( obj, key, prop );
 			}
 		}
+	}
+
+if ( !Object.hasOwn )
+	Object.hasOwn = function( obj, key )
+	{
+		if ( obj == null ) return false;
+		return hasOwnProperty.call( Object( obj ), key );
 	}
 
 if ( !String.fromCodePoint )
 	String.fromCodePoint = function()
 	{
-		var codePoint, result = [];
+		let codePoint;
+		const result = [];
 		
 		for ( let i = 0; i < arguments.length; i++ )
 		{
@@ -67,18 +75,46 @@ if ( !String.fromCodePoint )
 		return String.fromCharCode.apply( null, result );
 	}
 
+if ( !String.prototype.trimStart )
+{
+	if ( String.prototype.trimLeft )
+	{
+		String.prototype.trimStart = String.prototype.trimLeft;
+		String.prototype.trimEnd = String.prototype.trimRight;
+	}
+	else
+	{
+		const trimStartRE = /^[\s\uFEFF\xA0]+/g;
+		const trimEndRE = /[\s\uFEFF\xA0]+$/g;
+		
+		String.prototype.trimStart = function()
+		{
+			return this.replace( trimStartRE, "" );
+		}
+		
+		String.prototype.trimEnd = function()
+		{
+			return this.replace( trimEndRE, "" );
+		}
+	}
+}
+
+if ( !Array.prototype.find )
+	Array.prototype.find = function( callback, thisArg )
+	{
+		for ( let i = 0; i < this.length; i++ )
+			if ( callback.call( thisArg, this[i], i, this ) )
+				return this[i];
+	}
+
 if ( !Function.prototype.bind )
 	Function.prototype.bind = function( thisArg )
 	{
-		var boundFn = this,
-			args = slice.call( arguments, 1 );
+		const args = slice.call( arguments, 1 );
 		
-		if ( typeof boundFn !== "function" )
+		if ( typeof this !== "function" )
 			throw new TypeError( "Bind must be called on a function" );
 		
-		return function()
-		{
-			return boundFn.apply( thisArg, args.concat( slice.call( arguments ) ) );
-		}
+		return () => this.apply( thisArg, args.concat( slice.call( arguments ) ) );
 	}
 /* @END_BROWSER_ONLY */

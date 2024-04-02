@@ -1,13 +1,13 @@
-import {spacesRE} from "./utils.js";
+import {spacesRE} from "./utils.js"
 
-const ELEMENT = Symbol( "element" ),
-	LENGTH = Symbol( "length" ),
-	
-	validClassTokenRE = /^\S+$/,
-	
-	indexOf = Array.prototype.indexOf,
-	join = Array.prototype.join,
-	splice = Array.prototype.splice;
+const ELEMENT = Symbol( "element" );
+const LENGTH = Symbol( "length" );
+
+const validClassTokenRE = /^\S+$/;
+
+const indexOf = Array.prototype.indexOf;
+const join = Array.prototype.join;
+const splice = Array.prototype.splice;
 
 export function createTokenList( elem )
 {
@@ -38,8 +38,8 @@ export default class DOMTokenList
 	set value( val )
 	{
 		if ( this[LENGTH] > 0 )
-			for ( let k in this ) if ( this.hasOwnProperty( k ) && isFinite( k ) )
-				delete this[k];
+			for ( const key in this ) if ( Object.hasOwn( this, key ) && isFinite( key ) )
+				delete this[key];
 		this[LENGTH] = 0;
 		
 		if ( typeof val === "string" )
@@ -77,10 +77,10 @@ export default class DOMTokenList
 	
 	toggle( token, force )
 	{
-		var exists = false;
+		let exists = false;
 		if ( this.supports( token ) )
 		{
-			let idx = indexOf.call( this, token );
+			const idx = indexOf.call( this, token );
 			if ( idx !== -1 && force !== true )
 			{
 				splice.call( this, idx, 1 );
@@ -104,7 +104,7 @@ export default class DOMTokenList
 	
 	replace( token, newToken )
 	{
-		var idx = indexOf.call( this, token );
+		const idx = indexOf.call( this, token );
 		if ( idx >= 0 && this.supports( newToken ) )
 		{
 			if ( indexOf.call( this, newToken ) === -1 )

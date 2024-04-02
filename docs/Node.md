@@ -48,6 +48,14 @@ Unlike [the standard DOM API](https://dom.spec.whatwg.org/#interface-element), t
       - [insertBefore](#methods-insert-before)
       - [removeChild](#methods-remove-child)
       - [replaceChild](#methods-replace-child)
+    - [Parent &amp; Child Nodes](#parent--child-nodes)
+      - [after](#methods-after)
+      - [append](#methods-append)
+      - [before](#methods-before)
+      - [prepend](#methods-prepend)
+      - [remove](#methods-remove)
+      - [replaceChildren](#methods-replace-children)
+      - [replaceWith](#methods-replace-with)
     - [Node Retrieval](#node-retrieval)
       - [closest](#methods-closest)
       - [getElementById](#methods-get-element-by-id)
@@ -172,6 +180,8 @@ Executes the specified `callback` function for each `Node` that is a descendent 
   - **`current`** Node
 
     The current `Node` being processed.
+    
+    > **⚠️ Caution:** You should not remove this node (or any of its parent nodes) from its document from inside the callback function or an error will occur.
 
   - **`parent`** Node
 
@@ -321,6 +331,10 @@ Removes the specified attribute from this node. If the specified attribute doesn
 
   The name of the attribute you want to remove. This string will be lower-cased if you specify the [`lowerAttributeCase` option](DOM.md#option-lower-attribute-case) as `true` on the `DOM` instance this node belongs to.
 
+**Return Value**
+
+Nothing.
+
 ----
 
 <a name="methods-set-attribute"></a>
@@ -344,6 +358,10 @@ Sets the value of the specified attribute to the specified value, updating a pre
   The value to assign to the specified attribute. When `value` is a `String` or the `Boolean` value `true`, the attribute's value is set directly to `value`. In all other cases, `value` is coerced to a `String` and the attribute's value is set to the result of the coercion.
 
   A `Boolean` value of `true` is used to represent an attribute that exists, but has no explicit value. This is mostly useful when the node is output as text.
+
+**Return Value**
+
+Nothing.
 
 ----
 
@@ -488,6 +506,160 @@ Replaces the node `oldChild` with the node `newChild`.
 **Return Value**
 
 The `Node` that was replaced, or `null` if no node was replaced.
+
+----
+
+#### Parent &amp; Child Nodes
+
+For the methods below that insert nodes or strings, strings are added as text nodes, while all other non-`Node` values are first converted into strings and then added as text nodes. If any inserted node is a document fragment (a `DOCUMENT_FRAGMENT_NODE` type node), all of the top-level children of the document fragment will be removed from the fragment and then inserted in place of the document fragment.
+
+----
+
+<a name="methods-after"></a>
+
+```javascript
+node.after( node1[, node2[, ...] )
+```
+
+[[standard](https://dom.spec.whatwg.org/#dom-childnode-after)] [[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/after)]
+
+Adds the specified nodes into the parent of this node, just after this node. 
+
+**Parameters**
+
+- **`node...`** Node
+
+  One or more nodes or strings to insert after this node.
+
+**Return Value**
+
+Nothing.
+
+----
+
+<a name="methods-append"></a>
+
+```javascript
+node.append( node1[, node2[, ...] )
+```
+
+[[standard](https://dom.spec.whatwg.org/#dom-parentnode-append)] [[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/append)]
+
+Adds the specified nodes to the end of this node's [`childNodes`](#properties-child-nodes) array.
+
+**Parameters**
+
+- **`node...`** Node
+
+  One or more nodes or strings to append to the end of this node's `childNodes` array.
+
+**Return Value**
+
+Nothing.
+
+----
+
+<a name="methods-before"></a>
+
+```javascript
+node.before( node1[, node2[, ...] )
+```
+
+[[standard](https://dom.spec.whatwg.org/#dom-childnode-before)] [[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/before)]
+
+Adds the specified nodes into the parent of this node, just before this node. 
+
+**Parameters**
+
+- **`node...`** Node
+
+  One or more nodes or strings to insert before this node.
+
+**Return Value**
+
+Nothing.
+
+----
+
+<a name="methods-prepend"></a>
+
+```javascript
+node.prepend( node1[, node2[, ...] )
+```
+
+[[standard](https://dom.spec.whatwg.org/#dom-parentnode-prepend)] [[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/prepend)]
+
+Adds the specified nodes to the beginning of this node's [`childNodes`](#properties-child-nodes) array.
+
+**Parameters**
+
+- **`node...`** Node
+
+  One or more nodes or strings to prepend to the beginning of this node's `childNodes` array.
+
+**Return Value**
+
+Nothing.
+
+----
+
+<a name="methods-remove"></a>
+
+```javascript
+node.remove()
+```
+
+[[standard](https://dom.spec.whatwg.org/#dom-childnode-remove)] [[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/remove)]
+
+Removes this node from its parent node's [`childNodes`](#properties-child-nodes) array.
+
+**Return Value**
+
+Nothing.
+
+----
+
+<a name="methods-replace-children"></a>
+
+```javascript
+node.replaceChildren( node1[, node2[, ...] )
+```
+
+[[standard](https://dom.spec.whatwg.org/#dom-parentnode-replacechildren)] [[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/replaceChildren)]
+
+Replaces this node's existing child nodes with the specified nodes.
+
+**Parameters**
+
+- **`node...`** Node
+
+  One or more nodes or strings to replace this node's child nodes with.
+
+**Return Value**
+
+Nothing.
+
+----
+
+<a name="methods-replace-with"></a>
+
+```javascript
+node.replaceWith( node1[, node2[, ...] )
+```
+
+[[standard](https://dom.spec.whatwg.org/#dom-childnode-replacewith)] [[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/replaceWith)]
+
+Replaces this node in the [`childNodes`](#properties-child-nodes) array of its parent with the specified nodes.
+
+**Parameters**
+
+- **`node...`** Node
+
+  One or more nodes or strings to replace this node with.
+
+**Return Value**
+
+Nothing.
 
 ----
 

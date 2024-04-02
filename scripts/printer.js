@@ -1,4 +1,4 @@
-const {isObjectEmpty, stringEscape, stringPad, stringTruncate} = require( "./utils" );
+const {isObjectEmpty, stringEscape, stringTruncate} = require( "./utils" );
 
 const nodeTypes = {
 	ELEMENT_NODE: 1,
@@ -15,11 +15,11 @@ const nodeTypes = {
 	NOTATION_NODE: 12 // Unused, historical
 };
 
-function printHierarchy( elem, prefix = undefined )
+function printHierarchy( elem, prefix = "" )
 {
-	var result = "",
-		following = " ",
-		nodes;
+	let result = "";
+	let following = " ";
+	let nodes;
 	
 	if ( typeof prefix !== "string" )
 		prefix = "";
@@ -60,7 +60,7 @@ function printHierarchy( elem, prefix = undefined )
 
 function printElementList( list )
 {
-	var result = "";
+	let result = "";
 	if ( list instanceof Array ) for ( let i = 0; i < list.length; i++ )
 	{
 		if ( result ) result += "\n";
@@ -71,7 +71,7 @@ function printElementList( list )
 
 function describeNode( elem )
 {
-	var desc = "";
+	let desc = "";
 	
 	switch ( typeof elem )
 	{
@@ -97,10 +97,10 @@ function describeNode( elem )
 				if ( elem.attributes && !isObjectEmpty( elem.attributes ) )
 				{
 					desc += " ";
-					for ( let k in elem.attributes ) if ( elem.attributes.hasOwnProperty( k ) )
+					for ( const key in elem.attributes ) if ( Object.hasOwn( elem.attributes, key ) )
 					{
-						if ( elem.attributes[k] === true ) desc += k +" ";
-						else desc += k +'="'+ stringTruncate( stringEscape( ""+ elem.attributes[k], '"' ), 50 ) +'" ';
+						if ( elem.attributes[key] === true ) desc += key +" ";
+						else desc += key +'="'+ stringTruncate( stringEscape( ""+ elem.attributes[key], '"' ), 50 ) +'" ';
 					}
 					desc = desc.trim();
 				}

@@ -1,6 +1,6 @@
-const fs = require( "fs" ),
-	path = require( "path" );
-var standardEntities;
+const fs = require( "node:fs" );
+const path = require( "node:path" );
+let standardEntities;
 
 module.exports = require( "./lib/fauxdom.cjs" );
 

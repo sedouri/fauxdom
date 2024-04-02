@@ -1,8 +1,8 @@
-const {DOM, testEachWithHTMLOutput, testEachWithAllOutput} = require( "./utils" ),
-	
-	documentHead = "<!DOCTYPE html><html><head>",
-	documentMid = "</head><body>",
-	documentFoot = "</body></html>";
+const {DOM, testEachWithHTMLOutput, testEachWithAllOutput} = require( "./utils" );
+
+const documentHead = "<!DOCTYPE html><html><head>";
+const documentMid = "</head><body>";
+const documentFoot = "</body></html>";
 
 describe( "Elements", () =>
 {

@@ -36,6 +36,7 @@ The `DOM` class, when instantiated, parses the HTML that is passed as the first 
   - [createProcessingInstruction](#methods-create-processing-instruction)
   - [createTextNode](#methods-create-text-node)
   - [getElementsByName](#methods-get-elements-by-name)
+  - [minifyWhitespace](#methods-minify-whitespace)
   - [Node.js Only (Non-standard)](#nodejs-only-non-standard)
     - [importStandardEntities](#methods-import-standard-entities)
     - [importStandardEntities (static)](#methods-static-import-standard-entities)
@@ -91,10 +92,14 @@ new DOM( htmlContent[, options] )
   - <a name="option-collapse-whitespace"></a>**`collapseWhitespace`** Boolean *(default:* `false`*)*
   
     Whether to collapse multiple consecutive whitespace characters in text nodes into a single space character, mimicking how browsers render consecutive whitespace characters. This option is ignored if `trimWhitespace` is `true`.
+    
+    > **ℹ️ Note:** [`DOM.minifyWhitespace()`](#methods-minify-whitespace) may be a better choice depending on your usage of `collapseWhitespace`.
   
   - <a name="option-trim-whitespace"></a>**`trimWhitespace`** Boolean *(default:* `false`*)*
   
     Whether to remove whitespace characters from both ends of text nodes, which is useful for minifying HTML documents. When this option is `true`, the `collapseWhitespace` option is ignored.
+    
+    > **ℹ️ Note:** [`DOM.minifyWhitespace()`](#methods-minify-whitespace) may be a better choice depending on your usage of `trimWhitespace`.
   
   - <a name="option-lower-attribute-case"></a>**`lowerAttributeCase`** Boolean *(default:* `false`*)*
   
@@ -323,6 +328,116 @@ An `Array` of all elements in the document whose `name` attribute matches the sp
 
 ----
 
+<a name="methods-minify-whitespace"></a>
+
+```javascript
+document.minifyWhitespace( [inlineElements[, transforms[, userValue]]] )
+```
+
+[non-standard]
+
+Minifies whitespace within the entire HTML document in a manner that closely replicates browser rendering behavior. This method replaces line breaks and tab characters with spaces, collapses multiple spaces to a single space, removes leading and trailing spaces inside block elements, and adjusts spaces inside and around inline elements accordingly.
+
+The result is a document that maintains its visual appearance when rendered by a browser, but with reduced file size due to whitespace removal.
+
+**Parameters**
+
+- **`inlineElements`** Array *(optional)*
+
+  An `Array` of strings representing additional HTML tag names to treat as inline elements, supplementing the built-in list.
+  
+  > **Built-in Inline Elements:** a, abbr, acronym, audio, b, bdi, bdo, big, button, cite, code, data, del, dfn, em, font, i, img, input, ins, kbd, label, mark, math, meter, nobr, noscript, object, output, picture, progress, q, rp, rt, rtc, ruby, s, samp, select, slot, small, span, strike, strong, sub, sup, svg, textarea, time, tt, u, var, video, wbr
+  
+- **`transforms`** Object *(optional)*
+
+  An `Object` containing methods for custom transformation of specific text elements.
+  
+  - `inlineStyles( node, value, userValue )`
+  
+    Transforms `style` attribute values.
+    
+  - `style( node, value, userValue )`
+  
+    Transforms inline CSS within `style` elements.
+    
+  - `script( node, value, userValue )`
+  
+    Transforms inline JavaScript within `script` elements.
+  
+  The return value of these methods replaces the original content. Returning `null` or `undefined` removes the element from the document.
+  
+  The arguments for the transformation methods are:
+  
+  - **`node`** Node
+  
+    The node whose value or attribute should be transformed.
+    
+    > **⚠️ Caution:** You should not remove this node (or any of its parent nodes) from its document from inside your transformation method or an error will occur. To remove this node, simply return `null` or `undefined` from your method and the node will be removed when it is safe to do so.
+    
+  - **`value`** String
+  
+    The value to be transformed.
+    
+  - **`userValue`** Any
+  
+    The value you passed, if any, to `minifyWhitespace()` in its `userValue` parameter.
+  
+- **`userValue`** Any *(optional)*
+
+  Any value you wish to pass to the transformation methods. This can be used for tracking any necessary context between transformations.
+
+**Return Value**
+
+Nothing. Use [`DOM.innerHTML`](#properties-inner-html) to retrieve the modified HTML markup.
+
+**Example**
+
+```javascript
+document.minifyWhitespace( null, {
+	inlineStyles()
+	{
+		// Remove all "style" attributes from every element.
+		return null;
+	},
+	
+	style( node, value )
+	{
+		// Remove all "style" elements that have the "debug" attribute.
+		if ( node.hasAttribute( "debug" ) )
+			return null;
+		
+		// Keep all other "style" elements as they are by simply returning the
+		// CSS unchanged.
+		return value;
+	},
+	
+	// Minify JavaScript using "JSMinifier" and pass the file path as context.
+	script( node, value, filePath )
+	{
+		// Create the minifier instance.
+		const minifier = new JSMinifier( value, filePath );
+		
+		// Return the minified JavaScript code.
+		return minifier.minifiedValue;
+	}
+}, filePath );
+
+// Output the minified HTML document.
+console.log( document.innerHTML );
+```
+
+In this example, we show how `minifyWhitespace` can be used to optimize an HTML document:
+
+- **Removing Inline Styles:** All inline "style" attributes from elements are eliminated.
+- **Filtering Out Debug Styles:** "style" elements marked with a "debug" attribute are removed.
+- **Minifying JavaScript:** JavaScript code within `script` tags is minified using a fictional library called "JSMinifier". This library requires the file path of the script for its processing.
+
+While in this simple example it isn't really necessary, the `userValue` parameter is used to pass the file path to the "script" transformation method. This is particularly useful when your transformation methods are located in a separate file or module. By passing contextual information like file paths via `userValue`, you enable these external methods to access and use data that they wouldn’t otherwise have direct access to.
+
+Finally, the processed HTML is output to the console. This showcases this method's capability to reduce file size while preserving the visual layout, which is especially useful for preparing HTML files for production environments.
+
+----
+
 ### Node.js Only (Non-standard)
 
 The below convenience methods read and parse the file "lib/entities.json" (which includes all standard HTML 5 entities) and are only available when using FauxDOM in Node.js.
@@ -341,6 +456,10 @@ document.importStandardEntities()
 
 Sets the [`entities`](EntityEncoder.md#properties-entities) of this document's [`entityEncoder`](#properties-entity-encoder) to the standard set of HTML 5 entities.
 
+**Return Value**
+
+Nothing.
+
 ----
 
 <a name="methods-static-import-standard-entities"></a>
@@ -350,3 +469,7 @@ DOM.importStandardEntities()
 ```
 
 The static version of the above method. Sets [`EntityEncoder.defaultEntities`](EntityEncoder.md#properties-default-entities) to the standard set of HTML 5 entities.
+
+**Return Value**
+
+Nothing.

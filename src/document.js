@@ -1,14 +1,15 @@
-import "./polyfills.js";
+import "./polyfills.js"
 
-import Parser from "./html-parser.js";
-import Node, {createNode} from "./node.js";
-import {serializeNode} from "./serializer.js";
-import EntityEncoder from "./entity-encoder.js";
+import Parser from "./html-parser.js"
+import Node, {createNode} from "./node.js"
+import {serializeNode} from "./serializer.js"
+import EntityEncoder from "./entity-encoder.js"
+import {minifyWhitespace} from "./minify-whitespace.js"
 import {DOCTYPE, HEAD, BODY, DOCUMENT_ELEMENT, NODE_TYPE, TAG_NAME, PARSER_OPTIONS,
-	setupDocument, detachNodes, setNodeParent} from "./utils.js";
+	setupDocument, detachNodes, setNodeParent} from "./utils.js"
 
 /* @START_UNIT_TESTS */
-import {parseSelector} from "./selector-parser.js";
+import {parseSelector} from "./selector-parser.js"
 /* @END_UNIT_TESTS */
 
 const ENTITY_ENCODER = Symbol( "entityEncoder" );
@@ -66,27 +67,25 @@ export default class DOM extends Node
 	{
 		if ( val )
 		{
-			let doctype = this[DOCTYPE];
+			const doctype = this[DOCTYPE];
 			if ( val instanceof Node )
 			{
 				if ( val.nodeType === Node.DOCUMENT_TYPE_NODE && val !== doctype )
 				{
-					this[DOCTYPE] = val;
 					if ( doctype ) this.replaceChild( val, doctype );
-					else this.insertBefore( val, this.firstChild );
+					else this.prepend( val );
 				}
 			}
 			else if ( typeof val === "object" )
 			{
 				if ( !doctype )
-					this[DOCTYPE] = this.insertBefore( this.createDocumentType( val.name, val.publicId, val.systemId ), this.firstChild );
+					this.prepend( this.createDocumentType( val.name, val.publicId, val.systemId ) );
 				else setupDocumentType( doctype, val.name, val.publicId, val.systemId );
 			}
 		}
 		else if ( val === null && this[DOCTYPE] )
 		{
 			this.removeChild( this[DOCTYPE] );
-			this[DOCTYPE] = null;
 		}
 	}
 	
@@ -129,7 +128,7 @@ export default class DOM extends Node
 			(val.tagName === "BODY" || val.tagName === "FRAMESET") &&
 			val !== this[BODY] && this[DOCUMENT_ELEMENT] )
 		{
-			if ( this[BODY] ) this[BODY].parentNode.replaceChild( val, this[BODY] );
+			if ( this[BODY] ) this[BODY].replaceWith( val );
 			else this[DOCUMENT_ELEMENT].appendChild( val );
 		}
 	}
@@ -199,6 +198,11 @@ export default class DOM extends Node
 					nodeList.push( node );
 			} );
 		return nodeList;
+	}
+	
+	minifyWhitespace( inlineElements, transforms, filePath )
+	{
+		minifyWhitespace( this, (inlineElements instanceof Array ? inlineElements : []), transforms, filePath );
 	}
 }
 

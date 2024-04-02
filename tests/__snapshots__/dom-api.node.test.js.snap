@@ -410,7 +410,7 @@ exports[`DOM API, Nodes 3.1.2 appendChild, to self closing element 1`] = `
 "
 `;
 
-exports[`DOM API, Nodes 3.2.0 insertBefore, move element 1`] = `
+exports[`DOM API, Nodes 3.1.3 appendChild, text string 1`] = `
 "#document
  ├─╴<!DOCTYPE html>
  └─╴<HTML>
@@ -418,6 +418,42 @@ exports[`DOM API, Nodes 3.2.0 insertBefore, move element 1`] = `
      │   └─╴<TITLE>
      │       └─╴#text :: \\"Text\\"
      └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   └─╴<BR>
+         └─╴<SPAN id=\\"s\\">
+             ├─╴#text :: \\"2\\"
+             └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 3.2.0 insertBefore, new element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   └─╴<BR>
+         └─╴<SPAN id=\\"s\\">
+             ├─╴#text :: \\"2\\"
+             └─╴#comment :: \\"3\\"
+"
+`;
+
+exports[`DOM API, Nodes 3.2.1 insertBefore, move element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
          ├─╴<SPAN id=\\"s\\">
          │   ├─╴#text :: \\"2\\"
          │   └─╴#comment :: \\"3\\"
@@ -427,7 +463,7 @@ exports[`DOM API, Nodes 3.2.0 insertBefore, move element 1`] = `
 "
 `;
 
-exports[`DOM API, Nodes 3.2.1 insertBefore, before non-element 1`] = `
+exports[`DOM API, Nodes 3.2.2 insertBefore, before non-element 1`] = `
 "#document
  ├─╴<!DOCTYPE html>
  └─╴<HTML>
@@ -435,6 +471,7 @@ exports[`DOM API, Nodes 3.2.1 insertBefore, before non-element 1`] = `
      │   └─╴<TITLE>
      │       └─╴#text :: \\"Text\\"
      └─╴<BODY>
+         ├─╴<B>
          ├─╴<SPAN id=\\"s\\">
          │   ├─╴#text :: \\"2\\"
          │   └─╴#comment :: \\"3\\"
@@ -444,7 +481,7 @@ exports[`DOM API, Nodes 3.2.1 insertBefore, before non-element 1`] = `
 "
 `;
 
-exports[`DOM API, Nodes 3.2.2 insertBefore, non-element 1`] = `
+exports[`DOM API, Nodes 3.2.3 insertBefore, text string 1`] = `
 "#document
  ├─╴<!DOCTYPE html>
  └─╴<HTML>
@@ -452,6 +489,7 @@ exports[`DOM API, Nodes 3.2.2 insertBefore, non-element 1`] = `
      │   └─╴<TITLE>
      │       └─╴#text :: \\"Text\\"
      └─╴<BODY>
+         ├─╴<B>
          ├─╴<SPAN id=\\"s\\">
          │   ├─╴#text :: \\"2\\"
          │   └─╴#comment :: \\"3\\"
@@ -461,7 +499,7 @@ exports[`DOM API, Nodes 3.2.2 insertBefore, non-element 1`] = `
 "
 `;
 
-exports[`DOM API, Nodes 3.2.3 insertBefore, from incorrect parent 1`] = `
+exports[`DOM API, Nodes 3.2.4 insertBefore, non-element 1`] = `
 "#document
  ├─╴<!DOCTYPE html>
  └─╴<HTML>
@@ -469,6 +507,25 @@ exports[`DOM API, Nodes 3.2.3 insertBefore, from incorrect parent 1`] = `
      │   └─╴<TITLE>
      │       └─╴#text :: \\"Text\\"
      └─╴<BODY>
+         ├─╴<B>
+         ├─╴<SPAN id=\\"s\\">
+         │   ├─╴#text :: \\"2\\"
+         │   └─╴#comment :: \\"3\\"
+         └─╴<DIV class=\\"d\\" TeSt>
+             ├─╴#text :: \\"1\\"
+             └─╴<BR>
+"
+`;
+
+exports[`DOM API, Nodes 3.2.5 insertBefore, from incorrect parent 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
          └─╴<DIV class=\\"d\\" TeSt>
              ├─╴#text :: \\"1\\"
              ├─╴<BR>
@@ -486,7 +543,8 @@ exports[`DOM API, Nodes 3.3.0 replaceChild, new element 1`] = `
      │   └─╴<TITLE>
      │       └─╴#text :: \\"Text\\"
      └─╴<BODY>
-         └─╴<B>
+         ├─╴<B>
+         └─╴<C>
 "
 `;
 
@@ -498,16 +556,17 @@ exports[`DOM API, Nodes 3.3.1 replaceChild, old element 1`] = `
      │   └─╴<TITLE>
      │       └─╴#text :: \\"Text\\"
      └─╴<BODY>
-         └─╴<DIV class=\\"d\\" TeSt>
-             ├─╴#text :: \\"1\\"
-             ├─╴<BR>
-             └─╴<SPAN id=\\"s\\">
-                 ├─╴#text :: \\"2\\"
-                 └─╴#comment :: \\"3\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
 "
 `;
 
-exports[`DOM API, Nodes 3.3.2 replaceChild, non-element 1`] = `
+exports[`DOM API, Nodes 3.3.2 replaceChild, text string 1`] = `
 "#document
  ├─╴<!DOCTYPE html>
  └─╴<HTML>
@@ -515,18 +574,17 @@ exports[`DOM API, Nodes 3.3.2 replaceChild, non-element 1`] = `
      │   └─╴<TITLE>
      │       └─╴#text :: \\"Text\\"
      └─╴<BODY>
-         └─╴<DIV class=\\"d\\" TeSt>
-             ├─╴#text :: \\"1\\"
-             ├─╴<BR>
-             └─╴<SPAN id=\\"s\\">
-                 ├─╴#text :: \\"2\\"
-                 └─╴#comment :: \\"3\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
 "
 `;
 
-exports[`DOM API, Nodes 3.3.3 replaceChild, replace element with itself 1`] = `null`;
-
-exports[`DOM API, Nodes 3.3.4 replaceChild, replace with non-element 1`] = `
+exports[`DOM API, Nodes 3.3.3 replaceChild, non-element 1`] = `
 "#document
  ├─╴<!DOCTYPE html>
  └─╴<HTML>
@@ -534,18 +592,187 @@ exports[`DOM API, Nodes 3.3.4 replaceChild, replace with non-element 1`] = `
      │   └─╴<TITLE>
      │       └─╴#text :: \\"Text\\"
      └─╴<BODY>
-         └─╴<DIV class=\\"d\\" TeSt>
-             ├─╴#text :: \\"1\\"
-             ├─╴<BR>
-             └─╴<SPAN id=\\"s\\">
-                 ├─╴#text :: \\"2\\"
-                 └─╴#comment :: \\"3\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
 "
 `;
 
-exports[`DOM API, Nodes 3.3.5 replaceChild, replace BODY with fragment 1`] = `
-"<BODY>
- └─╴<N>
+exports[`DOM API, Nodes 3.3.4 replaceChild, replace element with itself 1`] = `null`;
+
+exports[`DOM API, Nodes 3.3.5 replaceChild, replace with non-element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.3.6 replaceChild, replace BODY with element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<B>
+"
+`;
+
+exports[`DOM API, Nodes 3.3.7 replaceChild, replace BODY with fragment 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         └─╴<N>
+"
+`;
+
+exports[`DOM API, Nodes 3.3.8 replaceChild, replace HEAD with second BODY 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.3.9 replaceChild, replace HEAD with second BODY from fragment 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.3.10 replaceChild, replace HEAD with elements from fragment 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<N>
+     └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.3.11 replaceChild, replace BODY with multiple BODY elements from fragment 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     ├─╴<BODY>
+     │   └─╴<N>
+     └─╴<M>
+"
+`;
+
+exports[`DOM API, Nodes 3.3.12 replaceChild, replace root element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<BODY>
+     └─╴<N>
+"
+`;
+
+exports[`DOM API, Nodes 3.3.13 replaceChild, replace DOCTYPE 1`] = `
+"#document
+ ├─╴<!DOCTYPE html PUBLIC \\"public\\">
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     ├─╴<BODY>
+     │   └─╴<N>
+     └─╴<M>
+"
+`;
+
+exports[`DOM API, Nodes 3.3.14 replaceChild, replace DOCTYPE from fragment 1`] = `
+"#document
+ ├─╴<!DOCTYPE html5>
+ ├─╴<HTML5>
+ │   └─╴<HEAD>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     ├─╴<BODY>
+     │   └─╴<N>
+     └─╴<M>
+"
+`;
+
+exports[`DOM API, Nodes 3.3.15 replaceChild, replace documentElement with second DOCTYPE 1`] = `
+"#document
+ ├─╴<!DOCTYPE html5>
+ ├─╴<HTML5>
+ │   └─╴<HEAD>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     ├─╴<BODY>
+     │   └─╴<N>
+     └─╴<M>
+"
+`;
+
+exports[`DOM API, Nodes 3.3.16 replaceChild, replace documentElement with fragment with a DOCTYPE 1`] = `
+"#document
+ ├─╴<!DOCTYPE html5>
+ ├─╴<NODE>
+ │   └─╴<BODY>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     ├─╴<BODY>
+     │   └─╴<N>
+     └─╴<M>
 "
 `;
 
@@ -557,34 +784,1769 @@ exports[`DOM API, Nodes 3.3.REPAIR 1`] = `
      │   └─╴<TITLE>
      │       └─╴#text :: \\"Text\\"
      └─╴<BODY>
-         └─╴<DIV class=\\"d\\" TeSt>
-             ├─╴#text :: \\"1\\"
-             ├─╴<BR>
-             └─╴<SPAN id=\\"s\\">
-                 ├─╴#text :: \\"2\\"
-                 └─╴#comment :: \\"3\\"
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
 "
 `;
 
-exports[`DOM API, Nodes 3.4.0 removeChild, HEAD 1`] = `null`;
+exports[`DOM API, Nodes 3.4.0 removeChild, inserted element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
 
-exports[`DOM API, Nodes 3.4.1 removeChild, parent-less element 1`] = `null`;
+exports[`DOM API, Nodes 3.4.1 removeChild, HEAD 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
 
-exports[`DOM API, Nodes 3.4.2 removeChild, non-child 1`] = `null`;
+exports[`DOM API, Nodes 3.4.2 removeChild, parent-less element 1`] = `null`;
 
-exports[`DOM API, Nodes 3.4.3 removeChild, non-element 1`] = `null`;
+exports[`DOM API, Nodes 3.4.3 removeChild, non-child 1`] = `null`;
+
+exports[`DOM API, Nodes 3.4.4 removeChild, non-element 1`] = `null`;
+
+exports[`DOM API, Nodes 3.4.REPAIR 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.5.0 prepend, one element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.5.1 prepend, multiple elements 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.5.2 prepend, one string 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   └─╴#text :: \\"bold\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.5.3 prepend, multiple strings 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   ├─╴#text :: \\"is\\"
+         │   └─╴#text :: \\"bold\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.5.4 prepend, mix of values 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   ├─╴<F>
+         │   ├─╴#text :: \\"false\\"
+         │   ├─╴<G>
+         │   ├─╴#text :: \\",[object Object],42,true\\"
+         │   ├─╴<H>
+         │   ├─╴#text :: \\"null\\"
+         │   ├─╴#text :: \\"text node\\"
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   ├─╴#text :: \\"is\\"
+         │   └─╴#text :: \\"bold\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.5.5 prepend, before documentElement node 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ ├─╴<F>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   ├─╴<F>
+         │   ├─╴#text :: \\"false\\"
+         │   ├─╴<G>
+         │   ├─╴#text :: \\",[object Object],42,true\\"
+         │   ├─╴<H>
+         │   ├─╴#text :: \\"null\\"
+         │   ├─╴#text :: \\"text node\\"
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   ├─╴#text :: \\"is\\"
+         │   └─╴#text :: \\"bold\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.5.6 prepend, text node 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ ├─╴<F>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   ├─╴<F>
+         │   ├─╴#text :: \\"false\\"
+         │   ├─╴<G>
+         │   ├─╴#text :: \\",[object Object],42,true\\"
+         │   ├─╴<H>
+         │   ├─╴#text :: \\"null\\"
+         │   ├─╴#text :: \\"text node\\"
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   ├─╴#text :: \\"is\\"
+         │   └─╴#text :: \\"bold\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.5.REPAIR 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   ├─╴<F>
+         │   ├─╴#text :: \\"false\\"
+         │   ├─╴<G>
+         │   ├─╴#text :: \\",[object Object],42,true\\"
+         │   ├─╴<H>
+         │   ├─╴#text :: \\"null\\"
+         │   ├─╴#text :: \\"text node\\"
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   ├─╴#text :: \\"is\\"
+         │   └─╴#text :: \\"bold\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.6.0 append, one element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   ├─╴<F>
+         │   ├─╴#text :: \\"false\\"
+         │   ├─╴<G>
+         │   ├─╴#text :: \\",[object Object],42,true\\"
+         │   ├─╴<H>
+         │   ├─╴#text :: \\"null\\"
+         │   ├─╴#text :: \\"text node\\"
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   ├─╴#text :: \\"is\\"
+         │   └─╴#text :: \\"bold\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   └─╴<H4>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.6.1 append, multiple elements 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   ├─╴<F>
+         │   ├─╴#text :: \\"false\\"
+         │   ├─╴<G>
+         │   ├─╴#text :: \\",[object Object],42,true\\"
+         │   ├─╴<H>
+         │   ├─╴#text :: \\"null\\"
+         │   ├─╴#text :: \\"text node\\"
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   ├─╴#text :: \\"is\\"
+         │   └─╴#text :: \\"bold\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.6.2 append, one string 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   ├─╴<F>
+         │   ├─╴#text :: \\"false\\"
+         │   ├─╴<G>
+         │   ├─╴#text :: \\",[object Object],42,true\\"
+         │   ├─╴<H>
+         │   ├─╴#text :: \\"null\\"
+         │   ├─╴#text :: \\"text node\\"
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   ├─╴#text :: \\"is\\"
+         │   ├─╴#text :: \\"bold\\"
+         │   └─╴#text :: \\"bold\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.6.3 append, multiple strings 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   ├─╴<F>
+         │   ├─╴#text :: \\"false\\"
+         │   ├─╴<G>
+         │   ├─╴#text :: \\",[object Object],42,true\\"
+         │   ├─╴<H>
+         │   ├─╴#text :: \\"null\\"
+         │   ├─╴#text :: \\"text node\\"
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   ├─╴#text :: \\"is\\"
+         │   ├─╴#text :: \\"bold\\"
+         │   ├─╴#text :: \\"bold\\"
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   └─╴#text :: \\"is\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.6.4 append, mix of values 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   ├─╴<F>
+         │   ├─╴#text :: \\"false\\"
+         │   ├─╴<G>
+         │   ├─╴#text :: \\",[object Object],42,true\\"
+         │   ├─╴<H>
+         │   ├─╴#text :: \\"null\\"
+         │   ├─╴#text :: \\"text node\\"
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   ├─╴#text :: \\"is\\"
+         │   ├─╴#text :: \\"bold\\"
+         │   ├─╴#text :: \\"bold\\"
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   ├─╴#text :: \\"is\\"
+         │   ├─╴<F>
+         │   ├─╴#text :: \\"false\\"
+         │   ├─╴<G>
+         │   ├─╴#text :: \\",[object Object],42,true\\"
+         │   ├─╴<H>
+         │   ├─╴#text :: \\"null\\"
+         │   └─╴#text :: \\"text node\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.6.5 append, text node 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   ├─╴<F>
+         │   ├─╴#text :: \\"false\\"
+         │   ├─╴<G>
+         │   ├─╴#text :: \\",[object Object],42,true\\"
+         │   ├─╴<H>
+         │   ├─╴#text :: \\"null\\"
+         │   ├─╴#text :: \\"text node\\"
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   ├─╴#text :: \\"is\\"
+         │   ├─╴#text :: \\"bold\\"
+         │   ├─╴#text :: \\"bold\\"
+         │   ├─╴#text :: \\"This\\"
+         │   ├─╴#text :: \\"text\\"
+         │   ├─╴#text :: \\"is\\"
+         │   ├─╴<F>
+         │   ├─╴#text :: \\"false\\"
+         │   ├─╴<G>
+         │   ├─╴#text :: \\",[object Object],42,true\\"
+         │   ├─╴<H>
+         │   ├─╴#text :: \\"null\\"
+         │   └─╴#text :: \\"text node\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.7.0 replaceChildren, one element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   └─╴<I>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.7.1 replaceChildren, multiple elements of mixed type 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         │   ├─╴<A>
+         │   │   └─╴<SPAN>
+         │   │       └─╴#text :: \\"link\\"
+         │   ├─╴#text :: \\"false\\"
+         │   └─╴#text :: \\"text\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.7.2 replaceChildren, nothing 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.7.3 replaceChildren, all elements in root element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+"
+`;
+
+exports[`DOM API, Nodes 3.7.4 replaceChildren, all elements in root element with simple fragment 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     └─╴<NODE>
+"
+`;
+
+exports[`DOM API, Nodes 3.7.5 replaceChildren, all elements in root element with fragment 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     └─╴<NODE>
+         └─╴<BODY>
+"
+`;
+
+exports[`DOM API, Nodes 3.7.6 replaceChildren, whole document with fragment 1`] = `
+"#document
+ ├─╴<!DOCTYPE node>
+ └─╴<NODE>
+     └─╴<BODY>
+"
+`;
+
+exports[`DOM API, Nodes 3.7.7 replaceChildren, text node 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.7.REPAIR 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.8.0 before, one element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<H4>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.8.1 before, multiple elements 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<H4>
+         ├─╴<H1>
+         ├─╴<H2>
+         ├─╴<H3>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.8.2 before, one string 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴#text :: \\"bold\\"
+         ├─╴<B>
+         ├─╴<H4>
+         ├─╴<H1>
+         ├─╴<H2>
+         ├─╴<H3>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.8.3 before, multiple strings 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴#text :: \\"bold\\"
+         ├─╴#text :: \\"This\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴#text :: \\"is\\"
+         ├─╴<B>
+         ├─╴<H4>
+         ├─╴<H1>
+         ├─╴<H2>
+         ├─╴<H3>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.8.4 before, mix of values 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴#text :: \\"bold\\"
+         ├─╴#text :: \\"This\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴#text :: \\"is\\"
+         ├─╴<F>
+         ├─╴#text :: \\"false\\"
+         ├─╴<G>
+         ├─╴#text :: \\",[object Object],42,true\\"
+         ├─╴<H>
+         ├─╴#text :: \\"null\\"
+         ├─╴#text :: \\"text node\\"
+         ├─╴<B>
+         ├─╴<H4>
+         ├─╴<H1>
+         ├─╴<H2>
+         ├─╴<H3>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.8.5 before, before documentElement node 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ ├─╴<F>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴#text :: \\"bold\\"
+         ├─╴#text :: \\"This\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴#text :: \\"is\\"
+         ├─╴<F>
+         ├─╴#text :: \\"false\\"
+         ├─╴<G>
+         ├─╴#text :: \\",[object Object],42,true\\"
+         ├─╴<H>
+         ├─╴#text :: \\"null\\"
+         ├─╴#text :: \\"text node\\"
+         ├─╴<B>
+         ├─╴<H4>
+         ├─╴<H1>
+         ├─╴<H2>
+         ├─╴<H3>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.8.6 before, before DOCTYPE node 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ ├─╴<E>
+ ├─╴<F>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴#text :: \\"bold\\"
+         ├─╴#text :: \\"This\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴#text :: \\"is\\"
+         ├─╴<F>
+         ├─╴#text :: \\"false\\"
+         ├─╴<G>
+         ├─╴#text :: \\",[object Object],42,true\\"
+         ├─╴<H>
+         ├─╴#text :: \\"null\\"
+         ├─╴#text :: \\"text node\\"
+         ├─╴<B>
+         ├─╴<H4>
+         ├─╴<H1>
+         ├─╴<H2>
+         ├─╴<H3>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.8.7 before, parent-less node 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ ├─╴<E>
+ ├─╴<F>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴#text :: \\"bold\\"
+         ├─╴#text :: \\"This\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴#text :: \\"is\\"
+         ├─╴<F>
+         ├─╴#text :: \\"false\\"
+         ├─╴<G>
+         ├─╴#text :: \\",[object Object],42,true\\"
+         ├─╴<H>
+         ├─╴#text :: \\"null\\"
+         ├─╴#text :: \\"text node\\"
+         ├─╴<B>
+         ├─╴<H4>
+         ├─╴<H1>
+         ├─╴<H2>
+         ├─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.8.REPAIR 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.9.0 after, one element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         ├─╴<H4>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.9.1 after, multiple elements 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         ├─╴<H1>
+         ├─╴<H2>
+         ├─╴<H3>
+         ├─╴<H4>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.9.2 after, one string 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴#text :: \\"bold\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         ├─╴<H1>
+         ├─╴<H2>
+         ├─╴<H3>
+         ├─╴<H4>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.9.3 after, multiple strings 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴#text :: \\"This\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴#text :: \\"is\\"
+         ├─╴#text :: \\"bold\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         ├─╴<H1>
+         ├─╴<H2>
+         ├─╴<H3>
+         ├─╴<H4>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.9.4 after, mix of values 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<F>
+         ├─╴#text :: \\"false\\"
+         ├─╴<G>
+         ├─╴#text :: \\",[object Object],42,true\\"
+         ├─╴<H>
+         ├─╴#text :: \\"null\\"
+         ├─╴#text :: \\"text node\\"
+         ├─╴#text :: \\"This\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴#text :: \\"is\\"
+         ├─╴#text :: \\"bold\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         ├─╴<H1>
+         ├─╴<H2>
+         ├─╴<H3>
+         ├─╴<H4>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.9.5 after, after documentElement node 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ ├─╴<HTML>
+ │   ├─╴<HEAD>
+ │   │   └─╴<TITLE>
+ │   │       └─╴#text :: \\"Text\\"
+ │   └─╴<BODY>
+ │       ├─╴<B>
+ │       ├─╴<F>
+ │       ├─╴#text :: \\"false\\"
+ │       ├─╴<G>
+ │       ├─╴#text :: \\",[object Object],42,true\\"
+ │       ├─╴<H>
+ │       ├─╴#text :: \\"null\\"
+ │       ├─╴#text :: \\"text node\\"
+ │       ├─╴#text :: \\"This\\"
+ │       ├─╴#text :: \\"text\\"
+ │       ├─╴#text :: \\"is\\"
+ │       ├─╴#text :: \\"bold\\"
+ │       ├─╴<DIV class=\\"d\\" TeSt>
+ │       │   ├─╴<H1>
+ │       │   ├─╴<H2>
+ │       │   ├─╴<H3>
+ │       │   ├─╴<H4>
+ │       │   ├─╴#text :: \\"1\\"
+ │       │   ├─╴<BR>
+ │       │   ├─╴<SPAN id=\\"s\\">
+ │       │   │   ├─╴#text :: \\"2\\"
+ │       │   │   └─╴#comment :: \\"3\\"
+ │       │   ├─╴<H4>
+ │       │   ├─╴<H1>
+ │       │   ├─╴<H2>
+ │       │   └─╴<H3>
+ │       ├─╴<H1>
+ │       ├─╴<H2>
+ │       ├─╴<H3>
+ │       ├─╴<H4>
+ │       └─╴<C>
+ └─╴<F>
+"
+`;
+
+exports[`DOM API, Nodes 3.9.6 after, parent-less node 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ ├─╴<HTML>
+ │   ├─╴<HEAD>
+ │   │   └─╴<TITLE>
+ │   │       └─╴#text :: \\"Text\\"
+ │   └─╴<BODY>
+ │       ├─╴<B>
+ │       ├─╴<F>
+ │       ├─╴#text :: \\"false\\"
+ │       ├─╴<G>
+ │       ├─╴#text :: \\",[object Object],42,true\\"
+ │       ├─╴<H>
+ │       ├─╴#text :: \\"null\\"
+ │       ├─╴#text :: \\"text node\\"
+ │       ├─╴#text :: \\"This\\"
+ │       ├─╴#text :: \\"text\\"
+ │       ├─╴#text :: \\"is\\"
+ │       ├─╴#text :: \\"bold\\"
+ │       ├─╴<H1>
+ │       ├─╴<H2>
+ │       ├─╴<H3>
+ │       ├─╴<H4>
+ │       └─╴<C>
+ └─╴<F>
+"
+`;
+
+exports[`DOM API, Nodes 3.9.7 after, place fragment after its own root node 1`] = `
+"#document-fragment
+ ├─╴<!DOCTYPE node>
+ └─╴<NODE>
+     └─╴<BODY>
+"
+`;
+
+exports[`DOM API, Nodes 3.9.REPAIR 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.0 replaceWith, new element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<D>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.1 replaceWith, old element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.2 replaceWith, text string 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴#text :: \\"New text node\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.3 replaceWith, mix of values 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴#text :: \\"42\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         ├─╴#text :: \\"true,,false\\"
+         ├─╴#text :: \\"null\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.4 replaceWith, replace element with itself 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴#text :: \\"42\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         ├─╴#text :: \\"true,,false\\"
+         ├─╴#text :: \\"null\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.5 replaceWith, replace with single, non-node value 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴#text :: \\"42\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴#text :: \\"null\\"
+         ├─╴#text :: \\"true,,false\\"
+         ├─╴#text :: \\"null\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.6 replaceWith, replace with nothing 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴#text :: \\"42\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴#text :: \\"true,,false\\"
+         ├─╴#text :: \\"null\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.7 replaceWith, parent-less node 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴#text :: \\"42\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴#text :: \\"true,,false\\"
+         ├─╴#text :: \\"null\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.8 replaceWith, replace BODY with element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<B>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.9 replaceWith, replace BODY with fragment 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         └─╴<N>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.10 replaceWith, replace HEAD with second BODY 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴#text :: \\"42\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴#text :: \\"true,,false\\"
+         ├─╴#text :: \\"null\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.11 replaceWith, replace HEAD with second BODY from fragment 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴#text :: \\"42\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴#text :: \\"true,,false\\"
+         ├─╴#text :: \\"null\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.12 replaceWith, replace HEAD with elements from fragment 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<N>
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴#text :: \\"42\\"
+         ├─╴#text :: \\"text\\"
+         ├─╴#text :: \\"true,,false\\"
+         ├─╴#text :: \\"null\\"
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.13 replaceWith, replace BODY with multiple BODY elements from fragment 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     ├─╴<BODY>
+     │   └─╴<N>
+     └─╴<M>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.14 replaceWith, replace BODY with multiple BODY elements 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     ├─╴<BODY>
+     │   └─╴<N>
+     └─╴<M>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.15 replaceWith, replace root element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<BODY>
+     └─╴<N>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.16 replaceWith, replace DOCTYPE 1`] = `
+"#document
+ ├─╴<!DOCTYPE html PUBLIC \\"public\\">
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     ├─╴<BODY>
+     │   └─╴<N>
+     └─╴<M>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.17 replaceWith, replace DOCTYPE from fragment 1`] = `
+"#document
+ ├─╴<!DOCTYPE html5>
+ ├─╴<HTML5>
+ │   └─╴<HEAD>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     ├─╴<BODY>
+     │   └─╴<N>
+     └─╴<M>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.18 replaceWith, replace documentElement with second DOCTYPE 1`] = `
+"#document
+ ├─╴<!DOCTYPE html5>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     ├─╴<BODY>
+     │   └─╴<N>
+     └─╴<M>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.19 replaceWith, replace documentElement with fragment with a DOCTYPE 1`] = `
+"#document
+ ├─╴<!DOCTYPE html5>
+ └─╴<NODE>
+     └─╴<BODY>
+"
+`;
+
+exports[`DOM API, Nodes 3.10.REPAIR 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<B>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.11.0 remove, inserted element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.11.1 remove, HEAD 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.11.2 remove, parent-less element 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   ├─╴<H3>
+         │   ├─╴<H4>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   ├─╴<SPAN id=\\"s\\">
+         │   │   ├─╴#text :: \\"2\\"
+         │   │   └─╴#comment :: \\"3\\"
+         │   ├─╴<H4>
+         │   ├─╴<H1>
+         │   ├─╴<H2>
+         │   └─╴<H3>
+         └─╴<C>
+"
+`;
+
+exports[`DOM API, Nodes 3.11.REPAIR 1`] = `
+"#document
+ ├─╴<!DOCTYPE html>
+ └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
+     └─╴<BODY>
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
+"
+`;
 
 exports[`DOM API, Nodes 4.0.0 Set document.className 1`] = `
 "#document
  ├─╴<!DOCTYPE html>
  └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
      └─╴<BODY>
-         └─╴<DIV class=\\"d\\" TeSt>
-             ├─╴#text :: \\"1\\"
-             ├─╴<BR>
-             └─╴<SPAN id=\\"s\\">
-                 ├─╴#text :: \\"2\\"
-                 └─╴#comment :: \\"3\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
 "
 `;
 
@@ -622,13 +2584,17 @@ exports[`DOM API, Nodes 4.3.0 new DOMTokenList 2`] = `
 "#document
  ├─╴<!DOCTYPE html>
  └─╴<HTML>
+     ├─╴<HEAD>
+     │   └─╴<TITLE>
+     │       └─╴#text :: \\"Text\\"
      └─╴<BODY>
-         └─╴<DIV class=\\"d\\" TeSt>
-             ├─╴#text :: \\"1\\"
-             ├─╴<BR>
-             └─╴<SPAN id=\\"s\\">
-                 ├─╴#text :: \\"2\\"
-                 └─╴#comment :: \\"3\\"
+         ├─╴<DIV class=\\"d\\" TeSt>
+         │   ├─╴#text :: \\"1\\"
+         │   ├─╴<BR>
+         │   └─╴<SPAN id=\\"s\\">
+         │       ├─╴#text :: \\"2\\"
+         │       └─╴#comment :: \\"3\\"
+         └─╴<C>
 "
 `;
 
@@ -925,22 +2891,29 @@ exports[`DOM API, Nodes 7.2.4 createProcessingInstruction( '', 'data' ) 1`] = `[
 
 exports[`DOM API, Nodes 8.0.0 document.forEach( ... ) 1`] = `
 "<HTML>
+<HEAD>
+<TITLE>
 <BODY>
 <DIV class=\\"d\\" TeSt>
 <BR class=\\"b\\">
-<SPAN id=\\"s\\">"
+<SPAN id=\\"s\\">
+<C>"
 `;
 
 exports[`DOM API, Nodes 8.1.0 document.forEach( ..., null ) 1`] = `
 "<!DOCTYPE html>
 <HTML>
+<HEAD>
+<TITLE>
+#text :: \\"Text\\"
 <BODY>
 <DIV class=\\"d\\" TeSt>
 #text :: \\"1\\"
 <BR class=\\"b\\">
 <SPAN id=\\"s\\">
 #text :: \\"2\\"
-#comment :: \\"3\\""
+#comment :: \\"3\\"
+<C>"
 `;
 
 exports[`DOM API, Nodes Document with {lowerAttributeCase: true} 1.0.0 getAttributeNames, DIV 1`] = `

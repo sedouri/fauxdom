@@ -8,7 +8,7 @@ describe( "Entities", () =>
 	
 	describe( "Encode all entities", () =>
 	{
-		let document = new DOM( null, {decodeEntities: true, encodeEntities: true} );
+		const document = new DOM( null, {decodeEntities: true, encodeEntities: true} );
 		testEachWithEntities( document, [
 			["Custom entities", {test: "42"}, "&test;"],
 			["No set entities", undefined, "&"],

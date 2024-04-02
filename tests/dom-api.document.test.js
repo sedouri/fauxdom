@@ -1,11 +1,13 @@
+// deno-lint-ignore-file no-self-assign
+
 const {DOM, testEachWithCallback, printHierarchy} = require( "./utils" );
 
 describe( "DOM API, Document", () =>
 {
-	const document = new DOM( "<html></html>" ),
-		docFrag = new DOM(),
-		ownerDoc = new DOM( "<html><body><div>hi" ),
-		ownerDiv = ownerDoc.body.firstChild;
+	const document = new DOM( "<html></html>" );
+	const docFrag = new DOM();
+	const ownerDoc = new DOM( "<html><body><div>hi" );
+	const ownerDiv = ownerDoc.body.firstChild;
 	
 	testEachWithCallback( document, [
 		["1.0.0 Get non-existent HEAD", () =>

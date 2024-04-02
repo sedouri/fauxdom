@@ -1,7 +1,9 @@
-const reCache = {},
-	whitespaces = {},
-	isWhiteSpace = Object.prototype.hasOwnProperty.bind( whitespaces ),
-	EOF = null;
+const reCache = {};
+const whitespaces = {};
+
+const isWhiteSpace = Object.prototype.hasOwnProperty.bind( whitespaces );
+
+const EOF = null;
 
 export {whitespaces, EOF};
 
@@ -16,9 +18,9 @@ export class Lexer
 		if ( !isWhiteSpace( "\x20" ) )
 		{
 			// Unicode C0 & C1 control characters are treated as whitespace, along with the ASCII space character.
-			for ( let i = 0; i <= 0x20; i++ )
+			for ( let i = 0; i <= 0x20; i++ ) // C0 & ASCII space
 				whitespaces[String.fromCharCode( i )] = null;
-			for ( let i = 0x80; i <= 0x9f; i++ )
+			for ( let i = 0x80; i <= 0x9f; i++ ) // C1
 				whitespaces[String.fromCharCode( i )] = null;
 		}
 	}
@@ -71,7 +73,7 @@ export class Lexer
 	
 	match( str, caseSensitive )
 	{
-		var chunk = this.str.substr( this.index, str.length );
+		let chunk = this.str.substr( this.index, str.length );
 		if ( caseSensitive === false )
 		{
 			str = str.toLowerCase();
@@ -109,7 +111,7 @@ export class Lexer
 	
 	getNextAfterWhiteSpace()
 	{
-		var theChar;
+		let theChar;
 		do theChar = this.getNextChar();
 		while ( theChar !== EOF && isWhiteSpace( theChar ) )
 		return theChar;
@@ -117,7 +119,7 @@ export class Lexer
 	
 	skipWhiteSpace()
 	{
-		var theChar = this.scanChar;
+		let theChar = this.scanChar;
 		
 		while ( theChar !== EOF && isWhiteSpace( theChar ) )
 			theChar = this.getNextChar();

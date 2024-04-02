@@ -2,18 +2,22 @@ const {DOM, testEachWithCallback, testEachCallbackResult, printHierarchy, descri
 
 describe( "DOM API, Nodes", () =>
 {
-	const document = new DOM( "<!DOCTYPE html><html><head><title>Text<body><div class=d TeSt>1<span id=s>2<!--3--></html>" ),
-		head = document.head,
-		body = document.body,
-		div = body.childNodes[0],
-		span = div.childNodes[1],
-		br = document.createElement( "br" ),
-		spanText = span.firstChild,
-		comment = span.lastChild,
-		parentLess = document.createElement( "div" ),
-		bad = document.createElement( "bad" ),
-		badAttrs = {attr: "not own property"},
-		orderingDoc = new DOM( "<span class=b 1></span><ol><li><span class=b 2></ol><div><span class='a b' 3></div><span class=b 4><span Class=b 5 a=b A=C>" );
+	const document = new DOM( "<!DOCTYPE html><html><head><title>Text<body><div class=d TeSt>1<span id=s>2<!--3--></html>" );
+	const doctype = document.doctype;
+	const root = document.querySelector( "html" );
+	const head = document.head;
+	const body = document.body;
+	const div = body.childNodes[0];
+	const span = div.childNodes[1];
+	const br = document.createElement( "br" );
+	const spanText = span.firstChild;
+	const comment = span.lastChild;
+	const parentLess = document.createElement( "div" );
+	const bad = document.createElement( "bad" );
+	const badAttrs = {attr: "not own property"};
+	const orderingDoc = new DOM( "<span class=b 1></span><ol><li><span class=b 2></ol><div><span class='a b' 3></div><span class=b 4><span Class=b 5 a=b A=C>" );
+	
+	let insertedElement;
 	
 	parentLess.innerHTML = "<p>text</p>";
 	
@@ -25,7 +29,7 @@ describe( "DOM API, Nodes", () =>
 	{
 		expect( () => new DOM.Node() ).toThrowError();
 		
-		expect( document.doctype.nodeName ).toBe( document.doctype.name );
+		expect( doctype.nodeName ).toBe( doctype.name );
 		
 		expect( div.tagName ).toBe( "DIV" );
 		expect( span.tagName ).toBe( "SPAN" );
@@ -60,8 +64,8 @@ describe( "DOM API, Nodes", () =>
 	
 	test( "Document cloning", () =>
 	{
-		const shallowClone = document.cloneNode(),
-			deepClone = document.cloneNode( true );
+		const shallowClone = document.cloneNode();
+		const deepClone = document.cloneNode( true );
 		
 		expect( shallowClone ).not.toBe( document );
 		expect( deepClone ).not.toBe( document );
@@ -316,69 +320,591 @@ describe( "DOM API, Nodes", () =>
 		{
 			br.appendChild( document.createElement( "div" ) );
 		}],
-		["3.2.0 insertBefore, move element", () =>
+		["3.1.3 appendChild, text string", () =>
+		{
+			br.appendChild( "New text node" );
+		}],
+		["3.2.0 insertBefore, new element", () =>
+		{
+			insertedElement =  document.createElement( "b" );
+			body.insertBefore( insertedElement, div );
+		}],
+		["3.2.1 insertBefore, move element", () =>
 		{
 			body.insertBefore( span, div );
 		}],
-		["3.2.1 insertBefore, before non-element", () =>
+		["3.2.2 insertBefore, before non-element", () =>
 		{
 			body.insertBefore( span, true );
 		}],
-		["3.2.2 insertBefore, non-element", () =>
+		["3.2.3 insertBefore, text string", () =>
+		{
+			body.insertBefore( "New text node", span );
+		}],
+		["3.2.4 insertBefore, non-element", () =>
 		{
 			body.insertBefore( true, span );
 		}],
-		["3.2.3 insertBefore, from incorrect parent", () =>
+		["3.2.5 insertBefore, from incorrect parent", () =>
 		{
 			div.appendChild( span );
 			body.insertBefore( div, span );
 		}],
+		
+		
 		["3.3.0 replaceChild, new element", () =>
 		{
-			body.replaceChild( document.createElement( "b" ), div );
+			body.replaceChild( document.createElement( "c" ), div );
 		}],
 		["3.3.1 replaceChild, old element", () =>
 		{
 			body.replaceChild( div, body.childNodes[0] );
 		}],
-		["3.3.2 replaceChild, non-element", () =>
+		["3.3.2 replaceChild, text string", () =>
+		{
+			body.replaceChild( "New text node", div );
+			body.replaceChild( div, "New text node" );
+		}],
+		["3.3.3 replaceChild, non-element", () =>
 		{
 			body.replaceChild( div, null );
 		}],
-		["3.3.3 replaceChild, replace element with itself", () =>
+		["3.3.4 replaceChild, replace element with itself", () =>
 		{
 			return body.replaceChild( div, div );
 		}],
-		["3.3.4 replaceChild, replace with non-element", () =>
+		["3.3.5 replaceChild, replace with non-element", () =>
 		{
 			body.replaceChild( null, div );
 		}],
-		["3.3.5 replaceChild, replace BODY with fragment", () =>
+		["3.3.6 replaceChild, replace BODY with element", () =>
 		{
-			document.documentElement.replaceChild( new DOM( "<body><n>" ), body );
-			return document.body;
+			document.documentElement.replaceChild( document.createElement( "b" ), body );
+			expect( document.body == null ).toBe( true );
+		}],
+		["3.3.7 replaceChild, replace BODY with fragment", () =>
+		{
+			document.documentElement.replaceChild( body, document.documentElement.childNodes[1] ); // Repair body
+			
+			const fragment = new DOM( "<body><n>" );
+			const fragmentBody = fragment.childNodes[0];
+			document.documentElement.replaceChild( fragment, body );
+			expect( fragmentBody.tagName ).toBe( "BODY" );
+			expect( document.body === fragmentBody ).toBe( true );
+		}],
+		["3.3.8 replaceChild, replace HEAD with second BODY", () =>
+		{
+			document.documentElement.replaceChild( body, document.body ); // Repair body
+			
+			const newBody = document.createElement( "body" );
+			document.documentElement.replaceChild( newBody, head );
+			
+			expect( document.body === body ).toBe( true );
+			expect( document.head === head ).toBe( true );
+		}],
+		["3.3.9 replaceChild, replace HEAD with second BODY from fragment", () =>
+		{
+			const fragment = new DOM( "<body><n>" );
+			const fragmentBody = fragment.childNodes[0];
+			document.documentElement.replaceChild( fragment, head );
+			
+			expect( document.body === fragmentBody ).toBe( false );
+			expect( document.body === body ).toBe( true );
+			expect( document.head === head ).toBe( true );
+		}],
+		["3.3.10 replaceChild, replace HEAD with elements from fragment", () =>
+		{
+			const fragment = new DOM( "<body></body><n>" );
+			const fragmentBody = fragment.childNodes[0];
+			document.documentElement.replaceChild( fragment, head );
+			
+			expect( document.body === fragmentBody ).toBe( false );
+			expect( document.body === body ).toBe( true );
+			expect( document.head === null ).toBe( true );
+		}],
+		["3.3.11 replaceChild, replace BODY with multiple BODY elements from fragment", () =>
+		{
+			document.documentElement.replaceChild( head, document.querySelector( "n" ) ); // Repair head
+			
+			const fragment = new DOM( "<body><n></body><m></m><body>" );
+			const fragmentBody = fragment.childNodes[0];
+			document.documentElement.replaceChild( fragment, body );
+			
+			expect( document.body === fragmentBody ).toBe( true );
+			expect( document.head === head ).toBe( true );
+			expect( fragment.childNodes.length === 1 ).toBe( true );
+			expect( fragment.childNodes[0].tagName === "BODY" ).toBe( true );
+		}],
+		["3.3.12 replaceChild, replace root element", () =>
+		{
+			const fragment = new DOM( "<body><n></body>" );
+			document.replaceChild( fragment, root );
+			
+			expect( document.documentElement === null ).toBe( true );
+			expect( document.head === null ).toBe( true );
+			expect( document.body === null ).toBe( true );
+		}],
+		["3.3.13 replaceChild, replace DOCTYPE", () =>
+		{
+			document.replaceChild( root, document.childNodes[1] ); // Repair root
+			
+			const newDoctype = document.createDocumentType( "html", "public" );
+			document.replaceChild( newDoctype, doctype );
+			
+			expect( document.doctype === newDoctype ).toBe( true );
+		}],
+		["3.3.14 replaceChild, replace DOCTYPE from fragment", () =>
+		{
+			const fragment = new DOM( '<!doctype html5><html5><head>' );
+			const documentElement = fragment.childNodes[1];
+			document.replaceChild( fragment, document.childNodes[0] );
+			
+			expect( document.documentElement === documentElement ).toBe( true );
+		}],
+		["3.3.15 replaceChild, replace documentElement with second DOCTYPE", () =>
+		{
+			document.replaceChild( document.createDocumentType( "html" ), document.childNodes[1] );
+		}],
+		["3.3.16 replaceChild, replace documentElement with fragment with a DOCTYPE", () =>
+		{
+			const fragment = new DOM( '<!doctype node><node><body>' );
+			document.replaceChild( fragment, document.childNodes[1] );
 		}],
 		["3.3.REPAIR", () =>
 		{
+			body.insertBefore( insertedElement, div );
+			document.replaceChild( doctype, document.doctype );
+			document.replaceChild( root, document.childNodes[1] );
 			document.documentElement.replaceChild( body, document.body );
+			document.documentElement.replaceChild( head, document.head );
+			document.documentElement.removeChild( document.querySelector( "html > m" ) );
+			
+			expect( document.body === body ).toBe( true );
+			expect( document.head === head ).toBe( true );
 		}],
-		["3.4.0 removeChild, HEAD", () =>
+		
+		
+		["3.4.0 removeChild, inserted element", () =>
+		{
+			body.removeChild( insertedElement );
+		}],
+		["3.4.1 removeChild, HEAD", () =>
 		{
 			document.documentElement.removeChild( head );
-			return document.head;
+			expect( document.head ).toBe( null );
 		}],
-		["3.4.1 removeChild, parent-less element", () =>
+		["3.4.2 removeChild, parent-less element", () =>
 		{
 			return document.documentElement.removeChild( head );
 		}],
-		["3.4.2 removeChild, non-child", () =>
+		["3.4.3 removeChild, non-child", () =>
 		{
 			return document.documentElement.removeChild( div );
 		}],
-		["3.4.3 removeChild, non-element", () =>
+		["3.4.4 removeChild, non-element", () =>
 		{
 			return document.documentElement.removeChild( true );
 		}],
+		["3.4.REPAIR", () =>
+		{
+			body.insertBefore( insertedElement, div );
+			document.documentElement.insertBefore( head, body );
+		}],
+		
+		
+		["3.5.0 prepend, one element", () =>
+		{
+			div.prepend( document.createElement( "h4" ) );
+		}],
+		["3.5.1 prepend, multiple elements", () =>
+		{
+			div.prepend( document.createElement( "h1" ), document.createElement( "h2" ), document.createElement( "h3" ) );
+		}],
+		["3.5.2 prepend, one string", () =>
+		{
+			insertedElement.prepend( "bold" );
+		}],
+		["3.5.3 prepend, multiple strings", () =>
+		{
+			insertedElement.prepend( "This", "text", "is" );
+		}],
+		["3.5.4 prepend, mix of values", () =>
+		{
+			insertedElement.prepend( document.createElement( "f" ), false, document.createElement( "g" ), [null, {}, 42, true], document.createElement( "h" ), null, "text node" );
+		}],
+		["3.5.5 prepend, before documentElement node", () =>
+		{
+			document.prepend( document.createElement( "f" ) );
+		}],
+		["3.5.6 prepend, text node", () =>
+		{
+			div.childNodes[4].prepend( document.createElement( "f" ) );
+		}],
+		["3.5.REPAIR", () =>
+		{
+			document.removeChild( document.childNodes[1] );
+		}],
+		
+		
+		["3.6.0 append, one element", () =>
+		{
+			div.append( document.createElement( "h4" ) );
+		}],
+		["3.6.1 append, multiple elements", () =>
+		{
+			div.append( document.createElement( "h1" ), document.createElement( "h2" ), document.createElement( "h3" ) );
+		}],
+		["3.6.2 append, one string", () =>
+		{
+			insertedElement.append( "bold" );
+		}],
+		["3.6.3 append, multiple strings", () =>
+		{
+			insertedElement.append( "This", "text", "is" );
+		}],
+		["3.6.4 append, mix of values", () =>
+		{
+			insertedElement.append( document.createElement( "f" ), false, document.createElement( "g" ), [null, {}, 42, true], document.createElement( "h" ), null, "text node" );
+		}],
+		["3.6.5 append, text node", () =>
+		{
+			div.childNodes[4].append( document.createElement( "f" ) );
+		}],
+		
+		
+		["3.7.0 replaceChildren, one element", () =>
+		{
+			insertedElement.replaceChildren( document.createElement( "i" ) );
+		}],
+		["3.7.1 replaceChildren, multiple elements of mixed type", () =>
+		{
+			const a = document.createElement( "a" );
+			a.innerHTML = "<span>link</span>";
+			insertedElement.replaceChildren( a, [false], "text" );
+		}],
+		["3.7.2 replaceChildren, nothing", () =>
+		{
+			insertedElement.replaceChildren();
+		}],
+		["3.7.3 replaceChildren, all elements in root element", () =>
+		{
+			document.documentElement.replaceChildren();
+			expect( document.head === null ).toBe( true );
+			expect( document.body === null ).toBe( true );
+		}],
+		["3.7.4 replaceChildren, all elements in root element with simple fragment", () =>
+		{
+			document.documentElement.replaceChildren( head, body ); // Repair
+			expect( document.head === head ).toBe( true );
+			expect( document.body === body ).toBe( true );
+			
+			const fragment = new DOM( '<node>' );
+			document.documentElement.replaceChildren( fragment );
+			expect( document.head === null ).toBe( true );
+			expect( document.body === null ).toBe( true );
+		}],
+		["3.7.5 replaceChildren, all elements in root element with fragment", () =>
+		{
+			const fragment = new DOM( '<!doctype node><node><body>' );
+			document.documentElement.replaceChildren( fragment );
+			expect( document.head === null ).toBe( true );
+			expect( document.body === null ).toBe( true );
+		}],
+		["3.7.6 replaceChildren, whole document with fragment", () =>
+		{
+			const fragment = new DOM( '<!doctype node><node><body>' );
+			const doctype = fragment.childNodes[0];
+			document.replaceChildren( fragment );
+			
+			expect( document.doctype === doctype ).toBe( true );
+			expect( document.head === null ).toBe( true );
+			expect( document.body === document.childNodes[1].childNodes[0] ).toBe( true );
+		}],
+		["3.7.REPAIR", () =>
+		{
+			document.replaceChildren( root );
+			expect( document.doctype === null ).toBe( true );
+			document.doctype = doctype;
+			root.replaceChildren( head, body );
+			expect( document.head === head ).toBe( true );
+			expect( document.body === body ).toBe( true );
+		}],
+		["3.7.7 replaceChildren, text node", () =>
+		{
+			div.childNodes[4].replaceChildren( document.createElement( "f" ) );
+		}],
+		
+		
+		["3.8.0 before, one element", () =>
+		{
+			div.before( document.createElement( "h4" ) );
+		}],
+		["3.8.1 before, multiple elements", () =>
+		{
+			div.before( document.createElement( "h1" ), document.createElement( "h2" ), document.createElement( "h3" ) );
+		}],
+		["3.8.2 before, one string", () =>
+		{
+			insertedElement.before( "bold" );
+		}],
+		["3.8.3 before, multiple strings", () =>
+		{
+			insertedElement.before( "This", "text", "is" );
+		}],
+		["3.8.4 before, mix of values", () =>
+		{
+			insertedElement.before( document.createElement( "f" ), false, document.createElement( "g" ), [null, {}, 42, true], document.createElement( "h" ), null, "text node" );
+		}],
+		["3.8.5 before, before documentElement node", () =>
+		{
+			document.documentElement.before( document.createElement( "f" ) );
+		}],
+		["3.8.6 before, before DOCTYPE node", () =>
+		{
+			document.doctype.before( document.createElement( "e" ) );
+		}],
+		["3.8.7 before, parent-less node", () =>
+		{
+			div.parentNode.removeChild( div );
+			expect( div.parentNode == null ).toBe( true );
+			
+			div.before( document.createElement( "e" ) );
+		}],
+		["3.8.REPAIR", () =>
+		{
+			document.removeChild( document.childNodes[1] );
+			document.removeChild( document.childNodes[1] );
+			document.body.replaceChildren( insertedElement, div, document.createElement( "c" ) );
+		}],
+		
+		
+		["3.9.0 after, one element", () =>
+		{
+			div.after( document.createElement( "h4" ) );
+		}],
+		["3.9.1 after, multiple elements", () =>
+		{
+			div.after( document.createElement( "h1" ), document.createElement( "h2" ), document.createElement( "h3" ) );
+		}],
+		["3.9.2 after, one string", () =>
+		{
+			insertedElement.after( "bold" );
+		}],
+		["3.9.3 after, multiple strings", () =>
+		{
+			insertedElement.after( "This", "text", "is" );
+		}],
+		["3.9.4 after, mix of values", () =>
+		{
+			insertedElement.after( document.createElement( "f" ), false, document.createElement( "g" ), [null, {}, 42, true], document.createElement( "h" ), null, "text node" );
+		}],
+		["3.9.5 after, after documentElement node", () =>
+		{
+			document.documentElement.after( document.createElement( "f" ) );
+		}],
+		["3.9.6 after, parent-less node", () =>
+		{
+			div.parentNode.removeChild( div );
+			expect( div.parentNode == null ).toBe( true );
+			
+			div.after( document.createElement( "e" ) );
+		}],
+		["3.9.7 after, place fragment after its own root node", () =>
+		{
+			const fragment = new DOM( '<!doctype node><node><body>' );
+			fragment.childNodes[1].after( fragment );
+			return fragment;
+		}],
+		["3.9.REPAIR", () =>
+		{
+			document.removeChild( document.childNodes[2] );
+			document.body.replaceChildren( insertedElement, div, document.createElement( "c" ) );
+		}],
+		
+		
+		["3.10.0 replaceWith, new element", () =>
+		{
+			div.replaceWith( document.createElement( "d" ) );
+		}],
+		["3.10.1 replaceWith, old element", () =>
+		{
+			body.childNodes[1].replaceWith( div );
+		}],
+		["3.10.2 replaceWith, text string", () =>
+		{
+			div.replaceWith( "New text node" );
+		}],
+		["3.10.3 replaceWith, mix of values", () =>
+		{
+			body.childNodes[1].replaceWith( 42, "text", div, [true, null, false], null );
+		}],
+		["3.10.4 replaceWith, replace element with itself", () =>
+		{
+			div.replaceWith( div );
+		}],
+		["3.10.5 replaceWith, replace with single, non-node value", () =>
+		{
+			div.replaceWith( null );
+		}],
+		["3.10.6 replaceWith, replace with nothing", () =>
+		{
+			body.childNodes[3].replaceWith();
+		}],
+		["3.10.7 replaceWith, parent-less node", () =>
+		{
+			expect( div.parentNode == null ).toBe( true );
+			
+			div.replaceWith( document.createElement( "e" ) );
+		}],
+		["3.10.8 replaceWith, replace BODY with element", () =>
+		{
+			body.replaceWith( document.createElement( "b" ) );
+			expect( document.body == null ).toBe( true );
+		}],
+		["3.10.9 replaceWith, replace BODY with fragment", () =>
+		{
+			document.documentElement.childNodes[1].replaceWith( body ); // Repair body
+			
+			const fragment = new DOM( "<body><n>" );
+			const fragmentBody = fragment.childNodes[0];
+			body.replaceWith( fragment );
+			expect( fragmentBody.tagName ).toBe( "BODY" );
+			expect( document.body === fragmentBody ).toBe( true );
+		}],
+		["3.10.10 replaceWith, replace HEAD with second BODY", () =>
+		{
+			document.body.replaceWith( body ); // Repair body
+			
+			const newBody = document.createElement( "body" );
+			head.replaceWith( newBody );
+			
+			expect( document.body === body ).toBe( true );
+			// `replaceWith` removes the HEAD node and doesn't put anything in its place.
+			expect( document.head === null ).toBe( true );
+		}],
+		["3.10.11 replaceWith, replace HEAD with second BODY from fragment", () =>
+		{
+			body.before( head ); // Repair head
+			expect( document.head === head ).toBe( true );
+			
+			const fragment = new DOM( "<body><n>" );
+			const fragmentBody = fragment.childNodes[0];
+			head.replaceWith( fragment );
+			
+			expect( document.body === fragmentBody ).toBe( false );
+			expect( document.body === body ).toBe( true );
+			expect( document.head === null ).toBe( true );
+		}],
+		["3.10.12 replaceWith, replace HEAD with elements from fragment", () =>
+		{
+			body.before( head ); // Repair head
+			expect( document.head === head ).toBe( true );
+			
+			const fragment = new DOM( "<body></body><n>" );
+			const fragmentBody = fragment.childNodes[0];
+			head.replaceWith( fragment );
+			
+			expect( document.body === fragmentBody ).toBe( false );
+			expect( document.body === body ).toBe( true );
+			expect( document.head === null ).toBe( true );
+		}],
+		["3.10.13 replaceWith, replace BODY with multiple BODY elements from fragment", () =>
+		{
+			document.querySelector( "n" ).replaceWith( head ); // Repair head
+			
+			const fragment = new DOM( "<body><n></body><m></m><body>" );
+			const fragmentBody = fragment.childNodes[0];
+			body.replaceWith( fragment );
+			
+			expect( document.body === fragmentBody ).toBe( true );
+			expect( document.head === head ).toBe( true );
+			expect( fragment.childNodes.length === 1 ).toBe( true );
+			expect( fragment.childNodes[0].tagName === "BODY" ).toBe( true );
+		}],
+		["3.10.14 replaceWith, replace BODY with multiple BODY elements", () =>
+		{
+			document.body.replaceWith( body ); // Repair body
+			expect( document.body === body ).toBe( true );
+			document.documentElement.removeChild( document.documentElement.childNodes[2] );
+			
+			const fragment = new DOM( "<body><n></body><m></m><body>" );
+			const fragmentBody = fragment.childNodes[0];
+			body.replaceWith( ...fragment.childNodes );
+			
+			expect( document.body === fragmentBody ).toBe( true );
+			expect( document.head === head ).toBe( true );
+			expect( fragment.childNodes.length === 1 ).toBe( true );
+			expect( fragment.childNodes[0].tagName === "BODY" ).toBe( true );
+		}],
+		["3.10.15 replaceWith, replace root element", () =>
+		{
+			const fragment = new DOM( "<body><n></body>" );
+			root.replaceWith( fragment );
+			
+			expect( document.documentElement === null ).toBe( true );
+			expect( document.head === null ).toBe( true );
+			expect( document.body === null ).toBe( true );
+		}],
+		["3.10.16 replaceWith, replace DOCTYPE", () =>
+		{
+			document.childNodes[1].replaceWith( root ); // Repair root
+			
+			const newDoctype = document.createDocumentType( "html", "public" );
+			doctype.replaceWith( newDoctype );
+			
+			expect( document.doctype === newDoctype ).toBe( true );
+		}],
+		["3.10.17 replaceWith, replace DOCTYPE from fragment", () =>
+		{
+			const fragment = new DOM( '<!doctype html5><html5><head>' );
+			const documentElement = fragment.childNodes[1];
+			document.childNodes[0].replaceWith( fragment );
+			
+			expect( document.documentElement === documentElement ).toBe( true );
+		}],
+		["3.10.18 replaceWith, replace documentElement with second DOCTYPE", () =>
+		{
+			document.childNodes[1].replaceWith( document.createDocumentType( "html" ) );
+		}],
+		["3.10.19 replaceWith, replace documentElement with fragment with a DOCTYPE", () =>
+		{
+			const fragment = new DOM( '<!doctype node><node><body>' );
+			document.childNodes[1].replaceWith( fragment );
+		}],
+		["3.10.REPAIR", () =>
+		{
+			body.replaceChildren( insertedElement, div, document.createElement( "c" ) );
+			document.doctype.replaceWith( doctype );
+			document.childNodes[1].replaceWith( root );
+			document.body.replaceWith( body );
+			document.head.replaceWith( head );
+			document.documentElement.removeChild( document.querySelector( "html > m" ) );
+			
+			expect( document.body === body ).toBe( true );
+			expect( document.head === head ).toBe( true );
+		}],
+		
+		
+		["3.11.0 remove, inserted element", () =>
+		{
+			insertedElement.remove();
+		}],
+		["3.11.1 remove, HEAD", () =>
+		{
+			head.remove();
+			expect( document.head === null ).toBe( true );
+		}],
+		["3.11.2 remove, parent-less element", () =>
+		{
+			insertedElement.remove();
+			head.remove();
+		}],
+		["3.11.REPAIR", () =>
+		{
+			div.querySelectorAll( "h1, h2, h3, h4" ).forEach( node => node.remove() );
+			document.documentElement.insertBefore( head, body );
+		}],
+		
 		
 		["4.0.0 Set document.className", () =>
 		{
@@ -716,7 +1242,7 @@ describe( "DOM API, Nodes", () =>
 		
 		["8.0.0 document.forEach( ... )", () =>
 		{
-			var result = "";
+			let result = "";
 			document.forEach( node =>
 			{
 				if ( result ) result += "\n";
@@ -726,7 +1252,7 @@ describe( "DOM API, Nodes", () =>
 		}],
 		["8.1.0 document.forEach( ..., null )", () =>
 		{
-			var result = "";
+			let result = "";
 			document.forEach( node =>
 			{
 				if ( result ) result += "\n";

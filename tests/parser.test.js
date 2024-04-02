@@ -1,6 +1,6 @@
-const {DOM, testEachWithHTML} = require( "./utils" ),
-	
-	emptyDocument = "<html><head></head><body></body></html>";
+const {DOM, testEachWithHTML} = require( "./utils" );
+
+const emptyDocument = "<html><head></head><body></body></html>";
 
 describe( "Parser", () =>
 {

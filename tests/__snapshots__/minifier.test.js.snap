@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Whitespace Minifier Adjacent text nodes 1`] = `
+"<!DOCTYPE html><html><head><title>This is a title</title><style>
+		body
+		{
+			padding: 1em;
+			background: #eee;
+		}
+		
+		.copyright span
+		{
+			white-space: nowrap;
+		}
+	</style><style>
+		
+	</style><script src=\\"script.js\\" type=\\"text/javascript\\"></script><script>
+		document.addEventListener( \\"DOMContentLoaded\\", () =>
+		{
+			console.log( {
+				key: \\"value\\"
+			} );
+		} );
+	</script><script>
+		
+	</script></head><body><div style>div content</div>text <a href=\\"#\\">link content</a> <span style=\\"padding: 1px 4px; background: yellow;\\">more text</span> <span>text</span> <!-- Comment --><span>text and text</span><!-- Comment --><div>text <b>text</b></div><!-- Comment --><div>text <b>text</b> j</div><pre>
+		Don't minify
+	</pre><content><h1>Header</h1><p>Paragraph 1</p><p>See the <a href=\\"/privacy.html\\">Privacy Policy</a> for more details.</p><hr><p>Email <a href=\\"mailto:here@there.com\\">here@there.com</a>, message <a href=\\"https://service.com/\\">@name</a> on Service.</p></content><footer><span class=\\"copyright\\"><span>Copyright &copy; Name.</span> <span>All rights reserved.</span></span></footer></body></html>"
+`;
+
+exports[`Whitespace Minifier Basic minification 1`] = `
+"<!DOCTYPE html><html><head><title>This is a title</title><style>
+		body
+		{
+			padding: 1em;
+			background: #eee;
+		}
+		
+		.copyright span
+		{
+			white-space: nowrap;
+		}
+	</style><style>
+		
+	</style><script src=\\"script.js\\" type=\\"text/javascript\\"></script><script>
+		document.addEventListener( \\"DOMContentLoaded\\", () =>
+		{
+			console.log( {
+				key: \\"value\\"
+			} );
+		} );
+	</script><script>
+		
+	</script></head><body><div style>div content</div>text <a href=\\"#\\">link content</a> <span style=\\"padding: 1px 4px; background: yellow;\\">more text</span> <span>text</span> <!-- Comment --><span>text <b>text</b> text</span><!-- Comment --><div>text <b>text</b></div><!-- Comment --><div>text <b>text</b> j</div><pre>
+		Don't minify
+	</pre><content><h1>Header</h1><p>Paragraph 1</p><p>See the <a href=\\"/privacy.html\\">Privacy Policy</a> for more details.</p><hr><p>Email <a href=\\"mailto:here@there.com\\">here@there.com</a>, message <a href=\\"https://service.com/\\">@name</a> on Service.</p></content><footer><span class=\\"copyright\\"><span>Copyright &copy; Name.</span> <span>All rights reserved.</span></span></footer></body></html>"
+`;
+
+exports[`Whitespace Minifier Custom inline elements 1`] = `
+"<!DOCTYPE html><html><head><title>This is a title</title><style>
+		body
+		{
+			padding: 1em;
+			background: #eee;
+		}
+		
+		.copyright span
+		{
+			white-space: nowrap;
+		}
+	</style><style>
+		
+	</style><script src=\\"script.js\\" type=\\"text/javascript\\"></script><script>
+		document.addEventListener( \\"DOMContentLoaded\\", () =>
+		{
+			console.log( {
+				key: \\"value\\"
+			} );
+		} );
+	</script><script>
+		
+	</script></head><body><div style>div content</div> text <a href=\\"#\\">link content</a> <span style=\\"padding: 1px 4px; background: yellow;\\">more text</span> <span>text</span> <!-- Comment --><span>text <b>text</b> text</span> <!-- Comment --><div>text <b>text</b></div> <!-- Comment --><div>text <b>text</b> j</div><pre>
+		Don't minify
+	</pre><content><h1>Header</h1><p>Paragraph 1</p> <p>See the <a href=\\"/privacy.html\\">Privacy Policy</a> for more details.</p><hr><p>Email <a href=\\"mailto:here@there.com\\">here@there.com</a>, message <a href=\\"https://service.com/\\">@name</a> on Service.</p></content><footer><span class=\\"copyright\\"><span>Copyright &copy; Name.</span> <span>All rights reserved.</span></span></footer></body></html>"
+`;
+
+exports[`Whitespace Minifier Minify inline CSS & JavaScript 1`] = `
+"<!DOCTYPE html><html><head><title>This is a title</title><style>body{padding:1em;background:#eee}.copyright span{white-space:nowrap}</style><script src=\\"script.js\\" type=\\"text/javascript\\"></script><script>/*! ./tests/minifier.test.html */document.addEventListener(\\"DOMContentLoaded\\",()=>{console.log({key:\\"value\\"})})</script></head><body><div>div content</div>text <a href=\\"#\\">link content</a> <span style=\\"padding:1px 4px;background:yellow\\">more text</span> <span>text</span> <!-- Comment --><span>text <b>text</b> text</span><!-- Comment --><div>text <b>text</b></div><!-- Comment --><div>text <b>text</b> j</div><pre>
+		Don't minify
+	</pre><content><h1>Header</h1><p>Paragraph 1</p><p>See the <a href=\\"/privacy.html\\">Privacy Policy</a> for more details.</p><hr><p>Email <a href=\\"mailto:here@there.com\\">here@there.com</a>, message <a href=\\"https://service.com/\\">@name</a> on Service.</p></content><footer><span class=\\"copyright\\"><span>Copyright &copy; Name.</span> <span>All rights reserved.</span></span></footer></body></html>"
+`;

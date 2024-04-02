@@ -1,10 +1,10 @@
-import DOM from "./document.js";
-import Parser from "./html-parser.js";
-import {createTokenList} from "./token-list.js";
-import {querySelector, closest, matches} from "./selectors.js";
-import {serializeNode} from "./serializer.js";
-import {DOCTYPE, HEAD, BODY, NODE_TYPE, PARENT_NODE, OWNER, TAG_NAME, PARSER_OPTIONS,
-	spacesRE, nodeTypes, selfClosingTags, setupDocument, getDocument, detachNodes, setNodeParent} from "./utils.js";
+import DOM from "./document.js"
+import Parser from "./html-parser.js"
+import {createTokenList} from "./token-list.js"
+import {querySelector, closest, matches} from "./selectors.js"
+import {serializeNode} from "./serializer.js"
+import {DOCTYPE, NODE_TYPE, PARENT_NODE, OWNER, TAG_NAME, PARSER_OPTIONS,
+	spacesRE, tagNameProp, nodeTypes, selfClosingTags, setupDocument, getDocument, detachNodes, setNodeParent} from "./utils.js"
 
 const CLASS_LIST = Symbol( "classList" );
 
@@ -32,6 +32,13 @@ export function createNode( nodeType, baseClass = Node )
 	return node;
 }
 
+function createTextNode( text )
+{
+	const node = createNode( Node.TEXT_NODE );
+	node.nodeValue = text;
+	return node;
+}
+
 export default class Node
 {
 	constructor()
@@ -41,6 +48,7 @@ export default class Node
 	
 	get nodeType() {return this[NODE_TYPE]}
 	
+	// deno-lint-ignore getter-return
 	get nodeName()
 	{
 		switch ( this.nodeType )
@@ -74,7 +82,7 @@ export default class Node
 	
 	get previousSibling()
 	{
-		const parent = this.parentNode;
+		const parent = this[PARENT_NODE];
 		if ( parent )
 		{
 			const idx = parent.childNodes.indexOf( this );
@@ -85,7 +93,7 @@ export default class Node
 	
 	get nextSibling()
 	{
-		const parent = this.parentNode;
+		const parent = this[PARENT_NODE];
 		if ( parent )
 		{
 			const idx = parent.childNodes.indexOf( this );
@@ -160,13 +168,13 @@ export default class Node
 	}
 	set outerHTML( html )
 	{
-		if ( this.parentNode )
+		if ( this[PARENT_NODE] )
 		{
-			const idx = this.parentNode.childNodes.indexOf( this ),
+			const idx = this[PARENT_NODE].childNodes.indexOf( this ),
 				nodes = parseHTML( this, html );
 			if ( nodes )
-				addChildNode( this.parentNode, nodes, idx, 1 );
-			else detachNodes( this.parentNode.childNodes.splice( idx, 1 ) );
+				addChildNode( this[PARENT_NODE], nodes, idx, 1 );
+			else detachNodes( this[PARENT_NODE].childNodes.splice( idx, 1 ) );
 		}
 	}
 	
@@ -195,8 +203,7 @@ export default class Node
 		
 		if ( this.childNodes )
 		{
-			let node = createNode( Node.TEXT_NODE );
-			node.nodeValue = text;
+			const node = createTextNode( text );
 			setNodeParent( node, this );
 			
 			detachNodes( this.childNodes );
@@ -209,16 +216,17 @@ export default class Node
 	
 	getRootNode()
 	{
+		// deno-lint-ignore no-this-alias
 		let rootNode = this;
-		while ( rootNode.parentNode )
-			rootNode = rootNode.parentNode;
+		while ( rootNode[PARENT_NODE] )
+			rootNode = rootNode[PARENT_NODE];
 		return rootNode;
 	}
 	
 	hasAttributes()
 	{
-		if ( this.attributes ) for ( let k in this.attributes )
-			if ( this.attributes.hasOwnProperty( k ) ) return true;
+		if ( this.attributes ) for ( const key in this.attributes )
+			if ( Object.hasOwn( this.attributes, key ) ) return true;
 		return false;
 	}
 	
@@ -231,7 +239,7 @@ export default class Node
 	
 	getAttribute( name )
 	{
-		var result;
+		let result;
 		if ( this.attributes && name && typeof name === "string" )
 			result = this.attributes[lowerAttributeCase( this, name )];
 		if ( result === undefined )
@@ -265,7 +273,7 @@ export default class Node
 		if ( this.attributes && name && typeof name === "string" )
 		{
 			name = lowerAttributeCase( this, name );
-			if ( !this.attributes.hasOwnProperty( name ) )
+			if ( !Object.hasOwn( this.attributes, name ) )
 			{
 				if ( arguments.length === 1 || force === true )
 					return (this.attributes[name] = true);
@@ -294,7 +302,7 @@ export default class Node
 	hasAttribute( name )
 	{
 		if ( this.attributes && name && typeof name === "string" )
-			return this.attributes.hasOwnProperty( lowerAttributeCase( this, name ) );
+			return Object.hasOwn( this.attributes, lowerAttributeCase( this, name ) );
 		return false;
 	}
 	
@@ -316,7 +324,7 @@ export default class Node
 			
 			if ( refChild == null )
 				idx = this.childNodes.length;
-			else if ( refChild instanceof Node && refChild.parentNode === this )
+			else if ( refChild instanceof Node && refChild[PARENT_NODE] === this )
 				idx = this.childNodes.indexOf( refChild );
 			
 			if ( idx !== -1 )
@@ -328,7 +336,7 @@ export default class Node
 	replaceChild( newChild, oldChild )
 	{
 		if ( this.childNodes && oldChild instanceof Node && newChild instanceof Node &&
-			oldChild.parentNode === this && oldChild !== newChild )
+			oldChild[PARENT_NODE] === this && oldChild !== newChild )
 		{
 			addChildNode( this, newChild, this.childNodes.indexOf( oldChild ), 1 );
 			return oldChild;
@@ -338,23 +346,85 @@ export default class Node
 	
 	removeChild( child )
 	{
-		if ( this.childNodes && child instanceof Node && child.parentNode === this )
+		if ( this.childNodes && child instanceof Node && child[PARENT_NODE] === this )
 		{
-			const idx = this.childNodes.indexOf( child ),
-				owner = getDocument( this );
-			
-			if ( owner && child.parentNode === owner.documentElement && tagNameProp.hasOwnProperty( child.tagName ) )
-				owner[tagNameProp[child.tagName]] = null;
-			
-			detachNodes( this.childNodes.splice( idx, 1 ) );
+			detachNodes( this.childNodes.splice( this.childNodes.indexOf( child ), 1 ) );
 			return child;
 		}
 		return null;
 	}
 	
+	prepend( ...nodes )
+	{
+		if ( !this.childNodes || nodes.length === 0 ) return;
+		
+		let idx = 0;
+		if ( this === getDocument( this ) && this[DOCTYPE] )
+			idx = this.childNodes.indexOf( this[DOCTYPE] ) + 1;
+		
+		insertNodes( this, nodes, idx );
+	}
+	
+	append( ...nodes )
+	{
+		if ( !this.childNodes || nodes.length === 0 ) return;
+		
+		insertNodes( this, nodes, this.childNodes.length );
+	}
+	
+	replaceChildren( ...nodes )
+	{
+		if ( !this.childNodes ) return;
+		
+		detachNodes( this.childNodes );
+		this.childNodes.length = 0;
+		
+		if ( nodes.length > 0 )
+			insertNodes( this, nodes, 0 );
+	}
+	
+	before( ...nodes )
+	{
+		if ( this[NODE_TYPE] === Node.DOCUMENT_TYPE_NODE )
+			return this.after( ...nodes );
+		
+		const parent = this[PARENT_NODE];
+		if ( parent )
+		{
+			const idx = parent.childNodes.indexOf( this );
+			insertNodes( parent, nodes, idx );
+		}
+	}
+	
+	after( ...nodes )
+	{
+		const parent = this[PARENT_NODE];
+		if ( parent )
+		{
+			const idx = parent.childNodes.indexOf( this ) + 1;
+			insertNodes( parent, nodes, idx );
+		}
+	}
+	
+	replaceWith( ...nodes )
+	{
+		const parent = this[PARENT_NODE];
+		if ( parent )
+		{
+			const idx = parent.childNodes.indexOf( this );
+			detachNodes( parent.childNodes.splice( idx, 1 ) );
+			insertNodes( parent, nodes, idx );
+		}
+	}
+	
+	remove()
+	{
+		this[PARENT_NODE] && this[PARENT_NODE].removeChild( this );
+	}
+	
 	cloneNode( deep )
 	{
-		var clone;
+		let clone;
 		
 		if ( this.nodeType === Node.DOCUMENT_NODE || this.nodeType === Node.DOCUMENT_FRAGMENT_NODE )
 			clone = new DOM( null, this[PARSER_OPTIONS] );
@@ -401,7 +471,7 @@ export default class Node
 	
 	getElementById( id )
 	{
-		var elem = null;
+		let elem = null;
 		if ( id && typeof id === "string" && this.childNodes )
 			this.forEach( node =>
 			{
@@ -416,7 +486,7 @@ export default class Node
 	
 	getElementsByClassName( className )
 	{
-		var nodeList = [];
+		const nodeList = [];
 		if ( className && typeof className === "string" )
 		{
 			const classList = className.trim().split( spacesRE );
@@ -433,7 +503,7 @@ export default class Node
 	
 	getElementsByTagName( tagName )
 	{
-		var nodeList = [];
+		const nodeList = [];
 		if ( tagName && typeof tagName === "string" )
 		{
 			tagName = tagName.toUpperCase();
@@ -481,11 +551,13 @@ export default class Node
 		// This unrolled recursive function is about 1.45x faster in Node than its
 		// equivalent recursive form.
 		
-		let childNodes = this.childNodes,
-			current = this.firstChild,
-			idxStack = [],
-			idx = 0,
-			parent, nextSibling;
+		let childNodes = this.childNodes;
+		let current = this.firstChild;
+		const idxStack = [];
+		//const elementStack = [];
+		let idx = 0;
+		let parent;
+		let nextSibling;
 		
 		while ( current )
 		{
@@ -505,6 +577,7 @@ export default class Node
 			if ( current[PARENT_NODE] === parent && current.childNodes && current.childNodes.length > 0 )
 			{
 				idxStack.push( idx );
+				//elementStack.push( nextSibling );
 				childNodes = current.childNodes;
 				current = childNodes[idx = 0];
 			}
@@ -529,6 +602,7 @@ export default class Node
 					{
 						childNodes = parent.childNodes;
 						idx = idxStack.pop() + 1;
+						//nextSibling = elementStack.pop();
 					}
 					else return;
 				}
@@ -554,83 +628,152 @@ Object.defineProperties( Node,
 	//NOTATION_NODE: {value: nodeTypes.NOTATION_NODE},
 } );
 
-const tagNameProp = {
-	HEAD,
-	BODY,
-	FRAMESET: BODY
-};
-
 function addChildNode( parent, node, index, removalCount = 0 )
 {
 	if ( !parent ||
-		(parent.nodeType !== Node.ELEMENT_NODE &&
-	 		parent.nodeType !== Node.DOCUMENT_NODE &&
-	 		parent.nodeType !== Node.DOCUMENT_FRAGMENT_NODE) ||
-		(parent.nodeType === Node.ELEMENT_NODE && selfClosingTags[parent.tagName] === true) )
+		(parent[NODE_TYPE] !== Node.ELEMENT_NODE &&
+	 		parent[NODE_TYPE] !== Node.DOCUMENT_NODE &&
+	 		parent[NODE_TYPE] !== Node.DOCUMENT_FRAGMENT_NODE) ||
+		(parent[NODE_TYPE] === Node.ELEMENT_NODE && selfClosingTags[parent.tagName] === true) )
 			return node;
 	
-	if ( node.nodeType <= Node.COMMENT_NODE )
+	const elementsToReplace = parent.childNodes.slice( index, index + removalCount );
+	
+	// If we're adding a document fragment that has a single child node, then pull that node out and
+	// just insert it for simplicity.
+	if ( node[NODE_TYPE] === Node.DOCUMENT_FRAGMENT_NODE && node.childNodes.length === 1 )
+		node = node.childNodes[0];
+	
+	// Inserting a single node.
+	if ( node[NODE_TYPE] <= Node.COMMENT_NODE )
 	{
-		if ( parent.parentNode && parent.parentNode.nodeType === Node.DOCUMENT_NODE )
+		// Disallow parent nodes from being added to their child nodes.
+		if ( parent[PARENT_NODE] )
 		{
-			if ( tagNameProp.hasOwnProperty( node.tagName ) )
-			{
-				const prop = tagNameProp[node.tagName];
-				if ( parent.parentNode[prop] && removalCount === 0 )
+			const doc = getDocument( parent );
+			for ( let p = parent; p && p !== doc; p = p[PARENT_NODE])
+				if ( p === node )
 					return node;
-				parent.parentNode[prop] = node;
-			}
 		}
 		
-		if ( node.parentNode )
-			node.parentNode.removeChild( node );
-		setNodeParent( node, parent );
+		// Check for duplicate head, body, or frameset node insertion into the root document node.
+		const superParent = parent[PARENT_NODE];
+		if ( superParent && superParent[NODE_TYPE] === Node.DOCUMENT_NODE && Object.hasOwn( tagNameProp, node.tagName ) )
+		{
+			const currentElement = superParent[tagNameProp[node.tagName]];
+			if ( currentElement && elementsToReplace.indexOf( currentElement ) === -1 )
+				return node;
+		}
+		
+		// The node must be removed from its original parent/position before it can be moved.
+		if ( node[PARENT_NODE] )
+			node[PARENT_NODE].removeChild( node );
+		
 		detachNodes( parent.childNodes.splice( index, removalCount, node ) );
+		setNodeParent( node, parent );
 	}
-	else if ( node.nodeType === Node.DOCUMENT_TYPE_NODE &&
-		(parent.nodeType === Node.DOCUMENT_NODE || parent.nodeType === Node.DOCUMENT_FRAGMENT_NODE) )
+	
+	// Inserting a DOCTYPE node into a document or document fragment.
+	else if ( node[NODE_TYPE] === Node.DOCUMENT_TYPE_NODE &&
+		(parent[NODE_TYPE] === Node.DOCUMENT_NODE || parent[NODE_TYPE] === Node.DOCUMENT_FRAGMENT_NODE) )
 	{
-		const owner = node.parentNode;
-		if ( owner && (owner.nodeType === Node.DOCUMENT_NODE || owner.nodeType === Node.DOCUMENT_FRAGMENT_NODE) )
+		// Check for duplicate DOCTYPE node insertion.
+		if ( parent[DOCTYPE] && elementsToReplace.indexOf( parent[DOCTYPE] ) === -1 )
+			return node;
+		
+		// Remove the new DOCTYPE from its original parent document, if it had one.
+		const owner = node[PARENT_NODE];
+		if ( owner && (owner[NODE_TYPE] === Node.DOCUMENT_NODE || owner[NODE_TYPE] === Node.DOCUMENT_FRAGMENT_NODE) )
 		{
 			owner.removeChild( node );
 			owner[DOCTYPE] = null;
 		}
-		setNodeParent( node, parent );
+		
 		detachNodes( parent.childNodes.splice( index, removalCount, node ) );
+		setNodeParent( node, parent );
 		parent[DOCTYPE] = node;
 	}
-	else if ( node.nodeType === Node.DOCUMENT_FRAGMENT_NODE )
+	
+	// Inserting a document fragment with multiple top-level nodes.
+	else if ( node[NODE_TYPE] === Node.DOCUMENT_FRAGMENT_NODE )
 	{
-		if ( parent.parentNode && parent.parentNode.nodeType === Node.DOCUMENT_NODE )
+		const superParent = parent[PARENT_NODE];
+		const uniqueInsertions = {};
+		const elementsToInsert = [];
+		
+		// Inserting the fragment into the root node of a document.
+		if ( superParent && superParent[NODE_TYPE] === Node.DOCUMENT_NODE )
 		{
-			if ( removalCount > 0 )
-				detachNodes( parent.childNodes.splice( index, removalCount ) );
-			for ( let i = node.childNodes.length - 1; i >= 0; i-- )
+			// Inserting into the document's root node requires special handling to ensure `document.head`
+			// and `document.body` are maintained properly.
+			
+			for ( let i = 0; i < node.childNodes.length; i++ )
 			{
 				const child = node.childNodes[i];
-				if ( tagNameProp.hasOwnProperty( child.tagName ) )
+				// Ensure DOCTYPE nodes don't get inserted here.
+				if ( child[NODE_TYPE] <= Node.COMMENT_NODE )
 				{
-					const prop = tagNameProp[child.tagName];
-					if ( parent.parentNode[prop] && removalCount === 0 )
-						continue;
-					parent.parentNode[prop] = child;
+					// Check for duplicate head, body, or frameset node insertion into the root document node.
+					if ( Object.hasOwn( tagNameProp, child.tagName ) )
+					{
+						const nodeType = tagNameProp[child.tagName];
+						const currentElement = superParent[nodeType];
+						if ( uniqueInsertions[nodeType] || (currentElement && elementsToReplace.indexOf( currentElement ) === -1) )
+							continue;
+						
+						// Track the insertion of head and body/frameset nodes to prevent more than one from
+						// being inserted. Only the first of either will be inserted (body and frameset nodes
+						// are treated as the same here, since they both set `document.body`).
+						uniqueInsertions[nodeType] = true;
+					}
+					
+					elementsToInsert.push( child );
+					node.childNodes.splice( i--, 1 );
 				}
-				setNodeParent( child, parent );
-				parent.childNodes.splice( index, 0, child );
-				node.childNodes.splice( i, 1 );
 			}
 		}
-		else if ( node !== getDocument( parent ) )
+		else
 		{
-			for ( let i = 0; i < node.childNodes.length; i++ )
-				setNodeParent( node.childNodes[i], parent );
-			detachNodes( parent.childNodes.splice( index, removalCount, ...node.childNodes ) );
-			node.childNodes.length = 0;
+			const owner = getDocument( parent );
+			if ( node !== owner ) // Prevent fragments from being inserted into themselves.
+				for ( let i = 0; i < node.childNodes.length; i++ )
+				{
+					const child = node.childNodes[i];
+					if ( child[NODE_TYPE] === Node.DOCUMENT_TYPE_NODE )
+					{
+						// NOTE: The use of `uniqueInsertions` here is probably unnecessary since it shouldn't
+						// be possible to have multiple DOCTYPE nodes at the root level of document fragments.
+						// Its use here is a just-in-case measure.
+						if ( uniqueInsertions[DOCTYPE] || parent !== owner || (parent[DOCTYPE] && elementsToReplace.indexOf( parent[DOCTYPE] ) === -1) )
+							continue;
+						uniqueInsertions[DOCTYPE] = true;
+					}
+					elementsToInsert.push( child );
+					node.childNodes.splice( i--, 1 );
+				}
+		}
+		
+		if ( elementsToInsert && elementsToInsert.length > 0 )
+		{
+			detachNodes( parent.childNodes.splice( index, removalCount, ...elementsToInsert ) );
+			for ( let i = 0; i < elementsToInsert.length; i++ )
+				setNodeParent( elementsToInsert[i], parent );
 		}
 	}
 	
 	return node;
+}
+
+function insertNodes( parent, nodes, index )
+{
+	let idx = index;
+	for ( let i = 0; i < nodes.length; i++ )
+	{
+		let node = nodes[i];
+		if ( !(node instanceof Node) )
+			node = createTextNode( ""+ node );
+		addChildNode( parent, node, idx++ );
+	}
 }
 
 function parseHTML( parent, html )

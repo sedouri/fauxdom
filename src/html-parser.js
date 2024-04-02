@@ -1,100 +1,100 @@
-import {Lexer, EOF} from "./lexer.js";
-import Node, {createNode} from "./node.js";
-import {NODE_TYPE, TAG_NAME, PARSER_OPTIONS, spacesRE, selfClosingTags, setNodeParent, globalizeRegExp} from "./utils.js";
+import {Lexer, EOF} from "./lexer.js"
+import Node, {createNode} from "./node.js"
+import {NODE_TYPE, TAG_NAME, PARSER_OPTIONS, spacesRE, selfClosingTags, setNodeParent, globalizeRegExp} from "./utils.js"
 
-const toLowerCase = String.prototype.toLowerCase,
-	toUpperCase = String.prototype.toUpperCase,
+const toLowerCase = String.prototype.toLowerCase;
+const toUpperCase = String.prototype.toUpperCase;
+
+const defaultOptions = {
+	allowCustomRootElement: false,
+	allowSelfClosingSyntax: false,
+	allowCDATA: false,
+	allowProcessingInstructions: false,
+	decodeEntities: false,
+	encodeEntities: false,
+	collapseWhitespace: false,
+	trimWhitespace: false,
+	lowerAttributeCase: false
+};
+
+const STATE_START_TAG = 0;
+const STATE_ATTRIBUTE = 1;
+const STATE_END_TAG = 2;
+
+// '12.1.2.3 Attributes' from HTML5 spec.
+const attributeNameExclusions = {
+	//"\0": true, // This is caught by the lexer in isWhiteSpace().
+	//'"': true, // Disabled to better match browser behaviour.
+	//"'": true, // Disabled to better match browser behaviour.
+	">": true,
+	"/": true,
+	"=": true
+};
+
+const pTagBoundary = {P: true};
+const definitionTagBoundary = {DT: true, DD: true};
+const tableStructureTagBoundary = {TBODY: true, THEAD: true, TFOOT: true};
+const tableCellTagBoundary = {TD: true, TH: true};
+const formElementTagBoundary = {BUTTON: true, DATALIST: true, OPTGROUP: true, OPTION: true, PROGRESS: true, SELECT: true, TEXTAREA: true};
+
+// Largely based on '8.1.2.4 Optional tags' from the HTML5 spec.
+// https://www.w3.org/TR/html50/syntax.html#syntax-tag-omission
+const tagBoundaries = {
+	ADDRESS: pTagBoundary,
+	ARTICLE: pTagBoundary,
+	ASIDE: pTagBoundary,
+	BLOCKQUOTE: pTagBoundary,
+	DIV: pTagBoundary,
+	FIELDSET: pTagBoundary,
+	FOOTER: pTagBoundary,
+	H1: pTagBoundary,
+	H2: pTagBoundary,
+	H3: pTagBoundary,
+	H4: pTagBoundary,
+	H5: pTagBoundary,
+	H6: pTagBoundary,
+	HEADER: pTagBoundary,
+	HGROUP: pTagBoundary,
+	HR: pTagBoundary,
+	MAIN: pTagBoundary,
+	NAV: pTagBoundary,
+	P: pTagBoundary,
+	PRE: pTagBoundary,
+	SECTION: pTagBoundary,
 	
-	defaultOptions = {
-		allowCustomRootElement: false,
-		allowSelfClosingSyntax: false,
-		allowCDATA: false,
-		allowProcessingInstructions: false,
-		decodeEntities: false,
-		encodeEntities: false,
-		collapseWhitespace: false,
-		trimWhitespace: false,
-		lowerAttributeCase: false
-	},
+	BODY: {HEAD: true, TITLE: true},
 	
-	STATE_START_TAG = 0,
-	STATE_ATTRIBUTE = 1,
-	STATE_END_TAG = 2,
+	// Definitions
+	DL: pTagBoundary,
+	DD: definitionTagBoundary,
+	DT: definitionTagBoundary,
 	
-	// '12.1.2.3 Attributes' from HTML5 spec.
-	attributeNameExclusions = {
-		//"\0": true, // This is caught by the lexer in isWhiteSpace().
-		//'"': true, // Disabled to better match browser behaviour.
-		//"'": true, // Disabled to better match browser behaviour.
-		">": true,
-		"/": true,
-		"=": true
-	},
+	// Tables
+	TABLE: pTagBoundary,
+	TBODY: tableStructureTagBoundary,
+	THEAD: tableStructureTagBoundary,
+	TD: tableCellTagBoundary,
+	TFOOT: tableStructureTagBoundary,
+	TH: tableCellTagBoundary,
+	TR: {TR: true},
 	
-	pTagBoundary = {P: true},
-	definitionTagBoundary = {DT: true, DD: true},
-	tableStructureTagBoundary = {TBODY: true, THEAD: true, TFOOT: true},
-	tableCellTagBoundary = {TD: true, TH: true},
-	formElementTagBoundary = {BUTTON: true, DATALIST: true, OPTGROUP: true, OPTION: true, PROGRESS: true, SELECT: true, TEXTAREA: true},
+	// Lists
+	LI: {LI: true},
+	OL: pTagBoundary,
+	UL: pTagBoundary,
 	
-	// Largely based on '8.1.2.4 Optional tags' from the HTML5 spec.
-	// https://www.w3.org/TR/html50/syntax.html#syntax-tag-omission
-	tagBoundaries = {
-		ADDRESS: pTagBoundary,
-		ARTICLE: pTagBoundary,
-		ASIDE: pTagBoundary,
-		BLOCKQUOTE: pTagBoundary,
-		DIV: pTagBoundary,
-		FIELDSET: pTagBoundary,
-		FOOTER: pTagBoundary,
-		H1: pTagBoundary,
-		H2: pTagBoundary,
-		H3: pTagBoundary,
-		H4: pTagBoundary,
-		H5: pTagBoundary,
-		H6: pTagBoundary,
-		HEADER: pTagBoundary,
-		HGROUP: pTagBoundary,
-		HR: pTagBoundary,
-		MAIN: pTagBoundary,
-		NAV: pTagBoundary,
-		P: pTagBoundary,
-		PRE: pTagBoundary,
-		SECTION: pTagBoundary,
-		
-		BODY: {HEAD: true, TITLE: true},
-		
-		// Definitions
-		DL: pTagBoundary,
-		DD: definitionTagBoundary,
-		DT: definitionTagBoundary,
-		
-		// Tables
-		TABLE: pTagBoundary,
-		TBODY: tableStructureTagBoundary,
-		THEAD: tableStructureTagBoundary,
-		TD: tableCellTagBoundary,
-		TFOOT: tableStructureTagBoundary,
-		TH: tableCellTagBoundary,
-		TR: {TR: true},
-		
-		// Lists
-		LI: {LI: true},
-		OL: pTagBoundary,
-		UL: pTagBoundary,
-		
-		// Forms
-		BUTTON: formElementTagBoundary,
-		DATALIST: formElementTagBoundary,
-		FORM: pTagBoundary,
-		INPUT: formElementTagBoundary,
-		OPTGROUP: {OPTGROUP: true, OPTION: true},
-		OPTION: {OPTION: true},
-		OUTPUT: formElementTagBoundary,
-		PROGRESS: formElementTagBoundary,
-		SELECT: formElementTagBoundary,
-		TEXTAREA: formElementTagBoundary,
-	};
+	// Forms
+	BUTTON: formElementTagBoundary,
+	DATALIST: formElementTagBoundary,
+	FORM: pTagBoundary,
+	INPUT: formElementTagBoundary,
+	OPTGROUP: {OPTGROUP: true, OPTION: true},
+	OPTION: {OPTION: true},
+	OUTPUT: formElementTagBoundary,
+	PROGRESS: formElementTagBoundary,
+	SELECT: formElementTagBoundary,
+	TEXTAREA: formElementTagBoundary,
+};
 
 export default class Parser
 {
@@ -133,8 +133,9 @@ export default class Parser
 	
 	parseHTML()
 	{
-		var rootNode = createNode( Node.DOCUMENT_FRAGMENT_NODE ),
-			scopeChain = [rootNode], theChar;
+		const rootNode = createNode( Node.DOCUMENT_FRAGMENT_NODE );
+		const scopeChain = [rootNode];
+		let theChar;
 		
 		rootNode[PARSER_OPTIONS] = this.options;
 		
@@ -158,10 +159,14 @@ export default class Parser
 	
 	parseTag( scopeChain )
 	{
-		var node, name, selfClosing, state = STATE_START_TAG,
-			tagStartIdx = this.lexer.index,
-			theChar = this.lexer.getNextChar(),
-			startIdx, endIdx;
+		let node;
+		let name;
+		let selfClosing;
+		let state = STATE_START_TAG;
+		let tagStartIdx = this.lexer.index;
+		let theChar = this.lexer.getNextChar();
+		let startIdx;
+		let endIdx;
 		
 		if ( theChar !== EOF )
 	Main:
@@ -227,7 +232,7 @@ export default class Parser
 						startIdx = this.lexer.index;
 						this.lexer.goToString( ">" );
 						
-						let rootNode = scopeChain[scopeChain.length - 1];
+						const rootNode = scopeChain[scopeChain.length - 1];
 						
 						if ( rootNode.doctype )
 							break;
@@ -242,13 +247,14 @@ export default class Parser
 						
 						if ( params.length > 1 )
 						{
-							let idType = toLowerCase.call( params.shift() );
+							const idType = toLowerCase.call( params.shift() );
 							params = params.join( " " ).split( '"' );
 							if ( params[0] === "" ) switch ( idType )
 							{
 								case "public":
 									params.shift();
 									node.publicId = params.shift();
+									// fallthrough
 									
 								case "system":
 									params.shift();
@@ -374,7 +380,7 @@ export default class Parser
 				case STATE_START_TAG:
 					node = createNode( Node.ELEMENT_NODE );
 					node[TAG_NAME] = name;
-					while ( tagBoundaries.hasOwnProperty( node[TAG_NAME] ) && tagBoundaries[node[TAG_NAME]][scopeChain[0][TAG_NAME]] )
+					while ( Object.hasOwn( tagBoundaries, node[TAG_NAME] ) && tagBoundaries[node[TAG_NAME]][scopeChain[0][TAG_NAME]] )
 						scopeChain.splice( 0, 1 );
 					scopeChain[0].childNodes.push( node );
 					setNodeParent( node, scopeChain[0] );
@@ -384,6 +390,7 @@ export default class Parser
 					break;
 					
 				case STATE_ATTRIBUTE:
+				{
 					let value = true;
 					
 					if ( this.options.lowerAttributeCase )
@@ -407,7 +414,6 @@ export default class Parser
 						else // Unquoted attribute value
 						{
 							while ( !this.lexer.isWhiteSpace( theChar ) &&
-									//!unquotedAttributeExclusions[theChar] &&
 									theChar !== ">" &&
 									(!this.options.allowSelfClosingSyntax || !(theChar === "/" && this.lexer.peek() === ">")) &&
 									theChar !== EOF )
@@ -416,7 +422,7 @@ export default class Parser
 							theChar = this.lexer.skipWhiteSpace();
 						}
 						
-						if ( node.attributes.hasOwnProperty( name ) ) break;
+						if ( Object.hasOwn( node.attributes, name ) ) break;
 						value = this.lexer.str.slice( startIdx, endIdx );
 						
 						if ( value === "" )
@@ -424,11 +430,11 @@ export default class Parser
 						else if ( this.options.decodeEntities )
 							value = this.entityEncoder.decode( value );
 					}
-					else if ( node.attributes.hasOwnProperty( name ) ) break;
+					else if ( Object.hasOwn( node.attributes, name ) ) break;
 					
 					node.attributes[name] = value;
 					break;
-					
+				}
 				case STATE_END_TAG:
 					for ( let i = 0; i < scopeChain.length; i++ )
 						if ( scopeChain[i][TAG_NAME] === name )
@@ -449,8 +455,8 @@ export default class Parser
 	
 	parseText( scopeChain )
 	{
-		var startIdx = this.lexer.index,
-			preserveContent = false;
+		const startIdx = this.lexer.index;
+		let preserveContent = false;
 		
 		if ( scopeChain[0][TAG_NAME] === "SCRIPT" || scopeChain[0][TAG_NAME] === "STYLE" )
 		{
@@ -464,8 +470,8 @@ export default class Parser
 	
 	addTextNode( scopeChain, startIdx, endIdx, preserveContent )
 	{
-		var node = createNode( Node.TEXT_NODE ),
-			value = this.lexer.str.slice( startIdx, endIdx );
+		const node = createNode( Node.TEXT_NODE );
+		let value = this.lexer.str.slice( startIdx, endIdx );
 		
 		if ( preserveContent != null )
 		{

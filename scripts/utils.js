@@ -1,21 +1,22 @@
 function isObjectEmpty( obj )
 {
 	if ( obj && typeof obj === "object" )
-		for ( let k in obj ) if ( obj.hasOwnProperty( k ) ) return false;
+		for ( const key in obj ) if ( Object.hasOwn( obj, key ) ) return false;
 	return true;
 }
 
+// deno-lint-ignore no-control-regex
 const stringEscapeRE = /[\x00-\x1F\x22\x27\x5C\x7F-\x9F\u00AD\u0600-\u0604\u070F\u17B4\u17B5\u200C-\u200F\u2028-\u202F\u2060-\u206F\uFEFF\uFFF0-\uFFFF]/g;
 function stringEscape( string, quoteChar, re = stringEscapeRE )
 {
-	var quoteCode = 0;
+	let quoteCode = 0;
 	
 	if ( typeof quoteChar === "string" && quoteChar.length > 0 )
 		quoteCode = quoteChar.charCodeAt( 0 );
 	
 	return string.replace( re, function( chr )
 	{
-		var charCode = chr.charCodeAt( 0 );
+		const charCode = chr.charCodeAt( 0 );
 		if ( charCode < 0xFF )
 		{
 			switch ( charCode )

@@ -1,7 +1,7 @@
-import {Lexer, EOF} from "./lexer.js";
+import {Lexer, EOF} from "./lexer.js"
 
-const newLinesRE = /\r\n|\r|\f/g,
-	anbSyntaxRE = /\(\s*(even|odd|(?:(?:([+-]?\d*)n)\s*(?:([+-])\s*(\d+))?|([+-]?\d+)))\s*/g;
+const newLinesRE = /\r\n|\r|\f/g;
+const anbSyntaxRE = /\(\s*(even|odd|(?:(?:([+-]?\d*)n)\s*(?:([+-])\s*(\d+))?|([+-]?\d+)))\s*/g;
 
 const ParamTypes = {
 	Selectors: 0,
@@ -24,8 +24,8 @@ const paramExpectations = {
 	
 	"nth-of-type": ParamTypes.Iterator,
 	"nth-last-of-type": ParamTypes.Iterator,
-	"nth-col": ParamTypes.Iterator, // Not implementing
-	"nth-last-col": ParamTypes.Iterator, // Not implementing
+	"nth-col": ParamTypes.Iterator, // Not implementing, layout only (requires a renderer)
+	"nth-last-col": ParamTypes.Iterator, // Not implementing, layout only (requires a renderer)
 };
 
 // https://drafts.csswg.org/selectors-4/
@@ -37,11 +37,11 @@ export function parseSelector( selector )
 
 function parseSelectorList( lexer, terminator = EOF, relative = false )
 {
-	var theChar = lexer.skipWhiteSpace(),
-		selector = {},
-		compound = [],
-		complex = [compound],
-		ast = [complex];
+	let theChar = lexer.skipWhiteSpace();
+	let selector = {};
+	let compound = [];
+	let complex = [compound];
+	const ast = [complex];
 	
 	while ( theChar !== EOF && theChar !== terminator )
 	{
@@ -180,7 +180,10 @@ function parseSelectorList( lexer, terminator = EOF, relative = false )
 						{
 							case ParamTypes.IteratorOf: // https://drafts.csswg.org/selectors-4/#nth-child-pseudo
 							case ParamTypes.Iterator: // https://drafts.csswg.org/css-syntax-3/#anb-microsyntax
-								let A = 0, B = 0, ofSelector;
+							{
+								let A = 0;
+								let B = 0;
+								let ofSelector;
 								
 								anbSyntaxRE.lastIndex = lexer.index;
 								const match = anbSyntaxRE.exec( lexer.str );
@@ -227,7 +230,7 @@ function parseSelectorList( lexer, terminator = EOF, relative = false )
 								selector.params = [A, B];
 								if ( ofSelector ) selector.params.push( ofSelector );
 								break;
-								
+							}
 							case ParamTypes.Selectors:
 								lexer.getNextChar();
 								selector.params = parseSelectorList( lexer, ")", true );
@@ -333,8 +336,8 @@ function parseSelectorList( lexer, terminator = EOF, relative = false )
 
 function syntaxError( message, lexer, offset = 0 )
 {
-	var error = new SyntaxError( message ),
-		column = lexer.index + offset;
+	const error = new SyntaxError( message );
+	const column = lexer.index + offset;
 	error.stack = "SyntaxError: "+ message +"\n\n"+ lexer.str +"\n"+ " ".repeat( column ) +"^\n    at index "+ column;
 	return error;
 }
@@ -342,8 +345,8 @@ function syntaxError( message, lexer, offset = 0 )
 // https://drafts.csswg.org/css-syntax-3/#consume-name
 function parseIdentifier( lexer )
 {
-	var name = "",
-		theChar = lexer.getChar();
+	let name = "";
+	let theChar = lexer.getChar();
 	
 	if ( isIdentifierStart( theChar ) )
 	{
@@ -370,7 +373,7 @@ function parseIdentifier( lexer )
 // https://drafts.csswg.org/css-syntax-3/#consume-escaped-code-point
 function parseEscapedCodePoint( lexer )
 {
-	var theChar = lexer.getNextChar();
+	let theChar = lexer.getNextChar();
 	
 	if ( isHexDigit( theChar ) )
 	{

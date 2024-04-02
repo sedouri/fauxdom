@@ -3,8 +3,7 @@ import buble from "@rollup/plugin-buble";
 import stripCode from "rollup-plugin-strip-code";
 import {spawn} from "child_process";
 import {zip} from "compressing";
-import * as fs from "fs";
-import * as path from "path";
+import path from "node:path";
 
 import * as pkg from "./package.json";
 
@@ -17,36 +16,37 @@ export default args =>
 	DEBUG = !!args.configDebug;
 	
 	const debugStripper = stripCode( {
-			start_comment: "@START_DEBUG",
-			end_comment: "@END_DEBUG"
-		} ),
-		unitTestStripper = stripCode( {
-			start_comment: "@START_UNIT_TESTS",
-			end_comment: "@END_UNIT_TESTS"
-		} ),
-		browserStripper = stripCode( {
-			start_comment: "@START_BROWSER_ONLY",
-			end_comment: "@END_BROWSER_ONLY"
-		} ),
-		modulePlugins = [debugStripper, browserStripper],
-		iifePlugins = [debugStripper, unitTestStripper, buble()],
-		output = [
-			{
-				onwarn,
-				input: "src/document.js",
-				plugins: modulePlugins,
-				output: [
-					module( "esm" ),
-					module( "cjs" )
-				]
-			},
-			{
-				onwarn,
-				input: "src/document.js",
-				plugins: iifePlugins,
-				output: module( "iife" )
-			}
-		];
+		start_comment: "@START_DEBUG",
+		end_comment: "@END_DEBUG"
+	} );
+	const unitTestStripper = stripCode( {
+		start_comment: "@START_UNIT_TESTS",
+		end_comment: "@END_UNIT_TESTS"
+	} );
+	const browserStripper = stripCode( {
+		start_comment: "@START_BROWSER_ONLY",
+		end_comment: "@END_BROWSER_ONLY"
+	} );
+	
+	const modulePlugins = [debugStripper, browserStripper];
+	const iifePlugins = [debugStripper, unitTestStripper, buble()];
+	const output = [
+		{
+			onwarn,
+			input: "src/document.js",
+			plugins: modulePlugins,
+			output: [
+				module( "esm" ),
+				module( "cjs" )
+			]
+		},
+		{
+			onwarn,
+			input: "src/document.js",
+			plugins: iifePlugins,
+			output: module( "iife" )
+		}
+	];
 	
 	if ( !DEBUG )
 	{
@@ -103,7 +103,7 @@ function zipFile()
 	return {
 		name: "Zip",
 		
-		renderChunk( src, chunk, options )
+		renderChunk( src, _chunk, options )
 		{
 			const ext = path.extname( options.file ),
 				fileName = path.basename( options.file, ext ),

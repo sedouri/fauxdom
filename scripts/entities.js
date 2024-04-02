@@ -1,26 +1,27 @@
-const https = require( "https" ),
-	fs = require( "fs" ),
-	path = require( "path" ),
-	{zip} = require( "compressing" ),
-	{stringEscape} = require( "./utils" );
-	
-	entityNameRE = /[&;]/g,
-	stringEscapeRE = /[\x00-\x1F\x22\x27\x5C\x7F-\uFFFF]/g;
+const https = require( "https" );
+const fs = require( "fs" );
+const path = require( "path" );
+const {zip} = require( "compressing" );
+const {stringEscape} = require( "./utils" );
+
+const entityNameRE = /[&;]/g;
+// deno-lint-ignore no-control-regex
+const stringEscapeRE = /[\x00-\x1F\x22\x27\x5C\x7F-\uFFFF]/g;
 
 function processEntities( str )
 {
-	const data = JSON.parse( str ),
-		entityList = Object.getOwnPropertyNames( data ).
-			sort( ( a, b ) => a.localeCompare( b, "en", {sensitivity: "base"} ) ),
-		entities = {},
-		duplicates = new Map();
+	const data = JSON.parse( str );
+	const entityList = Object.getOwnPropertyNames( data ).
+			sort( ( a, b ) => a.localeCompare( b, "en", {sensitivity: "base"} ) );
+	const entities = {};
+	const duplicates = new Map();
 	
 	for ( let i = 0; i < entityList.length; i++ )
 	{
-		const name = entityList[i].replace( entityNameRE, "" ),
-			nameLC = name.toLowerCase();
+		const name = entityList[i].replace( entityNameRE, "" );
+		const nameLC = name.toLowerCase();
 		
-		if ( !entities.hasOwnProperty( name ) )
+		if ( !Object.hasOwn( entities, name ) )
 		{
 			let chars = data[entityList[i]].characters;
 			if ( chars.length === 1 )
@@ -56,11 +57,11 @@ function processEntities( str )
 	}
 	
 	let entitiesStr = "{";
-	for ( let k in entities )
+	for ( const key in entities )
 	{
-		const value = entities[k];
+		const value = entities[key];
 		if ( entitiesStr !== "{" ) entitiesStr += ",";
-		entitiesStr += '"'+ k +'":';
+		entitiesStr += '"'+ key +'":';
 		if ( typeof value === "string" )
 			entitiesStr += '"'+ value +'"';
 		else entitiesStr += value;
@@ -70,8 +71,8 @@ function processEntities( str )
 	if ( !fs.existsSync( "./lib" ) )
 		fs.mkdirSync( "./lib" );
 	
-	const filePath = path.resolve( "./lib/entities" ),
-		escapedEntitiesStr = "JSON.parse('"+ stringEscape( entitiesStr, "'", stringEscapeRE ) +"')";
+	const filePath = path.resolve( "./lib/entities" );
+	const escapedEntitiesStr = "JSON.parse('"+ stringEscape( entitiesStr, "'", stringEscapeRE ) +"')";
 	outputFile( filePath +".json", entitiesStr );
 	outputFile( filePath +".js", "if(window.DOM)DOM.EntityEncoder.defaultEntities="+ escapedEntitiesStr );
 	outputFile( filePath +".mjs", "export default "+ escapedEntitiesStr );
@@ -85,7 +86,7 @@ else
 {
 	https.request( "https://html.spec.whatwg.org/entities.json", res =>
 	{
-		var entities = "";
+		let entities = "";
 		res.on( "data", data =>
 			{
 				entities += data;
@@ -106,9 +107,9 @@ else
 
 function outputFile( filePath, contents )
 {
-	const ext = path.extname( filePath ),
-		fileName = path.basename( filePath, ext ),
-		dirName = path.dirname( filePath );
+	const ext = path.extname( filePath );
+	const fileName = path.basename( filePath, ext );
+	const dirName = path.dirname( filePath );
 	
 	fs.writeFile( filePath, contents, err => {if ( err ) console.error( "Error writing "+ filePath +"\n"+ err )} );
 	

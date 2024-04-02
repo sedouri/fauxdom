@@ -1,12 +1,12 @@
-const DOM = require( "../" ),
-	{Node} = DOM,
-	{printHierarchy, printElementList, describeNode} = require( "../scripts/printer" );
+const DOM = require( "../" );
+const {Node} = DOM;
+const {printHierarchy, printElementList, describeNode} = require( "../scripts/printer" );
 
 function testEachWithCallback( document, tests )
 {
-	test.each( tests )( "%s", ( name, callback ) =>
+	test.each( tests )( "%s", ( _name, callback ) =>
 	{
-		var result = callback( document );
+		const result = callback( document );
 		if ( result !== undefined )
 		{
 			if ( result instanceof Node || result instanceof Array )
@@ -19,9 +19,9 @@ function testEachWithCallback( document, tests )
 
 function testEachCallbackResult( tests )
 {
-	test.each( tests )( "%s", ( name, callback ) =>
+	test.each( tests )( "%s", ( _name, callback ) =>
 	{
-		var result = callback();
+		const result = callback();
 		if ( result instanceof Node || result instanceof Array )
 			expect( printHierarchy( result ) ).toMatchSnapshot();
 		else expect( result ).toMatchSnapshot();
@@ -66,7 +66,7 @@ function testEachSelectorForFailue( name, tests )
 
 function testEachWithHTML( document, tests )
 {
-	test.each( tests )( "%s", ( name, html ) =>
+	test.each( tests )( "%s", ( _name, html ) =>
 	{
 		document.innerHTML = html;
 		expect( printHierarchy( document ) ).toMatchSnapshot();
@@ -75,7 +75,7 @@ function testEachWithHTML( document, tests )
 
 function testEachWithHTMLOutput( document, tests )
 {
-	test.each( tests )( "%s", ( name, html ) =>
+	test.each( tests )( "%s", ( _name, html ) =>
 	{
 		document.innerHTML = html;
 		expect( document.innerHTML ).toMatchSnapshot();
@@ -84,7 +84,7 @@ function testEachWithHTMLOutput( document, tests )
 
 function testEachWithAllOutput( document, tests )
 {
-	test.each( tests )( "%s", ( name, html ) =>
+	test.each( tests )( "%s", ( _name, html ) =>
 	{
 		document.innerHTML = html;
 		expect( printAll( document ) ).toMatchSnapshot();
@@ -93,7 +93,7 @@ function testEachWithAllOutput( document, tests )
 
 function testEachWithEntities( document, tests )
 {
-	test.each( tests )( "%s", ( name, entities, html ) =>
+	test.each( tests )( "%s", ( _name, entities, html ) =>
 	{
 		document.entityEncoder.entities = entities;
 		document.innerHTML = html;
@@ -103,7 +103,7 @@ function testEachWithEntities( document, tests )
 
 function testEachWithStandardEntities( document, tests )
 {
-	test.each( tests )( "%s", ( name, html ) =>
+	test.each( tests )( "%s", ( _name, html ) =>
 	{
 		document.importStandardEntities();
 		document.innerHTML = html;

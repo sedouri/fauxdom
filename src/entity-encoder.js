@@ -1,19 +1,19 @@
-import {globalizeRegExp} from "./utils.js";
+import {globalizeRegExp} from "./utils.js"
 
-const decodingRE = /&(#\d+|#[xX][0-9a-fA-F]+|[0-9a-zA-Z]+);?/g,
-	
-	// From 'SyntaxCharacter' in section 21.2.1 (Patterns) of the ECMAScript 6.0 spec.
-	regExpEscapeRE = /[\^$\\.*+?()[\]{}|]/g,
-	
-	_defaultEntities = processEntities( {
-		"amp": "&",
-		"apos": "'",
-		"copy": 169,
-		"gt": ">",
-		"lt": "<",
-		"nbsp": 160,
-		"quot": '"'
-	} );
+const decodingRE = /&(#\d+|#[xX][0-9a-fA-F]+|[0-9a-zA-Z]+);?/g;
+
+// From 'SyntaxCharacter' in section 21.2.1 (Patterns) of the ECMAScript 6.0 spec.
+const regExpEscapeRE = /[\^$\\.*+?()[\]{}|]/g;
+
+const _defaultEntities = processEntities( {
+	"amp": "&",
+	"apos": "'",
+	"copy": 169,
+	"gt": ">",
+	"lt": "<",
+	"nbsp": 160,
+	"quot": '"'
+} );
 
 let defaultEntities = _defaultEntities;
 
@@ -68,11 +68,11 @@ export default class EntityEncoder
 
 function processEntities( entities )
 {
-	var result = {
-			encodingRE: null,
-			encodingReplacements: null,
-			decodingReplacements: null
-		};
+	const result = {
+		encodingRE: null,
+		encodingReplacements: null,
+		decodingReplacements: null
+	};
 	
 	if ( entities && typeof entities === "object" )
 	{
@@ -80,8 +80,8 @@ function processEntities( entities )
 			unescapes = {},
 			entityList = [];
 		
-		for ( let k in entities )
-			if ( entities.hasOwnProperty( k ) )
+		for ( const k in entities )
+			if ( Object.hasOwn( entities, k ) )
 			{
 				let entity = entities[k];
 				
@@ -91,7 +91,7 @@ function processEntities( entities )
 					continue;
 				
 				entityList.push( entity.replace( regExpEscapeRE, "\\$&" ) );
-				if ( !escapes.hasOwnProperty( entity ) || (k.length + 2) < escapes[entity].length )
+				if ( !Object.hasOwn( escapes, entity ) || (k.length + 2) < escapes[entity].length )
 					escapes[entity] = "&"+ k +";";
 				unescapes[k] = entity;
 			}

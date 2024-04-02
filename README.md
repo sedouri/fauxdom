@@ -66,7 +66,7 @@ For client-side use, FauxDOM comes in two distinct flavours:
 
    The module exports a single class named `DOM`.
 
-Download the [latest release](../../releases/latest) of the style you want.
+Download the [latest release](../../releases/latest) in the style you want.
 
 <a name="entities-variants"></a>`entities.zip` and `entities.module.zip` are also available to download if you want to be able to encode and decode the entire set of HTML entities as defined by the HTML 5 standard. Please see [the note about the standard set of entities](docs/DOM.md#standard-entities-note) if you intend to use the full set.
 
@@ -109,7 +109,7 @@ document.body.appendChild( header );
 console.log( document.innerHTML );
 ```
 
-will output (with spaces and line breaks added for readability):
+will output (with whitespace added for readability):
 
 ```html
 <!DOCTYPE html>
@@ -138,7 +138,7 @@ document.forEach( node =>
 console.log( document.innerHTML );
 ```
 
-Even though the above code isn't anywhere near production quality, with absolutely no error handling or considerations for security, it is the minimum amount of work needed to allow HTML code like the above `<?js '<div>'+ (21 * 2) +'</div>'?>` to be output as:
+Even though the above code isn't anywhere near production quality, with absolutely no error handling or considerations for security, it is the minimum amount of work needed to allow the example code above to output:
 
 ```html
 <div>42</div>
@@ -155,7 +155,11 @@ FauxDOM also requires, and includes, basic polyfills for the following JavaScrip
 | [`Symbol`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Browser_compatibility) |   38   |  12  |   36    | ***none*** |  25   |   9    |
 | [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Browser_compatibility) |   45   |  12  |   34    | ***none*** |  32   |   9    |
 | [`Object.freeze`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze#Browser_compatibility) |   6    |  12  |    4    |     9      |  12   |  5.1   |
+| [`Object.hasOwn`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn#browser_compatibility) |   93   |  93  |    92   | ***none*** |  79   |  15.4  |
 | [`String.fromCodePoint`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint#Browser_compatibility) |   41   |  12  |   29    | ***none*** |  28   |   10   |
+| [`String.prototype.trimEnd`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimEnd#Browser_compatibility) |   66   |  79  |   61    | ***none*** |  53   |   12   |
+| [`String.prototype.trimStart`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimStart#Browser_compatibility) |   66   |  79  |   61    | ***none*** |  53   |   12   |
+| [`Array.prototype.find`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find#browser_compatibility) |   45   |  12  |   25    | ***none*** |  32   |   8    |
 | [`Function.prototype.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind#Browser_compatibility) |   7    |  12  |    4    |     9      | 11.6  |  5.1   |
 
 If your project already includes a polyfill for any of the above, include your polyfill before FauxDOM to keep FauxDOM's simplistic polyfills from being used.

@@ -26,7 +26,7 @@ The `DOMTokenList` class, as used by FauxDOM, is only used to implement [`Node.c
 
 - <a name="properties-value"></a>**`value`** String — [[standard](https://dom.spec.whatwg.org/#dom-domtokenlist-value)] [[MDN](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/value)]
 
-  Gets the value of the list as a `String` of all tokens in the list (in list order) separated by single ASCII space characters. Setting `value` clears the list and, if set to a string value, separates the string treating one or more white space characters in a row as delimiters, with each item in the resulting list (if valid) then being added to this `DOMTokenList` instance.
+  Gets the value of the list as a `String` of all tokens in the list (in list order) separated by single ASCII space characters. Setting `value` clears the list and, if set to a string value, separates the string treating one or more whitespace characters in a row as delimiters, with each item in the resulting list (if valid) then being added to this `DOMTokenList` instance.
 
 ## Methods
 
@@ -71,6 +71,10 @@ Adds the specified tokens to the list.
 - **`token...`** String
 
   One or more tokens to add to the list. If a specified token already exists, or [isn't valid](#methods-supports), it is ignored and nothing happens.
+
+**Return Value**
+
+Nothing.
 
 ----
 
@@ -133,6 +137,10 @@ Removes the specified tokens from the list.
 - **`token...`** String
 
   One or more tokens to remove from the list. If a specified token doesn't exist, or [isn't valid](#methods-supports), it is ignored and nothing happens.
+
+**Return Value**
+
+Nothing.
 
 ----
 

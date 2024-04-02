@@ -1,6 +1,5 @@
-const {DOM, testEachWithCallback, testEachWithQuery, testEachWithQueryAll, testEachClosest, testEachMatch, testEachSelector, testEachSelectorForFailue, printElementList} = require( "./utils" ),
-	{parseSelector} = DOM,
-	htmlContent = require( "fs" ).readFileSync( "./tests/dom-api.selectors.test.html", "utf8" );
+const {DOM, testEachWithQuery, testEachWithQueryAll, testEachClosest, testEachMatch, testEachSelector, testEachSelectorForFailue, printElementList} = require( "./utils" );
+const htmlContent = require( "fs" ).readFileSync( "./tests/dom-api.selectors.test.html", "utf8" );
 
 describe( "DOM API, Selector parsing", () =>
 {

@@ -1,26 +1,27 @@
-import {PARSER_OPTIONS, nodeTypes, selfClosingTags, getDocument} from "./utils.js";
+import {PARSER_OPTIONS, nodeTypes, selfClosingTags, getDocument} from "./utils.js"
 
 export function serializeNode( elem )
 {
-	var tagName = elem.tagName,
-		owner = getDocument( elem ),
-		entities = owner ? owner.entityEncoder : null,
-		html = "";
+	let tagName = elem.tagName;
+	const owner = getDocument( elem );
+	const entities = owner ? owner.entityEncoder : null;
+	let html = "";
+	
 	switch ( elem.nodeType )
 	{
 		case nodeTypes.ELEMENT_NODE:
 			tagName = tagName.toLowerCase();
 			html += "<"+ tagName;
-			for ( let k in elem.attributes )
-				if ( elem.attributes.hasOwnProperty( k ) )
+			for ( const key in elem.attributes )
+				if ( Object.hasOwn( elem.attributes, key ) )
 				{
-					let attr = elem.attributes[k];
+					let attr = elem.attributes[key];
 					if ( attr === true )
 						attr = "";
 					else if ( entities && owner[PARSER_OPTIONS] )
 						attr = encodeEntities( attr, entities, owner[PARSER_OPTIONS] );
 					
-					html += " "+ k;
+					html += " "+ key;
 					if ( attr !== "" )
 						html += '="'+ attr +'"';
 				}
