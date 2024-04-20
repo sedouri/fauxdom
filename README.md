@@ -1,6 +1,6 @@
 # FauxDOM
 
-![Build Status](https://github.com/sedouri/fauxdom/workflows/build/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/sedouri/fauxdom/badge.svg?branch=master)](https://coveralls.io/github/sedouri/fauxdom?branch=master)
+![Build Status](https://github.com/sedouri/fauxdom/workflows/build/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/sedouri/fauxdom/badge.svg?branch=main)](https://coveralls.io/github/sedouri/fauxdom?branch=main)
 
 A fast and lightweight JavaScript library for parsing, modifying, and outputting HTML using a (mostly) standard DOM API, either on the server in Node.js or in any reasonably modern browser.
 
