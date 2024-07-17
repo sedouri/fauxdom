@@ -1,8 +1,9 @@
-const DOM = require( "../" );
-const {Node} = DOM;
-const {printHierarchy, printElementList, describeNode} = require( "../scripts/printer" );
+import DOM from "../index.js"
+import {printHierarchy, printElementList, describeNode} from "../scripts/printer.js"
 
-function testEachWithCallback( document, tests )
+const {Node} = DOM;
+
+export function testEachWithCallback( document, tests )
 {
 	test.each( tests )( "%s", ( _name, callback ) =>
 	{
@@ -17,7 +18,7 @@ function testEachWithCallback( document, tests )
 	} );
 }
 
-function testEachCallbackResult( tests )
+export function testEachCallbackResult( tests )
 {
 	test.each( tests )( "%s", ( _name, callback ) =>
 	{
@@ -28,43 +29,43 @@ function testEachCallbackResult( tests )
 	} );
 }
 
-function testEachWithQuery( document, name, tests )
+export function testEachWithQuery( document, name, tests )
 {
 	test.each( tests )( name +", %s", selector =>
 		expect( describeNode( document.querySelector( selector ) ) ).toMatchSnapshot() );
 }
 
-function testEachWithQueryAll( document, name, tests )
+export function testEachWithQueryAll( document, name, tests )
 {
 	test.each( tests )( name +", %s", selector =>
 		expect( printElementList( document.querySelectorAll( selector ) ) ).toMatchSnapshot() );
 }
 
-function testEachClosest( name, tests )
+export function testEachClosest( name, tests )
 {
 	test.each( tests )( name +", %s", ( selector, node ) =>
 		expect( describeNode( node.closest( selector ) ) ).toMatchSnapshot() );
 }
 
-function testEachMatch( name, tests )
+export function testEachMatch( name, tests )
 {
 	test.each( tests )( name +", %s", ( selector, node, matches ) =>
 		expect( node.matches( selector ) ).toBe( matches ) );
 }
 
-function testEachSelector( name, tests )
+export function testEachSelector( name, tests )
 {
 	test.each( tests )( name +", %s", selector =>
 		expect( DOM.parseSelector( selector ) ).toMatchSnapshot() );
 }
 
-function testEachSelectorForFailue( name, tests )
+export function testEachSelectorForFailue( name, tests )
 {
 	test.each( tests )( name +", %s", selector =>
 		expect( () => DOM.parseSelector( selector ) ).toThrowErrorMatchingSnapshot() );
 }
 
-function testEachWithHTML( document, tests )
+export function testEachWithHTML( document, tests )
 {
 	test.each( tests )( "%s", ( _name, html ) =>
 	{
@@ -73,7 +74,7 @@ function testEachWithHTML( document, tests )
 	} );
 }
 
-function testEachWithHTMLOutput( document, tests )
+export function testEachWithHTMLOutput( document, tests )
 {
 	test.each( tests )( "%s", ( _name, html ) =>
 	{
@@ -82,7 +83,7 @@ function testEachWithHTMLOutput( document, tests )
 	} );
 }
 
-function testEachWithAllOutput( document, tests )
+export function testEachWithAllOutput( document, tests )
 {
 	test.each( tests )( "%s", ( _name, html ) =>
 	{
@@ -91,7 +92,7 @@ function testEachWithAllOutput( document, tests )
 	} );
 }
 
-function testEachWithEntities( document, tests )
+export function testEachWithEntities( document, tests )
 {
 	test.each( tests )( "%s", ( _name, entities, html ) =>
 	{
@@ -101,7 +102,7 @@ function testEachWithEntities( document, tests )
 	} );
 }
 
-function testEachWithStandardEntities( document, tests )
+export function testEachWithStandardEntities( document, tests )
 {
 	test.each( tests )( "%s", ( _name, html ) =>
 	{
@@ -111,28 +112,14 @@ function testEachWithStandardEntities( document, tests )
 	} );
 }
 
-function printAll( document )
+export function printAll( document )
 {
 	return "html:\n"+ document.innerHTML +"\n\nhierarchy:\n"+ printHierarchy( document );
 }
 
-module.exports = {
+export {
 	DOM,
-	testEachWithCallback,
-	testEachCallbackResult,
-	testEachWithQuery,
-	testEachWithQueryAll,
-	testEachClosest,
-	testEachMatch,
-	testEachSelector,
-	testEachSelectorForFailue,
-	testEachWithHTML,
-	testEachWithHTMLOutput,
-	testEachWithAllOutput,
-	testEachWithEntities,
-	testEachWithStandardEntities,
 	printHierarchy,
 	printElementList,
-	printAll,
 	describeNode
 };

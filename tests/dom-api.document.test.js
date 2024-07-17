@@ -1,6 +1,6 @@
 // deno-lint-ignore-file no-self-assign
 
-const {DOM, testEachWithCallback, printHierarchy} = require( "./utils" );
+import {DOM, testEachWithCallback, printHierarchy} from "./utils.js"
 
 describe( "DOM API, Document", () =>
 {

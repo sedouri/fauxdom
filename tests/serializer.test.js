@@ -1,4 +1,4 @@
-const {DOM, testEachWithHTMLOutput, testEachWithAllOutput} = require( "./utils" );
+import {DOM, testEachWithHTMLOutput, testEachWithAllOutput} from "./utils.js"
 
 const documentHead = "<!DOCTYPE html><html><head>";
 const documentMid = "</head><body>";

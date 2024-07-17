@@ -1,5 +1,7 @@
-const {DOM, testEachWithQuery, testEachWithQueryAll, testEachClosest, testEachMatch, testEachSelector, testEachSelectorForFailue, printElementList} = require( "./utils" );
-const htmlContent = require( "fs" ).readFileSync( "./tests/dom-api.selectors.test.html", "utf8" );
+import {DOM, testEachWithQuery, testEachWithQueryAll, testEachClosest, testEachMatch, testEachSelector, testEachSelectorForFailue, printElementList} from "./utils.js"
+import fs from "node:fs"
+
+const htmlContent = fs.readFileSync( "./tests/dom-api.selectors.test.html", "utf8" );
 
 describe( "DOM API, Selector parsing", () =>
 {

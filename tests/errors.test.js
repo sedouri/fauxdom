@@ -1,4 +1,4 @@
-const {DOM} = require( "./utils" );
+import {DOM} from "./utils.js"
 
 describe( "Basic Sanity Checking", () =>
 {

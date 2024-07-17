@@ -1,4 +1,5 @@
 import Node from "./node.js"
+import {NODE_TYPE, TAG_NAME, PARENT_NODE} from "./utils.js"
 
 const multipleSpacesRE = /\s+/g;
 
@@ -29,7 +30,7 @@ export function minifyWhitespace( base, inlineElements, transforms, userValue )
 	inlineElements.forEach( elem => inlineElements[String( elem ).toUpperCase()] = true );
 	
 	if ( transforms && transforms.inlineStyles instanceof Function )
-		base.forEach( ( node, _parent ) =>
+		base.forEach( node =>
 		{
 			if ( node.hasAttribute( "style" ) )
 			{
@@ -38,13 +39,13 @@ export function minifyWhitespace( base, inlineElements, transforms, userValue )
 					node.setAttribute( "style", style );
 				else node.removeAttribute( "style" );
 			}
-		}, Node.ELEMENT_NODE );
+		} );
 	
 	const elementsToRemove = [];
 	
 	base.forEach( ( node, parent ) =>
 	{
-		if ( parent.tagName === "STYLE" )
+		if ( parent[TAG_NAME] === "STYLE" )
 		{
 			if ( transforms && transforms.style instanceof Function )
 			{
@@ -55,7 +56,7 @@ export function minifyWhitespace( base, inlineElements, transforms, userValue )
 			}
 			return;
 		}
-		else if ( parent.tagName === "SCRIPT" )
+		else if ( parent[TAG_NAME] === "SCRIPT" )
 		{
 			if ( transforms && transforms.script instanceof Function )
 			{
@@ -67,7 +68,7 @@ export function minifyWhitespace( base, inlineElements, transforms, userValue )
 			return;
 		}
 		
-		if ( skipElements[parent.tagName] === true )
+		if ( skipElements[parent[TAG_NAME]] === true )
 			return;
 		
 		node.nodeValue = node.nodeValue.replace( multipleSpacesRE, " " );
@@ -80,16 +81,22 @@ export function minifyWhitespace( base, inlineElements, transforms, userValue )
 	for ( let i = 0, l = list.length - 1; i <= l; i++ )
 	{
 		const item = list[i];
-		let prevNode = item.previousSibling,
-			nextNode = item.nextSibling,
-			value = item.nodeValue;
+		const parentNode = item[PARENT_NODE];
+		let prevNode = item.previousSibling;
+		let nextNode = item.nextSibling;
+		let value = item.nodeValue;
 		
-		while ( prevNode && (prevNode.nodeType === Node.COMMENT_NODE || prevNode.nodeType === Node.TEXT_NODE) )
+		while ( prevNode && (prevNode[NODE_TYPE] === Node.COMMENT_NODE || prevNode[NODE_TYPE] === Node.TEXT_NODE || prevNode[NODE_TYPE] === Node.CDATA_SECTION_NODE || prevNode[NODE_TYPE] === Node.PROCESSING_INSTRUCTION_NODE) )
+		{
+			// Never go back past the previous text node, we just
+			// have to settle for what we have now.
+			if ( prevNode.previousSibling === prevItem ) break;
 			prevNode = prevNode.previousSibling;
-		while ( nextNode && (nextNode.nodeType === Node.COMMENT_NODE || nextNode.nodeType === Node.TEXT_NODE) )
+		}
+		while ( nextNode && (nextNode[NODE_TYPE] === Node.COMMENT_NODE || nextNode[NODE_TYPE] === Node.TEXT_NODE || nextNode[NODE_TYPE] === Node.CDATA_SECTION_NODE || nextNode[NODE_TYPE] === Node.PROCESSING_INSTRUCTION_NODE) )
 			nextNode = nextNode.nextSibling;
 		
-		if ( !insideElements[item.parentNode.tagName] )
+		if ( !insideElements[parentNode[TAG_NAME]] )
 		{
 			if ( prevNode == null )
 				value = value.trimStart();
@@ -97,25 +104,77 @@ export function minifyWhitespace( base, inlineElements, transforms, userValue )
 				value = value.trimEnd();
 		}
 		
-		const isPrevNodeABlock = (prevNode && !(aroundElements[prevNode.tagName] || inlineElements[prevNode.tagName]));
-		const isNextNodeABlock = (nextNode && !(aroundElements[nextNode.tagName] || inlineElements[nextNode.tagName]));
+		const isPrevNodeABlock = isBlockElement( prevNode, inlineElements );
+		const isNextNodeABlock = isBlockElement( nextNode, inlineElements );
 		
 		if ( isPrevNodeABlock ||
-			 (prevItem && !(aroundElements[item.tagName] || inlineElements[item.tagName]) && prevItem.nodeValue.endsWith( " " )) )
+			 (!prevItem &&
+				(prevNode && containsBlockElementBeforeText( prevNode, inlineElements ))) ||
+			 (prevItem &&
+				(parentNode !== prevItem[PARENT_NODE] ||
+					(prevNode && containsBlockElementBeforeText( prevNode, inlineElements ))) &&
+				(isInlineDescendantOf( prevItem, prevNode, inlineElements ) ||
+					isInlineDescendantOf( item, prevItem[PARENT_NODE], inlineElements )) &&
+				prevItem.nodeValue.endsWith( " " )) )
 			value = value.trimStart();
 		
+		const nextParentSibling = parentNode.nextSibling;
+		
 		if ( isNextNodeABlock ||
-			 (!nextNode && (!item.parentNode.nextSibling ||
-				(item.parentNode.nextSibling.nodeType === Node.TEXT_NODE && item.parentNode.nextSibling.nodeValue.startsWith( " " )))) )
+			 (!nextNode && (
+			 	!nextParentSibling ||
+				(nextParentSibling[NODE_TYPE] === Node.TEXT_NODE &&
+					nextParentSibling.nodeValue.startsWith( " " )) ||
+				isBlockElement( nextParentSibling, inlineElements ))) ||
+			 (nextNode && containsBlockElementBeforeText( nextNode, inlineElements )) )
 			value = value.trimEnd();
 		
 		if ( value === "" || (value === " " && (isPrevNodeABlock || isNextNodeABlock)) )
 		{
 			item.remove();
 			list[i] = null;
+			prevItem = null;
 		}
-		else item.nodeValue = value;
-		
-		prevItem = item;
+		else
+		{
+			item.nodeValue = value;
+			prevItem = item;
+		}
 	}
+}
+
+function isBlockElement( node, inlineElements )
+{
+	return node && !(aroundElements[node[TAG_NAME]] || inlineElements[node[TAG_NAME]]);
+}
+
+function containsBlockElementBeforeText( node, inlineElements )
+{
+	let block = null;
+	if ( !node.childNodes || node.childNodes.length === 0 ) return false;
+	node.forEach( node =>
+	{
+		if ( node[NODE_TYPE] === Node.TEXT_NODE ) return false; // Found text before a block.
+		else if ( node[NODE_TYPE] !== Node.ELEMENT_NODE ) return; // continue
+		else if ( isBlockElement( node, inlineElements ) )
+		{
+			block = node;
+			return false; // Exit forEach() once finding a block element.
+		}
+	}, null );
+	return (block != null);
+}
+
+function isInlineDescendantOf( node, parent, inlineElements )
+{
+	if ( !parent ) return false;
+	while ( node )
+	{
+		if ( node[PARENT_NODE] === parent )
+			return true;
+		node = node[PARENT_NODE];
+		if ( isBlockElement( node, inlineElements ) )
+			break;
+	}
+	return false;
 }

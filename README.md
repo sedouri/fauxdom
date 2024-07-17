@@ -56,13 +56,17 @@ npm install fauxdom
 
 ### Client-side (browsers)
 
-For client-side use, FauxDOM comes in two distinct flavours:
+For client-side use, FauxDOM comes in three distinct flavours:
 
 1. **`fauxdom.zip`** &mdash; *Old-school everything-lives-in-the-global-scope style*
 
    Including this in your page will result in a single class called `DOM` being globally defined.
 
-2. **`fauxdom.module.zip`** &mdash; *Way-of-the-future ES module style*
+2. **`fauxdom.legacy.zip`** &mdash; *Like above, but for older browsers*
+
+   Just like the first option, but it's been made compatible with older browsers (IE 9 and similar).
+
+3. **`fauxdom.module.zip`** &mdash; *Way-of-the-future ES module style*
 
    The module exports a single class named `DOM`.
 
@@ -155,7 +159,7 @@ FauxDOM also requires, and includes, basic polyfills for the following JavaScrip
 | [`Symbol`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Browser_compatibility) |   38   |  12  |   36    | ***none*** |  25   |   9    |
 | [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Browser_compatibility) |   45   |  12  |   34    | ***none*** |  32   |   9    |
 | [`Object.freeze`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze#Browser_compatibility) |   6    |  12  |    4    |     9      |  12   |  5.1   |
-| [`Object.hasOwn`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn#browser_compatibility) |   93   |  93  |    92   | ***none*** |  79   |  15.4  |
+| [`Object.hasOwn`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn#browser_compatibility) |   93   |  93  |   92    | ***none*** |  79   |  15.4  |
 | [`String.fromCodePoint`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint#Browser_compatibility) |   41   |  12  |   29    | ***none*** |  28   |   10   |
 | [`String.prototype.trimEnd`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimEnd#Browser_compatibility) |   66   |  79  |   61    | ***none*** |  53   |   12   |
 | [`String.prototype.trimStart`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimStart#Browser_compatibility) |   66   |  79  |   61    | ***none*** |  53   |   12   |

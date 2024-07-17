@@ -1,4 +1,4 @@
-function isObjectEmpty( obj )
+export function isObjectEmpty( obj )
 {
 	if ( obj && typeof obj === "object" )
 		for ( const key in obj ) if ( Object.hasOwn( obj, key ) ) return false;
@@ -7,7 +7,7 @@ function isObjectEmpty( obj )
 
 // deno-lint-ignore no-control-regex
 const stringEscapeRE = /[\x00-\x1F\x22\x27\x5C\x7F-\x9F\u00AD\u0600-\u0604\u070F\u17B4\u17B5\u200C-\u200F\u2028-\u202F\u2060-\u206F\uFEFF\uFFF0-\uFFFF]/g;
-function stringEscape( string, quoteChar, re = stringEscapeRE )
+export function stringEscape( string, quoteChar, re = stringEscapeRE )
 {
 	let quoteCode = 0;
 	
@@ -40,7 +40,7 @@ function stringEscape( string, quoteChar, re = stringEscapeRE )
 	} );
 }
 
-function stringPad( string, length, padding )
+export function stringPad( string, length, padding )
 {
 	const diff = length - string.length;
 	if ( diff <= 0 ) return string;
@@ -48,7 +48,7 @@ function stringPad( string, length, padding )
 	return padding.repeat( Math.ceil( diff / padding.length ) ).slice( 0, diff ) + string;
 }
 
-function stringTruncate( string, length, replacement )
+export function stringTruncate( string, length, replacement )
 {
 	if ( !replacement || typeof replacement !== "string" ) replacement = "...";
 	if ( string.length > length )
@@ -58,5 +58,3 @@ function stringTruncate( string, length, replacement )
 	}
 	return string;
 }
-
-module.exports = {isObjectEmpty, stringEscape, stringPad, stringTruncate};

@@ -1,8 +1,8 @@
-const https = require( "https" );
-const fs = require( "fs" );
-const path = require( "path" );
-const {zip} = require( "compressing" );
-const {stringEscape} = require( "./utils" );
+import https from "node:https"
+import fs from "node:fs"
+import path from "node:path"
+import {zip} from "../node_modules/compressing/index.js"
+import {stringEscape} from "./utils.js"
 
 const entityNameRE = /[&;]/g;
 // deno-lint-ignore no-control-regex

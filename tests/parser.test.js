@@ -1,4 +1,4 @@
-const {DOM, testEachWithHTML} = require( "./utils" );
+import {DOM, testEachWithHTML} from "./utils.js"
 
 const emptyDocument = "<html><head></head><body></body></html>";
 

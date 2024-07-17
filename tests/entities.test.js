@@ -1,4 +1,4 @@
-const {DOM, testEachWithAllOutput, testEachWithEntities, testEachWithStandardEntities, printAll} = require( "./utils" );
+import {DOM, testEachWithAllOutput, testEachWithEntities, testEachWithStandardEntities, printAll} from "./utils.js"
 
 describe( "Entities", () =>
 {

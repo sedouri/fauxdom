@@ -1,4 +1,4 @@
-const {DOM, testEachWithCallback, testEachCallbackResult, printHierarchy, describeNode} = require( "./utils" );
+import {DOM, testEachWithCallback, testEachCallbackResult, printHierarchy, describeNode} from "./utils.js"
 
 describe( "DOM API, Nodes", () =>
 {

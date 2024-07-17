@@ -1,5 +1,7 @@
-const {DOM, printHierarchy, describeNode} = require( "./utils" );
-const htmlContent = require( "fs" ).readFileSync( "./tests/minifier.test.html", "utf8" );
+import {DOM, printHierarchy, describeNode} from "./utils.js"
+import fs from "node:fs"
+
+const htmlContent = fs.readFileSync( "./tests/minifier.test.html", "utf8" );
 
 describe( "Whitespace Minifier", () =>
 {
@@ -21,7 +23,14 @@ describe( "Whitespace Minifier", () =>
 	test( "Custom inline elements", () =>
 	{
 		const document = new DOM( htmlContent );
-		document.minifyWhitespace( ["div", "p", true] );
+		document.minifyWhitespace( ["div", "p", "aside", true] );
+		expect( document.innerHTML ).toMatchSnapshot();
+	} );
+	
+	test( "Allowing processing instructions", () =>
+	{
+		const document = new DOM( htmlContent, {allowProcessingInstructions: true} );
+		document.minifyWhitespace( ["aside"] );
 		expect( document.innerHTML ).toMatchSnapshot();
 	} );
 	

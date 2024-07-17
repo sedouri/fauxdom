@@ -1,4 +1,4 @@
-const {isObjectEmpty, stringEscape, stringTruncate} = require( "./utils" );
+import {isObjectEmpty, stringEscape, stringTruncate} from "./utils.js"
 
 const nodeTypes = {
 	ELEMENT_NODE: 1,
@@ -15,7 +15,7 @@ const nodeTypes = {
 	NOTATION_NODE: 12 // Unused, historical
 };
 
-function printHierarchy( elem, prefix = "" )
+export function printHierarchy( elem, prefix = "" )
 {
 	let result = "";
 	let following = " ";
@@ -58,7 +58,7 @@ function printHierarchy( elem, prefix = "" )
 	return result;
 }
 
-function printElementList( list )
+export function printElementList( list )
 {
 	let result = "";
 	if ( list instanceof Array ) for ( let i = 0; i < list.length; i++ )
@@ -69,7 +69,7 @@ function printElementList( list )
 	return result;
 }
 
-function describeNode( elem )
+export function describeNode( elem )
 {
 	let desc = "";
 	
@@ -123,9 +123,3 @@ function describeNode( elem )
 	
 	return desc;
 }
-
-module.exports = {
-	printHierarchy,
-	printElementList,
-	describeNode
-};

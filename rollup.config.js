@@ -1,18 +1,19 @@
-import {terser} from "rollup-plugin-terser";
-import buble from "@rollup/plugin-buble";
-import stripCode from "rollup-plugin-strip-code";
-import {spawn} from "child_process";
-import {zip} from "compressing";
-import path from "node:path";
+import terser from "./node_modules/@rollup/plugin-terser/dist/es/index.js"
+import buble from "./node_modules/@rollup/plugin-buble/dist/es/index.js"
+import stripCode from "./node_modules/rollup-plugin-strip-code/index.js"
+import {spawn} from "node:child_process"
+import {zip} from "./node_modules/compressing/index.js"
+import path from "node:path"
+import fs from "node:fs"
 
-import * as pkg from "./package.json";
+const pkg = JSON.parse( fs.readFileSync( "./package.json", "utf8" ) );
 
 let DEBUG = true;
 
 spawn( process.execPath, ["./scripts/entities.js"] );
 
 export default args =>
-{	
+{
 	DEBUG = !!args.configDebug;
 	
 	const debugStripper = stripCode( {
@@ -29,7 +30,8 @@ export default args =>
 	} );
 	
 	const modulePlugins = [debugStripper, browserStripper];
-	const iifePlugins = [debugStripper, unitTestStripper, buble()];
+	const iifePlugins = [debugStripper, unitTestStripper];
+	const iifeLegacyPlugins = [debugStripper, unitTestStripper, buble()];
 	const output = [
 		{
 			onwarn,
@@ -45,23 +47,20 @@ export default args =>
 			input: "src/document.js",
 			plugins: iifePlugins,
 			output: module( "iife" )
+		},
+		{
+			onwarn,
+			input: "src/document.js",
+			plugins: iifeLegacyPlugins,
+			output: module( "iife", "legacy." )
 		}
 	];
 	
 	if ( !DEBUG )
 	{
 		modulePlugins.push( unitTestStripper, terser( {module: true} ), zipFile() );
-		iifePlugins.push( terser( {safari10: true} ), zipFile() );
-	}
-	else
-	{
-		output.push( {
-			onwarn,
-			input: "src/document.js",
-			plugins: [browserStripper],
-			output: module( "cjs", "tests." )
-		} );
-		iifePlugins.push( terser( {compress: false, mangle: false, output: {beautify: true}, safari10: true} ) );
+		iifePlugins.push( terser(), zipFile() );
+		iifeLegacyPlugins.push( terser( {safari10: true} ), zipFile() );
 	}
 	
 	return output;
@@ -87,7 +86,7 @@ function module( format, ext = "" )
 		file: `lib/${pkg.name}.${ext}`,
 		format,
 		interop: false,
-		esModule: false,
+		esModule: (format === "esm"),
 		freeze: false,
 		exports: "default",
 		sourcemap: (DEBUG && format === "cjs")
@@ -105,15 +104,16 @@ function zipFile()
 		
 		renderChunk( src, _chunk, options )
 		{
-			const ext = path.extname( options.file ),
-				fileName = path.basename( options.file, ext ),
-				dirName = path.dirname( options.file );
+			const ext = path.extname( options.file );
+			const srcName = path.basename( options.file, ext );
+			const destName = srcName.replace( ".legacy", "" );
+			const dirName = path.dirname( options.file );
 			
 			if ( ext === ".js" || ext === ".mjs" )
 				zip.compressFile(
 					Buffer.from( src ),
-					path.join( dirName, fileName + (ext === ".mjs" ? ".module" : "") +".zip" ),
-					{relativePath: fileName +".js"}
+					path.join( dirName, srcName + (ext === ".mjs" ? ".module" : "") +".zip" ),
+					{relativePath: destName +".js"}
 				);
 			
 			return null;
