@@ -1,7 +1,7 @@
 {
 	"name": "fauxdom",
 	"description": "A fast and lightweight HTML5 parser and DOM for Node.js and browsers.",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"author": "Joe Stenger <sedouri@gmail.com>",
 	"license": "MIT",
 	"keywords": [
