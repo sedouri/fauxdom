@@ -33,7 +33,6 @@
 		"node": ">=6"
 	},
 	"main": "index.js",
-	"type": "module",
 	"scripts": {
 		"test": "npm run build:debug && NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" NODE_NO_WARNINGS=1 jest",
 		"build:debug": "rollup -c --configDebug --silent",

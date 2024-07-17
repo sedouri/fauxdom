@@ -1,28 +1,26 @@
-import fs from "node:fs"
-import path from "node:path"
-import DOM from "./lib/fauxdom.mjs"
-
+const fs = require( "node:fs" );
+const path = require( "node:path" );
 let standardEntities;
 
-DOM.prototype.importStandardEntities = function()
+module.exports = require( "./lib/fauxdom.cjs" );
+
+module.exports.prototype.importStandardEntities = function()
 {
 	this.entityEncoder.entities = importStandardEntities();
 }
-DOM.importStandardEntities = function()
+module.exports.importStandardEntities = function()
 {
-	DOM.EntityEncoder.defaultEntities = importStandardEntities();
+	module.exports.EntityEncoder.defaultEntities = importStandardEntities();
 }
 
 function importStandardEntities()
 {
 	if ( !standardEntities )
 	{
-		const entitiesPath = path.resolve( "./lib/entities.json" );
+		const entitiesPath = path.resolve( __dirname +"/lib/entities.json" );
 		if ( fs.existsSync( entitiesPath ) )
 			standardEntities = JSON.parse( fs.readFileSync( entitiesPath, "utf8" ) );
 		else standardEntities = {};
 	}
 	return standardEntities;
 }
-
-export default DOM;

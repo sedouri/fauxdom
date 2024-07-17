@@ -1,4 +1,4 @@
-import DOM from "../index.js"
+import DOM from "../index.mjs"
 import {printHierarchy, printElementList, describeNode} from "../scripts/printer.js"
 
 const {Node} = DOM;
